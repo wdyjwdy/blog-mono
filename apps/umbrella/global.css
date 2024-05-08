@@ -1,0 +1,35 @@
+/* 隐藏左侧边栏底部空白 */
+.md\:nx-h-\[calc\(100vh-var\(--nextra-navbar-height\)-var\(--nextra-menu-height\)\)\] {
+  height: calc(100vh - var(--nextra-navbar-height)) !important;
+}
+
+/* 原生样式 */
+em {
+  color: #ad1f48;
+  font-style: normal;
+}
+
+img {
+  background-image: none !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  img {
+    background: radial-gradient(#aaaaaa, #3e1527)  !important;
+    border-radius: 10px  !important;
+  }
+  img[alt="logo"] {
+    background: none !important;
+  }
+}
+
+/* Mermaid Color */
+.Yellow > rect {
+  fill:#fff4e6 !important;
+  stroke:#ffc600 !important;
+}
+@media (prefers-color-scheme: dark) {
+  .Yellow > rect {
+    fill:#33302d !important;
+  }
+}

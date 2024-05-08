@@ -1,0 +1,22 @@
+{
+  "workspaces": {
+    "packages": ["apps/*"]
+  },
+  "scripts": {
+    "dev": "pnpm -r --filter=./apps/* run dev",
+    "build": "pnpm -r --filter=./apps/* run build",
+    "start": "pnpm -r --filter=./apps/* run start"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "next": "^13.0.6",
+    "nextra": "^2.13.4",
+    "nextra-theme-docs": "^2.13.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "18.11.10",
+    "typescript": "^4.9.3"
+  }
+}

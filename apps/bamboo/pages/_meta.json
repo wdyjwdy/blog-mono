@@ -1,0 +1,17 @@
+{
+  "index": "Quick Start",
+  "separator": {
+    "type": "separator"
+  },
+  "contact": {
+    "title": "wdyjwdy",
+    "type": "page",
+    "href": "https://wdyjwdy.vercel.app/",
+    "newWindow": true
+  },
+  "*": {
+    "theme": {
+      "breadcrumb": false
+    }
+  }
+}
