@@ -1,0 +1,99 @@
+# 二叉树
+## 前序遍历
+[力扣链接](https://leetcode.cn/problems/binary-tree-preorder-traversal/description/)
+![preorder](public/img/leetcode/tree/preorder.png)
+1. 根 -> 左 -> 右
+```js
+function preorderTraversal(root) {
+    let out = []
+    function dfs(root) {
+        if (root) {
+            out.push(root.val) // 根
+            dfs(root.left) // 左
+            dfs(root.right) // 右
+        }
+    }
+    dfs(root)
+    return out
+};
+```
+## 中序遍历
+[力扣链接](https://leetcode.cn/problems/binary-tree-inorder-traversal/description/)
+![inorder](public/img/leetcode/tree/inorder.png)
+1. 左 -> 根 -> 右
+```js
+function inorderTraversal(root) {
+    let out = []
+    function dfs(root) {
+        if (root) {
+            dfs(root.left) // 左
+            out.push(root.val) // 根
+            dfs(root.right) // 右
+        }
+    }
+    dfs(root)
+    return out
+};
+```
+## 后序遍历
+[力扣链接](https://leetcode.cn/problems/binary-tree-postorder-traversal/description/)
+![postorder](public/img/leetcode/tree/postorder.png)
+1. 左 -> 右 -> 根
+```js
+function postorderTraversal(root) {
+    let out = []
+    function dfs(root) {
+        if (root) {
+            dfs(root.left) // 左
+            dfs(root.right) // 右
+            out.push(root.val) // 根
+        }
+    }
+    dfs(root)
+    return out
+};
+```
+## 层序遍历
+[力扣链接](https://leetcode.cn/problems/binary-tree-level-order-traversal/description/)
+![levelorder](public/img/leetcode/tree/levelorder.png)
+1. 上 -> 中 -> 下
+```js
+function levelOrder(root) {
+    if (!root) return []
+    let out = []
+    let currLevels = [root]
+    while (currLevels.length) {
+        let nextLevels = []
+        let values = []
+        for (let level of currLevels) {
+            values.push(level.val)
+            if (level.left) nextLevels.push(level.left)
+            if (level.right) nextLevels.push(level.right)
+        }
+        currLevels = nextLevels
+        out.push(values)
+    }
+    return out
+};
+```
+## 
+[力扣链接]()
+
+## 
+[力扣链接]()
+
+## 
+[力扣链接]()
+
+## 
+[力扣链接]()
+
+## 
+[力扣链接]()
+
+## 
+[力扣链接]()
+
+## 
+[力扣链接]()
+
