@@ -18,6 +18,7 @@ const config: DocsThemeConfig = {
     }
   },
   primaryHue: 340,
+  primarySaturation: 70,
   search: {
     placeholder: 'Search'
   },
