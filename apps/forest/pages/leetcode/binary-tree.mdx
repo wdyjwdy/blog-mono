@@ -76,24 +76,121 @@ function levelOrder(root) {
     return out
 };
 ```
-## 
-[力扣链接]()
-
-## 
-[力扣链接]()
-
-## 
-[力扣链接]()
-
-## 
-[力扣链接]()
-
-## 
-[力扣链接]()
-
-## 
-[力扣链接]()
-
-## 
-[力扣链接]()
-
+## 节点个数
+[力扣链接](https://leetcode.cn/problems/count-complete-tree-nodes/description/)
+```js
+function countNodes(root) {
+    let count = 0
+    function dfs(root) {
+        if (root) {
+            count++
+            dfs(root.left)
+            dfs(root.right)
+        }
+    }
+    dfs(root)
+    return count
+};
+```
+## 最大深度
+[力扣链接](https://leetcode.cn/problems/maximum-depth-of-binary-tree/description/)
+1. 最大深度 = 子节点的最大深度 + 1
+```js
+function maxDepth(root) {
+    if (!root) return 0
+    let [left,  right] = [maxDepth(root.left), maxDepth(root.right)]
+    return Math.max(left, right) + 1
+};
+```
+## 最小深度
+[力扣链接](https://leetcode.cn/problems/minimum-depth-of-binary-tree/description/)
+1. 最小深度 = 子节点的最小深度 + 1（需要左右节点都存在）
+```js
+function minDepth(root) {
+    if (!root) return 0
+    else if (root.left && root.right) return Math.min(minDepth(root.left), minDepth(root.right)) + 1
+    else return minDepth(root.left || root.right) + 1
+};
+```
+## 平衡二叉树
+1. 遍历树的深度
+2. `left`, `right` 的差值大于 1，则不是平衡二叉树
+```js
+function isBalanced(root) {
+    function dfs(root) {
+        if (!root) return 0
+        let [left, right] = [dfs(root.left), dfs(root.right)]
+        if (Math.abs(left - right) > 1) return -Infinity
+        else return Math.max(left, right) + 1
+    }
+    return dfs(root) !== -Infinity
+};
+```
+## 二叉树的直径
+[力扣链接](https://leetcode.cn/problems/diameter-of-binary-tree/description/)
+1. 遍历树的深度
+2. 经过节点的最长路径长度为 `left` + `right`
+```js
+function diameterOfBinaryTree(root) {
+    let out = 0
+    function dfs(root) {
+        if (!root) return 0
+        let [left, right] = [dfs(root.left), dfs(root.right)]
+        out = Math.max(out, left + right)
+        return Math.max(left, right) + 1
+    }
+    dfs(root)
+    return out
+};
+```
+## 相同的树
+[力扣链接](https://leetcode.cn/problems/same-tree/description/)
+1. 树 `a`, `b` 相同，需要满足 `a.left === b.left` 和  `a.right === b.right`
+```js
+function isSameTree(p, q) {
+    function dfs(a, b) {
+        if (!a && !b) return true
+        else if (!a || !b) return false
+        else if (a.val !== b.val) return false
+        else return dfs(a.left, b.left) && dfs(a.right, b.right)
+    }
+    return dfs(p, q)
+};
+```
+## 对称二叉树
+[力扣链接](https://leetcode.cn/problems/symmetric-tree/description/)
+1. 树 `a`, `b` 对称，需要满足 `a.left === b.right` 和  `a.right === b.left`
+```js
+function isSymmetric(root) {
+    function dfs(a, b) {
+        if (!a && !b) return true
+        else if (!a || !b) return false
+        else if (a.val !== b.val) return false
+        else return dfs(a.left, b.right) && dfs(a.right, b.left)
+    }
+    return dfs(root, root)
+};
+```
+## 翻转二叉树
+[力扣链接](https://leetcode.cn/problems/invert-binary-tree/description/)
+```js
+function invertTree(root) {
+    if (!root) return root;
+    [root.left, root.right] = [invertTree(root.right), invertTree(root.left)]
+    return root
+};
+```
+## 合并二叉树
+[力扣链接](https://leetcode.cn/problems/merge-two-binary-trees/description/)
+```js
+function mergeTrees(root1, root2) {
+    if (!root1) return root2
+    if (!root2) return root1
+    let merged = new TreeNode(
+        root1.val + root2.val,
+        mergeTrees(root1.left, root2.left),
+        mergeTrees(root1.right, root2.right)
+    )
+    return merged
+};
+```

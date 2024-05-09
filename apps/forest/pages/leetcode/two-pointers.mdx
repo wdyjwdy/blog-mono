@@ -1,0 +1,169 @@
+# 双指针
+## 两数之和 II
+> [力扣链接](https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted/description/)
+```js
+function twoSum(numbers, target) {
+    let [a, b] = [0, numbers.length - 1]
+    while (a < b) {
+        let sum = numbers[a] + numbers[b]
+        if (sum < target) a++
+        else if (sum > target) b--
+        else return [a + 1, b + 1]
+    }
+};
+```
+## 平方数之和
+> [力扣链接](https://leetcode.cn/problems/sum-of-square-numbers/description/)
+```js
+function judgeSquareSum(c) {
+    let [a, b] = [0, Math.floor(Math.sqrt(c))]
+    while (a <= b) {
+        let sum = a ** 2 + b ** 2
+        if (sum < c) a++
+        else if (sum > c) b--
+        else return true
+    }
+    return false
+};
+```
+## 反转元音字母
+> [力扣链接](https://leetcode.cn/problems/reverse-vowels-of-a-string/description/)
+1. 找到左右两边第一个元音字母，然后交换
+```js
+function reverseVowels(s) {
+    let vowels = new Set('aeiouAEIOU')
+    let arr = Array.from(s)
+    let [a, b] = [0, arr.length - 1]
+    while (a < b) {
+        while (!vowels.has(arr[a]) && a < b) a++
+        while (!vowels.has(arr[b]) && a < b) b--
+        [arr[a], arr[b]] = [arr[b], arr[a]]
+        a++
+        b--
+    }
+    return arr.join('')
+};
+```
+## 判断子序列
+1. 只需判断 s 中元素，是否在 t 中按序出现
+> [力扣链接](https://leetcode.cn/problems/is-subsequence/description/)
+```js
+function isSubsequence(s, t) {
+    let [a, b] = [0, 0]
+    while (b < t.length) {
+        if (t[b] === s[a]) a++
+        b++
+    }
+    return a === s.length
+};
+```
+## 合并有序数组
+> [力扣链接](https://leetcode.cn/problems/merge-sorted-array/description/)
+1. `num1` 非空，`num2` 非空，比较后插入 `num1` 末尾
+2. `num1` 为空，`num2` 非空，直接将 `num2` 插入 `num1` 末尾
+3. `num1` 非空，`num2` 为空，不做处理
+```js
+function merge(nums1, m, nums2, n) {
+    let [a, b, c] = [m - 1, n - 1, m + n - 1]
+    while (b >= 0) {
+        if (a >= 0) {
+            if (nums1[a] > nums2[b]) {
+                nums1[c] = nums1[a]
+                c--
+                a--
+            } else {
+                nums1[c] = nums2[b]
+                c--
+                b--
+            }
+        } else {
+            nums1[c] = nums2[b]
+            c--
+            b--
+        }
+    }
+};
+```
+## 移动零
+> [力扣链接](https://leetcode.cn/problems/move-zeroes/description/)
+1. 将非零数往前移
+```js
+function moveZeroes(nums) {
+    let [a, b] = [0, 0]
+    while (b < nums.length) {
+        if (nums[b] !== 0) {
+            [nums[a], nums[b]] = [nums[b], nums[a]]
+            a++
+        }
+        b++
+    }
+};
+```
+## 有序数组的平方
+> [力扣链接](https://leetcode.cn/problems/squares-of-a-sorted-array/description/)
+1. 将较大的数，前插到数组中
+```js
+function sortedSquares(nums) {
+    let [a, b] = [0, nums.length - 1]
+    let out = []
+    while (a <= b) {
+        let [A, B] = [nums[a] ** 2, nums[b] ** 2]
+        if (A > B) {
+            out.unshift(A)
+            a++
+        } else {
+            out.unshift(B)
+            b--
+        }
+    }
+    return out
+};
+```
+## 有序数组去重
+> [力扣链接](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/description/)
+1. 将不同的数往前移
+```js
+function removeDuplicates(nums) {
+    let [a, b] = [1, 1]
+    while (b < nums.length) {
+        if (nums[b] !== nums[a - 1]) {
+            nums[a] = nums[b]
+            a++
+        }
+        b++
+    }
+    return a
+};
+```
+## 有序数组去重 II
+> [力扣链接](https://leetcode.cn/problems/remove-duplicates-from-sorted-array-ii/description/)
+1. 将不同的数往前移
+```js
+function removeDuplicates(nums) {
+    let [a, b] = [2, 2]
+    while (b < nums.length) {
+        if (nums[b] !== nums[a - 2]) {
+            nums[a] = nums[b]
+            a++
+        }
+        b++
+    }
+    return a
+};
+```
+## 盛最多水的容器
+> [力扣链接](https://leetcode.cn/problems/container-with-most-water/description/)
+1. 移动短板，面积才有可能增大
+```js
+function maxArea(height) {
+    let [a, b] = [0, height.length - 1]
+    let out = 0
+    while (a < b) {
+        let area = (b - a) * Math.min(height[a], height[b])
+        out = Math.max(out, area)
+        if (height[a] < height[b]) a++
+        else b--
+    }
+    return out
+};
+```

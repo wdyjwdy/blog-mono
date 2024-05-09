@@ -1,0 +1,62 @@
+# 排序
+## 冒泡排序
+> [力扣链接](https://leetcode.cn/problems/sort-an-array/description/)
+1. 每轮循环，选择 `[i, n]` 中最小的，与 `i` 交换
+```js
+function sortArray(nums) {
+    for (let i = 0; i < nums.length; i++) {
+        let min = i
+        for (let j = i; j < nums.length; j++) {
+            if (nums[j] < nums[min]) min = j
+        }
+        [nums[i], nums[min]] = [nums[min], nums[i]]
+    }
+    return nums
+};
+```
+## 选择排序
+> [力扣链接](https://leetcode.cn/problems/sort-an-array/description/)
+1. 每轮循环，依次交换 `[0, i]` 中相邻的数
+```js
+function sortArray(nums) {
+    for (let i = nums.length - 1; i > 0; i--) {
+        for (let j = 0; j < i; j++) {
+            if (nums[j] > nums[j + 1]) {
+                [nums[j], nums[j + 1]] = [nums[j + 1], nums[j]]
+            }
+        }
+    }
+    return nums
+};
+```
+## 快速排序
+> [力扣链接](https://leetcode.cn/problems/sort-an-array/description/)
+1. 选一个基准数 pivot，小于 pivot 的放左边，大于 pivot 的放右边
+2. 递归子区间
+```js
+function sortArray(nums) {
+    function swap(a, b) {
+        [nums[a], nums[b]] = [nums[b], nums[a]]
+    }
+    function partition(a, b) {
+        let [pivot, index] = [a, a + 1]
+        for (let i = a + 1; i <= b; i++) {
+            if (nums[i] < nums[pivot]) {
+                swap(i, index)
+                index++
+            }
+        }
+        swap(pivot, index - 1)
+        return index - 1
+    }
+    function sort(a, b) {
+        if (b - a < 1) return; // 区间长度 < 1
+        let pivot = partition(a, b)
+        sort(a, pivot - 1)
+        sort(pivot + 1, b)
+    }
+
+    sort(0, nums.length - 1)
+    return nums
+};
+```
