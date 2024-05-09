@@ -1,0 +1,20 @@
+# React
+## vdom2dom
+![vdom2dom](public/img/framework/react/vdom2dom.png)
+```js
+function vdom2dom(vdom) {
+    if (typeof vdom !== 'object') { // not a node
+        return document.createTextNode(String(vdom))
+    } else {
+        let { type, props = {}, children = [] } = vdom // node
+        let dom = document.createElement(type)
+        for (let key in props) { // props
+            dom.setAttribute(key, props[key])
+        }
+        for (let child of children) { // children
+            dom.appendChild(vdom2dom(child))
+        }
+        return dom
+    }
+}
+```

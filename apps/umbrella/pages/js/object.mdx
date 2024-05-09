@@ -1,4 +1,31 @@
-# Instanceof
+# Object
+## Create
+![create](public/img/js/object/create.png)
+1. 创建一个空实例
+2. 空实例原型 *->* `proto`
+```js
+function create(proto) {
+    let instance = {}
+    Object.setPrototypeOf(instance, proto)
+    return instance
+}
+
+Object.create = create
+```
+## Assign
+```js
+function assign(target, ...sources) {
+    for (let source of sources) {
+        for (let [key, val] of source) { // 自有属性
+            target[key] = val
+        }
+    }
+    return target
+}
+
+Object.assign = assign
+```
+## Instanceof
 ![instanceof](public/img/js/object/instanceof.png)
 1. 遍历 `a` 的原型链
 2. 检查 `b` 的原型是否在其中
@@ -12,7 +39,7 @@ function Instanceof(a, b) {
     return false
 }
 ```
-# New
+## New
 ![new](public/img/js/object/new.png)
 1. 创建一个空实例
 2. 调用构造函数（`this` *->* 空实例）
@@ -25,7 +52,7 @@ function New(fn, ...args) {
     return instance
 }
 ```
-# Extends
+## Extends
 ![extends](public/img/js/object/extends.png)
 1. 子类中调用父类（`this` *->* 子类 `this`）
 2. 子类原型 *->* 父类原型
