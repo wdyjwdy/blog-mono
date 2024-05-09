@@ -3,10 +3,17 @@
   "separator": {
     "type": "separator"
   },
-  "contact": {
+  "leetcode": "LeetCode",
+  "wdyjwdy": {
     "title": "wdyjwdy",
     "type": "page",
     "href": "https://wdyjwdy.vercel.app/",
+    "newWindow": true
+  },
+  "code-umbrella": {
+    "title": "code-umbrella",
+    "type": "page",
+    "href": "https://code-umbrella.vercel.app/",
     "newWindow": true
   },
   "*": {

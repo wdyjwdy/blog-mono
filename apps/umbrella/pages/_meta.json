@@ -5,10 +5,16 @@
   },
   "js": "JS",
   "css": "CSS",
-  "contact": {
+  "wdyjwdy": {
     "title": "wdyjwdy",
     "type": "page",
     "href": "https://wdyjwdy.vercel.app/",
+    "newWindow": true
+  },
+  "code-forest": {
+    "title": "code-forest",
+    "type": "page",
+    "href": "https://code-forest.vercel.app/",
     "newWindow": true
   },
   "*": {

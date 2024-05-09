@@ -1,0 +1,184 @@
+# 链表
+## 相交链表
+> [力扣链接](https://leetcode.cn/problems/intersection-of-two-linked-lists/description/)
+1. 遍历链表 A，并将节点储存下来
+2. 遍历链表 B，如果节点已存在，该节点就是相交的起始节点
+```js
+function getIntersectionNode(headA, headB) {
+    let set = new Set()
+    while (headA) {
+        set.add(headA)
+        headA = headA.next
+    }
+    while (headB) {
+        if (set.has(headB)) return headB
+        headB = headB.next
+    }
+    return null
+};
+```
+## 反转链表
+> [力扣链接](https://leetcode.cn/problems/reverse-linked-list/description/)
+1. 新建一个空节点，作为前一个节点
+2. 把当前节点，指向前一个节点
+```js
+function reverseList(head) {
+    let [prev, curr] = [null, head]
+    while (curr) {
+        let next = curr.next
+        curr.next = prev // 指向前一个节点
+        prev = curr
+        curr = next
+    }
+    return prev
+};
+```
+## 合并两个有序链表
+> [力扣链接](https://leetcode.cn/problems/merge-two-sorted-lists/description/)
+1. 新建一个空节点 `dummy`，作为辅助节点
+2. 循环比较 `l1`, `l2`，将较小的放到 `dummy` 后，直到 `l1`, `l2` 中某个为空
+3. 将另一个非空链表拼接到 `dummy` 后
+```js
+function mergeTwoLists(list1, list2) {
+    let dummy = new ListNode()
+    let curr = dummy
+    while (list1 && list2) {
+        if (list1.val < list2.val) {
+            curr.next = list1
+            curr = curr.next
+            list1 = list1.next
+        } else {
+            curr.next = list2
+            curr = curr.next
+            list2 = list2.next
+        }
+    }
+    curr.next = list1 ? list1 : list2
+    return dummy.next
+};
+```
+## 删除排序链表中的重复元素
+> [力扣链接](https://leetcode.cn/problems/remove-duplicates-from-sorted-list/description/)
+1. 若下个值和当前值相同，则删除下个节点
+```js
+function deleteDuplicates(head) {
+    let curr = head
+    while (curr?.next) {
+        if (curr.val === curr.next.val) {
+            curr.next = curr.next.next // 删除下个节点
+        } else {
+            curr = curr.next
+        }
+    }
+    return head
+};
+```
+## 删除链表的倒数第 N 个结点
+> [力扣链接](https://leetcode.cn/problems/remove-nth-node-from-end-of-list/description/)
+1. 初始化两个相距 `n` 的节点 `a`， `b`
+2. 当 `b.next` 为空时，此时 `a` 指向待删除节点的前一个节点
+```js
+function removeNthFromEnd(head, n) {
+    let dummy = new ListNode(0, head)
+    let [a, b] = [dummy, dummy]
+    for (let i = 0; i < n; i++) {
+        b = b.next
+    }
+    while (b && b.next) {
+        a = a.next
+        b = b.next
+    }
+    a.next = a.next.next
+    return dummy.next
+};
+```
+## 两两交换链表中的节点
+> [力扣链接](https://leetcode.cn/problems/swap-nodes-in-pairs/description/)
+1. 对于节点 `a`, `b`, `c`, `d`，想要交换 `b`, `c`，只需要 `a -> c`, `c -> b`, `b -> d`
+```js
+function swapPairs(head) {
+    let dummy = new ListNode(0, head)
+    let curr = dummy
+    while (curr?.next?.next) {
+        let [a, b, c, d] = [curr, curr.next, curr.next.next, curr.next.next.next]
+        a.next = c
+        c.next = b
+        b.next = d
+        curr = curr.next.next
+    }
+    return dummy.next
+};
+```
+## 两数相加
+> [力扣链接](https://leetcode.cn/problems/add-two-numbers/description/)
+1. 节点的值等于 `l1` + `l2` + `carry`，其中 `carry` 表示进位
+```js
+function addTwoNumbers(l1, l2) {
+    let head = new ListNode()
+    let curr = head
+    let carry = 0
+    while (l1 || l2) {
+        let v1 = l1 ? l1.val : 0
+        let v2 = l2 ? l2.val : 0
+        let sum = v1 + v2 + carry
+        let val = sum % 10
+        carry = Math.floor(sum / 10)
+        curr.next = new ListNode(val)
+        curr = curr.next
+        if(l1) l1 = l1.next
+        if(l2) l2 = l2.next
+    }
+    if (carry) curr.next = new ListNode(1)
+    return head.next
+};
+```
+## 环形链表
+>[力扣链接](https://leetcode.cn/problems/linked-list-cycle/description/)
+1. `slow` 走一步，`fast` 走两步
+2. 当 `fast` 套圈了，即相遇了
+```js
+function hasCycle(head) {
+    let [slow, fast] = [head, head]
+    while (fast?.next) {
+        slow = slow.next
+        fast = fast.next.next
+        if (slow === fast) return true // 相遇
+    }
+    return false
+};
+```
+## 环形链表 II
+>[力扣链接](https://leetcode.cn/problems/linked-list-cycle-ii/description/)
+1. 找到相遇的点
+2. 将 `fast` 放到起点，再次相遇，即环的入口
+```js
+function detectCycle(head) {
+    let [slow, fast] = [head, head]
+    while (fast?.next) {
+        slow = slow.next
+        fast = fast.next.next
+        if (fast === slow) break
+    }
+    if (!fast?.next) return null
+    fast = head
+    while (slow !== fast) {
+        slow = slow.next
+        fast = fast.next
+    }
+    return fast
+};
+```
+## 链表的中间结点
+>[力扣链接](https://leetcode.cn/problems/middle-of-the-linked-list/description/)
+1. `slow` 走一步，`fast` 走两步
+2. 当 `fast` 走到终点时，`slow` 刚好走到一半
+```js
+function middleNode(head) {
+    let [slow, fast] = [head, head]
+    while (fast?.next) {
+        slow = slow.next
+        fast = fast.next.next
+    }
+    return slow
+};
+```
