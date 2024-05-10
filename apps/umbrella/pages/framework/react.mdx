@@ -1,3 +1,5 @@
+import { Tabs, Tab } from 'nextra/components'
+
 # React
 ## vdom2dom
 ![vdom2dom](public/img/framework/react/vdom2dom.png)
@@ -18,3 +20,61 @@ function vdom2dom(vdom) {
     }
 }
 ```
+## Router
+<Tabs items={['Hash', 'History']}>
+    <Tab>
+    ```html filename="HTML"
+    <body>
+      <h1>Home Page</h1>
+      <button>cat</button>
+      <button>dog</button>
+    </body>
+    ```
+    ```js {9,13} filename="JS"
+    let routers = [
+        { path: '', element: 'Home Page' },
+        { path: '#cat', element: 'Cat Page' },
+        { path: '#dog', element: 'Dog Page' },
+    ]
+     
+    document.querySelectorAll('button').forEach(item => {
+        item.onclick = () => {
+            location.hash = item.innerText // change url
+        }
+    })
+     
+    window.onhashchange = e => { // url change event
+        let router = routers.find(item => item.path === location.hash)
+        document.querySelector('h1').innerText = router.element // re-render
+    }
+    ```
+    </Tab>
+    <Tab>
+    ```html filename="HTML"
+    <body>
+      <h1>Home Page</h1>
+      <button>cat</button>
+      <button>dog</button>
+    </body>
+    ```
+    ```js {9-10,14} filename="JS"
+    let routers = [
+        { path: '/', element: 'Home Page' },
+        { path: '/cat', element: 'Cat Page' },
+        { path: '/dog', element: 'Dog Page' },
+    ]
+     
+    document.querySelectorAll('button').forEach(item => {
+        item.onclick = () => {
+            history.pushState({}, '', item.innerText) // change url
+            window.dispatchEvent(new PopStateEvent('popstate'))
+        }
+    })
+     
+    window.onpopstate = e => { // url change event
+        let router = routers.find(item => item.path === location.pathname)
+        document.querySelector('h1').innerText = router.element // re-render
+    }
+    ```
+    </Tab>
+</Tabs>
