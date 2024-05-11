@@ -2,13 +2,94 @@ import { Callout } from 'nextra/components'
 
 # String
 ## Instance Methods
+### At
+![at](public/img/objects/string/at.png)
+- **描述**：返回索引位置字符串
+- **语法**：`at(index){:js}`
+- **参数**
+    - `index = 0{:js}`：索引
+        ```js filename="索引边界处理"
+        if (index < 0) index = index + str.length
+        ```
+- **返回值**：`string`, `undefined`
+```js
+'hello'.at()   // 'h'
+'hello'.at(0)  // 'h'
+'hello'.at(-1) // 'o'
+
+'hello'.at(10) // undefined
+```
+### CharAt
+![at](public/img/objects/string/at.png)
+- **描述**：返回索引位置的字符串
+- **语法**：`charAt(index){:js}`
+- **参数**
+    - `index = 0{:js}`：索引
+- **返回值**：`string`, `-1`
+```js
+'hello'.charAt()  // 'h'
+'hello'.charAt(1) // 'e'
+
+'hello'.charAt(-1) // ''
+'hello'.charAt(10) // ''
+```
+### IndexOf
+![indexof](public/img/objects/string/indexof.png)
+- **描述**：返回字符串首次出现位置的索引
+- **语法**：`IndexOf(string, position?){:js}`
+- **参数**
+    - `string{:js}`：需要查询的字符串
+    - `position = 0{:js}`：查询起始位置
+- **返回值**：`number`
+```js
+'hi hi hi'.indexOf('hi')    // 0
+'hi hi hi'.indexOf('hi', 2) // 3
+'hi hi hi'.indexOf('hello') // -1
+
+'hi hi hi'.indexOf('') // 0
+```
+### LastIndexOf
+![lastindexof](public/img/objects/string/lastindexof.png)
+- **描述**：返回字符串最后一次出现位置的索引
+- **语法**：`lastIndexOf(string, position?){:js}`
+- **参数**
+    - `string{:js}`：需要查询的字符串
+    - `position = 0{:js}`：查询起始位置
+- **返回值**：`number`
+```js
+'hi hi hi'.lastIndexOf('hi')    // 6
+'hi hi hi'.lastIndexOf('hi', 2) // 0
+'hi hi hi'.lastIndexOf('hello') // -1
+
+'hi hi hi'.lastIndexOf('') // 8
+```
+### StartsWith
+- **描述**：判断是否以某字符串开头
+- **语法**：`startsWith(string, position?){:js}`
+    - `string{:js}`：需要查询的字符串
+    - `position = 0{:js}`：查询起始位置
+- **返回值**：`boolean`
+```js
+'hello'.startsWith('h')    // true
+'hello'.startsWith('e', 1) // true
+```
+### EndsWith
+- **描述**：判断是否以某字符串结尾
+- **语法**：`endsWith(string, position?){:js}`
+    - `string{:js}`：需要查询的字符串
+    - `position = str.length{:js}`：查询起始位置
+- **返回值**：`boolean`
+```js
+'hello'.endsWith('o')    // true
+'hello'.endsWith('l', 4) // true
+```
 ### Slice
 ![slice](public/img/objects/string/slice.png)
 - **描述**：提取子字符串
 - **语法**：`slice(start, end?){:js}`
 - **参数**
-    - `start`：起点
-    - `end`：终点
+    - `start{:js}`：起点
+    - `end{:js}`：终点
         ```js filename="索引边界处理"
         if (typeof start !== 'number') start = 0
         if (typeof end !== 'number') end = str.length
@@ -16,7 +97,7 @@ import { Callout } from 'nextra/components'
         if (index > str.length) index = str.length
         if (start > end) start = end
         ```
-- **返回值**：新字符串
+- **返回值**：`string`
 ```js
 // 正向切片
 'code-anchor'.slice() // 'code-anchor'
@@ -32,8 +113,8 @@ import { Callout } from 'nextra/components'
 - **描述**：提取子字符串
 - **语法**：`slice(start, end?){:js}`
 - **参数**
-    - `start`：起点
-    - `end`：终点
+    - `start{:js}`：起点
+    - `end{:js}`：终点
         ```js filename="索引边界处理"
         if (typeof start !== 'number') start = 0
         if (typeof end !== 'number') end = str.length
@@ -41,7 +122,7 @@ import { Callout } from 'nextra/components'
         if (index > str.length) index = str.length
         if (start > end) [start, end] = [end, start]
         ```
-- **返回值**：新字符串
+- **返回值**：`string`
 ```js
 // 正向切片
 'code-anchor'.substring() // 'code-anchor'
@@ -51,4 +132,63 @@ import { Callout } from 'nextra/components'
 // 逆向切片
 'code-anchor'.substring('code-anchor'.length - 1) // 'r'
 'code-anchor'.substring(0, 'code-anchor'.length - 1) // 'code-ancho'
+```
+### Trim
+- **描述**：移除字符串两端[空白字符](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Lexical_grammar#%E7%A9%BA%E7%99%BD%E7%AC%A6)
+- **语法**：`trim(){:js}`
+- **返回值**：`string`
+```js
+'  code  '.trim() // 'code'
+```
+### TrimStart
+- **描述**：移除字符串左端[空白字符](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Lexical_grammar#%E7%A9%BA%E7%99%BD%E7%AC%A6)
+- **语法**：`trimStart(){:js}`
+- **返回值**：`string`
+```js
+'  code  '.trimStart() // 'code  '
+```
+### TrimEnd
+- **描述**：移除字符串右端[空白字符](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Lexical_grammar#%E7%A9%BA%E7%99%BD%E7%AC%A6)
+- **语法**：`trimEnd(){:js}`
+- **返回值**：`string`
+```js
+'  code  '.trimEnd() // '  code'
+```
+### PadStart
+- **描述**：从左填充字符串
+- **语法**：`PadStart(length, string?){:js}`
+- **参数**
+    - `length{:js}`：填充后，字符串的长度
+    - `string = ' '{:js}`：填充的字符串
+- **返回值**：`string`
+```js
+'hello'.padStart(10)       // '     hello'
+'hello'.padStart(10, '.')  // '.....hello'
+'hello'.padStart(10, '._') // '._._.hello'
+```
+### PadEnd
+- **描述**：从右填充字符串
+- **语法**：`PadEnd(length, string?){:js}`
+- **参数**
+    - `length{:js}`：填充后，字符串的长度
+    - `string = ' '{:js}`：填充的字符串
+- **返回值**：`string`
+```js
+'hello'.padEnd(10)       // 'hello     '
+'hello'.padEnd(10, '.')  // 'hello.....'
+'hello'.padEnd(10, '._') // 'hello._._.'
+```
+### ToUpperCase
+- **描述**：将字符串转化为大写
+- **语法**：`toUpperCase(){:js}`
+- **返回值**：`string`
+```js
+'hello'.toUpperCase() // 'HELLO'
+```
+### ToLowerCase
+- **描述**：将字符串转化为小写
+- **语法**：`toLowerCase(){:js}`
+- **返回值**：`string`
+```js
+'HELLO'.toLowerCase() // 'hello'
 ```
