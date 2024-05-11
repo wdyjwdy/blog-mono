@@ -5,10 +5,10 @@
   },
   "js": "JS",
   "css": "CSS",
-  "wdyjwdy": {
-    "title": "wdyjwdy",
+  "code-anchor": {
+    "title": "code-anchor",
     "type": "page",
-    "href": "https://wdyjwdy.vercel.app/",
+    "href": "https://code-anchor.vercel.app/",
     "newWindow": true
   },
   "code-forest": {

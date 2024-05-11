@@ -1,0 +1,54 @@
+import { Callout } from 'nextra/components'
+
+# String
+## Instance Methods
+### Slice
+![slice](public/img/objects/string/slice.png)
+- **描述**：提取子字符串
+- **语法**：`slice(start, end?){:js}`
+- **参数**
+    - `start`：起点
+    - `end`：终点
+        ```js filename="索引边界处理"
+        if (typeof start !== 'number') start = 0
+        if (typeof end !== 'number') end = str.length
+        if (index < 0) index = index + str.length
+        if (index > str.length) index = str.length
+        if (start > end) start = end
+        ```
+- **返回值**：新字符串
+```js
+// 正向切片
+'code-anchor'.slice() // 'code-anchor'
+'code-anchor'.slice(5) // 'anchor'
+'code-anchor'.slice(0, 4) // 'code'
+
+// 逆向切片
+'code-anchor'.slice(-1) // 'r'
+'code-anchor'.slice(0, -1) // 'code-ancho'
+```
+### Substring
+![slice](public/img/objects/string/slice.png)
+- **描述**：提取子字符串
+- **语法**：`slice(start, end?){:js}`
+- **参数**
+    - `start`：起点
+    - `end`：终点
+        ```js filename="索引边界处理"
+        if (typeof start !== 'number') start = 0
+        if (typeof end !== 'number') end = str.length
+        if (index < 0) index = 0
+        if (index > str.length) index = str.length
+        if (start > end) [start, end] = [end, start]
+        ```
+- **返回值**：新字符串
+```js
+// 正向切片
+'code-anchor'.substring() // 'code-anchor'
+'code-anchor'.substring(5) // 'anchor'
+'code-anchor'.substring(0, 4) // 'code'
+
+// 逆向切片
+'code-anchor'.substring('code-anchor'.length - 1) // 'r'
+'code-anchor'.substring(0, 'code-anchor'.length - 1) // 'code-ancho'
+```
