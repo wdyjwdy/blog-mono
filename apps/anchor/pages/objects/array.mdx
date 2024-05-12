@@ -1,0 +1,137 @@
+# Array
+## Constructor
+### Array
+- **描述**：创建数组
+- **语法**：`Array(...elements){:js}`, `Array(length){:js}`
+- **参数**
+    - `element{:js}`：数组元素
+    - `length{:js}`：数组长度
+- **返回值**：`array`
+```js
+Array(3) // [ , , ]
+Array(1, 2, 3) // [1, 2, 3]
+```
+## Static Methods
+### From
+- **描述**：创建数组
+- **语法**：`Array.from(arrayLike, mapFn?, thisArg?){:js}`
+- **参数**
+    - `arrayLike{:js}`：可迭代对象，类数组
+    - `mapFn(value, index){:js}`：映射函数
+        - `value`：当前元素
+        - `index`：当前索引
+    - `thisArg{:js}`：mapFn 中 this 的值
+- **返回值**：`array`
+```js
+Array.from('hi') // ['h', 'i']
+Array.from(new Set([1, 2])) // [1, 2]
+
+Array.from([1, 2, 3], x => 2 * x) // [2, 4, 6]
+```
+### Of
+- **描述**：创建数组
+- **语法**：`Array.of(...elements){:js}`
+- **参数**
+    - `element{:js}`：数组元素
+- **返回值**：`array`
+```js
+Array.of(1) // [1]
+Array.of(1, 2) // [1, 2]
+```
+### IsArray
+- **描述**：判断是否是数组
+- **语法**：`Array.isArray(value){:js}`
+- **参数**
+    - `value{:js}`：值
+- **返回值**：`boolean`
+```js
+Array.isArray([1, 2, 3]) // true
+```
+## Instance Methods
+### Map
+- **描述**：映射数组元素
+- **语法**：`map(callbackFn, thisArg?){:js}`
+- **参数**
+	- `callbackFn(value, index?, array?){:js}`：映射函数，其返回值被添加到新数组
+		- `value{:js}`：当前元素
+		- `index{:js}`：当前索引
+		- `array{:js}`：原数组
+	- `thisArg{:js}`：callbackFn 中 this 的值
+- **返回值**：`array`
+```js
+// callbackFn(value)
+[1, 2, 3].map((value) => value * 2) //[2, 4, 6]
+
+// callbackFn(value, index)
+[1, 2, 3].map((value, index) => index) // [0, 1, 2]
+
+// callbackFn(value, index, array)
+[1, 2, 3].map((value, index, array) => array[0]) // [1, 1, 1]
+```
+### Reduce
+- **描述**：叠加数组结果
+- **语法**：`reduce(callbackFn, initialValue?){:js}`
+- **参数**
+	- `callbackFn(prevValue, value, index?, array?){:js}`
+		- `prevValue{:js}`：上一次调用 callbackFn 的返回值
+		- `value{:js}`：当前元素
+		- `index{:js}`：当前索引
+		- `array{:js}`：原数组
+	- `initialValue = array[0]{:js}`：prevValue 的初始值
+- **返回值**：遍历后的结果
+```js
+[1, 2, 3].reduce((prev, value) => prev + value, 10) // 16
+```
+### Filter
+- **描述**：过滤不满足条件的元素
+- **语法**：`filter(callbackFn(v, i, a), thisArg?){:js}`
+- **返回值**：`array`
+```js
+[1, 2, 3].filter(value => value > 1) // [2, 3]
+```
+### ForEach
+- **描述**：遍历数组
+- **语法**：`forEach(callbackFn(v, i, a), thisArg?){:js}`
+```js
+[1, 2, 3].forEach(value => console.log(value)) // 1, 2, 3
+```
+### Sort
+- **描述**：排序数组
+- **语法**：`sort(compareFn?){:js}`
+- **参数**
+	- `compareFn(a, b){:js}`：排序函数，默认会转化为字符串，按 UTF-16 码排序
+        - 返回值 `< 0`：a 在前
+        - 返回值 `=== 0`：顺序不变
+- **返回值**：`array`
+```js
+[1, 2, 10].sort() // [1, 10, 2]
+[1, 2, 10].sort((a, b) => a - b) // [1, 2, 10]
+```
+### Find
+- **描述**：查找首个满足条件的元素
+- **语法**：`find(callbackFn(v, i, a), thisArg?){:js}`
+```js
+[10, 20, 30].find(value => value > 10) // 20
+[10, 20, 30].find(value => value < 10) // undefined
+```
+### FindLast
+- **描述**：查找最后一个满足条件的元素
+- **语法**：`findLast(callbackFn(v, i, a), thisArg?){:js}`
+```js
+[10, 20, 30].findLast(value => value > 10) // 30
+[10, 20, 30].findLast(value => value < 10) // undefined
+```
+### FindIndex
+- **描述**：查找首个满足条件元素的索引
+- **语法**：`findIndex(callbackFn(v, i, a), thisArg?){:js}`
+```js
+[10, 20, 30].findIndex(value => value > 10) // 1
+[10, 20, 30].findIndex(value => value < 10) // -1
+```
+### FindLastIndex
+- **描述**：查找最后一个满足条件元素的索引
+- **语法**：`findLastIndex(callbackFn(v, i, a), thisArg?){:js}`
+```js
+[10, 20, 30].findLastIndex(value => value > 10) // 2
+[10, 20, 30].findLastIndex(value => value < 10) // -1
+```
