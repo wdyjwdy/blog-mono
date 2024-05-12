@@ -3,7 +3,6 @@ import { Callout } from 'nextra/components'
 # String
 ## Instance Methods
 ### At
-![at](public/img/objects/string/at.png)
 - **描述**：返回索引位置字符串
 - **语法**：`at(index){:js}`
 - **参数**
@@ -20,7 +19,6 @@ import { Callout } from 'nextra/components'
 'hello'.at(10) // undefined
 ```
 ### CharAt
-![at](public/img/objects/string/at.png)
 - **描述**：返回索引位置的字符串
 - **语法**：`charAt(index){:js}`
 - **参数**
@@ -71,7 +69,7 @@ import { Callout } from 'nextra/components'
 - **返回值**：`boolean`
 ```js
 'hello'.startsWith('h')    // true
-'hello'.startsWith('e', 1) // true
+'hello'.startsWith('h', 1) // false
 ```
 ### EndsWith
 - **描述**：判断是否以某字符串结尾
@@ -81,7 +79,17 @@ import { Callout } from 'nextra/components'
 - **返回值**：`boolean`
 ```js
 'hello'.endsWith('o')    // true
-'hello'.endsWith('l', 4) // true
+'hello'.endsWith('o', 4) // false
+```
+### Includes
+- **描述**：判断是否包含某字符串
+- **语法**：`includes(string, position?){:js}`
+    - `string{:js}`：需要查询的字符串
+    - `position = 0{:js}`：查询起始位置
+- **返回值**：`boolean`
+```js
+'hello'.includes('h')    // true
+'hello'.includes('h', 1) // false
 ```
 ### Slice
 ![slice](public/img/objects/string/slice.png)
@@ -191,4 +199,86 @@ import { Callout } from 'nextra/components'
 - **返回值**：`string`
 ```js
 'HELLO'.toLowerCase() // 'hello'
+```
+### Replace
+- **描述**：替换首次匹配的值
+- **语法**：`replace(regexp, replacement){:js}`
+- **参数**
+    - `regexp{:js}`：正则表达式
+    - `replacement{:js}`：替换的字符串
+- **返回值**：`string`
+```js
+'hello'.replace(/l/, '_') // 'he_lo'
+```
+### ReplaceAll
+- **描述**：替换所有匹配的值
+- **语法**：`replaceAll(regexp, replacement){:js}`
+- **参数**
+    - `regexp{:js}`：正则表达式
+    - `replacement{:js}`：替换的字符串
+- **返回值**：`string`
+```js
+'hello'.replaceAll(/l/g, '_') // 'he__o'
+```
+### Match
+- **描述**：返回首次匹配信息
+- **语法**：`match(regexp){:js}`
+- **参数**
+    - `regexp{:js}`：正则表达式
+- **返回值**：`array`, `null`
+```js
+'hello'.match(/o/) // ['o', index: 4, input: 'hello', groups: undefined]
+'hello'.match(/x/) // null
+```
+### MatchAll
+- **描述**：返回所有匹配信息
+- **语法**：`matchAll(regexp){:js}`
+- **参数**
+    - `regexp{:js}`：正则表达式
+- **返回值**：`iterator`
+```js
+'hello'.matchAll(/o/g) // iterator: [['o', index: 4, input: 'hello', groups: undefined]]
+'hello'.matchAll(/x/g) // iterator: []
+```
+### Search
+- **描述**：返回首次匹配的索引
+- **语法**：`search(regexp){:js}`
+- **参数**
+    - `regexp{:js}`：正则表达式
+- **返回值**：`number`
+```js
+'hello'.search(/o/) // 4
+'hello'.search(/x/) // -1
+```
+### Split
+- **描述**：分割字符串
+- **语法**：`split(separator, limit?){:js}`
+- **参数**
+    - `separator{:js}`：分割符
+    - `limit = Infinity{:js}`：数组长度上限
+- **返回值**：`array`
+```js
+'hello'.split('')  // ['h', 'e', 'l', 'l', 'o']
+'hi hi'.split(' ') // ['hi', 'hi']
+```
+### Repeat
+- **描述**：重复复制字符串
+- **语法**：`repeat(count){:js}`
+- **参数**
+    - `count = 0{:js}`：重复次数
+- **返回值**：`string`
+```js
+'hi'.repeat(0) // ''
+'hi'.repeat(1) // 'hi'
+'hi'.repeat(2) // 'hihi'
+```
+### Concat
+- **描述**：字符串拼接
+- **语法**：`concat(...strs){:js}`
+- **参数**
+    - `strs{:js}`：需要拼接的字符串
+- **返回值**：`string`
+```js
+'hi'.concat('-')       // 'hi-'
+'hi'.concat('-', 'hi') // 'hi-hi'
 ```
