@@ -6,9 +6,8 @@
 - **参数**
     - `element{:js}`：数组元素
     - `length{:js}`：数组长度
-- **返回值**：`array`
 ```js
-Array(3) // [ , , ]
+Array(3)       // [ , , ]
 Array(1, 2, 3) // [1, 2, 3]
 ```
 ## Static Methods
@@ -17,11 +16,8 @@ Array(1, 2, 3) // [1, 2, 3]
 - **语法**：`Array.from(arrayLike, mapFn?, thisArg?){:js}`
 - **参数**
     - `arrayLike{:js}`：可迭代对象，类数组
-    - `mapFn(value, index){:js}`：映射函数
-        - `value`：当前元素
-        - `index`：当前索引
+    - `mapFn(value, index?){:js}`：映射函数
     - `thisArg{:js}`：mapFn 中 this 的值
-- **返回值**：`array`
 ```js
 Array.from('hi') // ['h', 'i']
 Array.from(new Set([1, 2])) // [1, 2]
@@ -33,17 +29,13 @@ Array.from([1, 2, 3], x => 2 * x) // [2, 4, 6]
 - **语法**：`Array.of(...elements){:js}`
 - **参数**
     - `element{:js}`：数组元素
-- **返回值**：`array`
 ```js
-Array.of(1) // [1]
-Array.of(1, 2) // [1, 2]
+Array.of(3)       // [3]
+Array.of(1, 2, 3) // [1, 2, 3]
 ```
 ### IsArray
 - **描述**：判断是否是数组
 - **语法**：`Array.isArray(value){:js}`
-- **参数**
-    - `value{:js}`：值
-- **返回值**：`boolean`
 ```js
 Array.isArray([1, 2, 3]) // true
 ```
@@ -57,7 +49,6 @@ Array.isArray([1, 2, 3]) // true
 		- `index{:js}`：当前索引
 		- `array{:js}`：原数组
 	- `thisArg{:js}`：callbackFn 中 this 的值
-- **返回值**：`array`
 ```js
 // callbackFn(value)
 [1, 2, 3].map((value) => value * 2) //[2, 4, 6]
@@ -67,6 +58,12 @@ Array.isArray([1, 2, 3]) // true
 
 // callbackFn(value, index, array)
 [1, 2, 3].map((value, index, array) => array[0]) // [1, 1, 1]
+```
+### FlatMap
+- **描述**：映射数组元素，然后展平一层
+- **语法**：`flatMap(callbackFn(v, i, a), thisArg?){:js}`
+```js
+[1, 2, 3].flatMap(x => [x, x]) // [1, 1, 2, 2, 3, 3]
 ```
 ### Reduce
 - **描述**：叠加数组结果
@@ -78,60 +75,195 @@ Array.isArray([1, 2, 3]) // true
 		- `index{:js}`：当前索引
 		- `array{:js}`：原数组
 	- `initialValue = array[0]{:js}`：prevValue 的初始值
-- **返回值**：遍历后的结果
 ```js
 [1, 2, 3].reduce((prev, value) => prev + value, 10) // 16
 ```
-### Filter
-- **描述**：过滤不满足条件的元素
-- **语法**：`filter(callbackFn(v, i, a), thisArg?){:js}`
-- **返回值**：`array`
+### ReduceRight
+- **描述**：叠加数组结果
+- **语法**：`reduceRight(callbackFn(p, v, i, a), initialValue?){:js}`
 ```js
-[1, 2, 3].filter(value => value > 1) // [2, 3]
+[1, 2, 3].reduceRight((prev, value) => prev + value, 10) // 16
+```
+### Filter
+- **描述**：过滤不满足条件的元素，并返回新数组
+- **语法**：`filter(callbackFn(v, i, a), thisArg?){:js}`
+```js
+[1, 2, 3].filter(x => x > 1) // [2, 3]
 ```
 ### ForEach
 - **描述**：遍历数组
 - **语法**：`forEach(callbackFn(v, i, a), thisArg?){:js}`
 ```js
-[1, 2, 3].forEach(value => console.log(value)) // 1, 2, 3
+[1, 2, 3].forEach(x => console.log(x)) // 1, 2, 3
 ```
 ### Sort
-- **描述**：排序数组
+- **描述**：原地排序数组，并返回该数组
 - **语法**：`sort(compareFn?){:js}`
 - **参数**
 	- `compareFn(a, b){:js}`：排序函数，默认会转化为字符串，按 UTF-16 码排序
-        - 返回值 `< 0`：a 在前
-        - 返回值 `=== 0`：顺序不变
-- **返回值**：`array`
+        - `f(a, b) < 0`：a 在前
+        - `f(a, b) === 0`：顺序不变
 ```js
 [1, 2, 10].sort() // [1, 10, 2]
 [1, 2, 10].sort((a, b) => a - b) // [1, 2, 10]
+```
+### Reverse
+- **描述**：原地反转数组，并返回该数组
+- **语法**：`reverse(){:js}`
+```js
+[1, 2, 3].reverse() // [3, 2, 1]
+```
+### Flat
+- **描述**：展平数组，并返回新数组
+- **语法**：`flat(depth?){:js}`
+- **参数**
+	- `depth{:js}`：深度
+```js
+[1, 2, [3, [4]]].flat(1) // [1, 2, 3, [4]]
+[1, 2, [3, [4]]].flat(2) // [1, 2, 3, 4]
 ```
 ### Find
 - **描述**：查找首个满足条件的元素
 - **语法**：`find(callbackFn(v, i, a), thisArg?){:js}`
 ```js
-[10, 20, 30].find(value => value > 10) // 20
-[10, 20, 30].find(value => value < 10) // undefined
+[10, 20, 30].find(x => x > 10) // 20
+[10, 20, 30].find(x => x < 10) // undefined
 ```
 ### FindLast
 - **描述**：查找最后一个满足条件的元素
 - **语法**：`findLast(callbackFn(v, i, a), thisArg?){:js}`
 ```js
-[10, 20, 30].findLast(value => value > 10) // 30
-[10, 20, 30].findLast(value => value < 10) // undefined
+[10, 20, 30].findLast(x => x > 10) // 30
+[10, 20, 30].findLast(x => x < 10) // undefined
 ```
 ### FindIndex
 - **描述**：查找首个满足条件元素的索引
 - **语法**：`findIndex(callbackFn(v, i, a), thisArg?){:js}`
 ```js
-[10, 20, 30].findIndex(value => value > 10) // 1
-[10, 20, 30].findIndex(value => value < 10) // -1
+[10, 20, 30].findIndex(x => x > 10) // 1
+[10, 20, 30].findIndex(x => x < 10) // -1
 ```
 ### FindLastIndex
 - **描述**：查找最后一个满足条件元素的索引
 - **语法**：`findLastIndex(callbackFn(v, i, a), thisArg?){:js}`
 ```js
-[10, 20, 30].findLastIndex(value => value > 10) // 2
-[10, 20, 30].findLastIndex(value => value < 10) // -1
+[10, 20, 30].findLastIndex(x => x > 10) // 2
+[10, 20, 30].findLastIndex(x => x < 10) // -1
+```
+### Push
+- **描述**：添加元素到数组末尾，并返回数组长度
+- **语法**：`push(...elements){:js}`
+```js
+[1, 2].push(3)    // 3, arr: [1, 2, 3]
+[1, 2].push(3, 4) // 4, arr: [1, 2, 3, 4]
+```
+### Pop
+- **描述**：删除数组末尾元素，并返回该元素
+- **语法**：`pop(){:js}`
+```js
+[1, 2].pop()    // 2, arr: [1]
+```
+### Unshift
+- **描述**：添加元素到数组开头，并返回数组长度
+- **语法**：`unshift(...elements){:js}`
+```js
+[1, 2].unshift(3)    // 3, arr: [3, 1, 2]
+[1, 2].unshift(3, 4) // 4, arr: [3, 4, 1, 2]
+```
+### Shift
+- **描述**：删除数组开头元素，并返回该元素
+- **语法**：`shift(){:js}`
+```js
+[1, 2].shift()    // 1, arr: [2]
+```
+### Concat
+- **描述**：拼接数组，并返回新数组
+- **语法**：`concat(...elements){:js}`
+```js
+[1, 2].concat(3)        // [1, 2, 3]
+[1, 2].concat(3, 4)     // [1, 2, 3, 4]
+[1, 2].concat([3])      // [1, 2, 3]
+[1, 2].concat([3], [4]) // [1, 2, 3, 4]
+```
+### Splice
+- **描述**：原地修改数组，并返回包含被删除元素的数组
+- **语法**：`splice(start, deleteCount?, ...elements){:js}`
+- **参数**
+	- `start{:js}`：操作位置
+        ```js filename="索引边界处理"
+        if (start < 0) start = start + arr.length
+        if (start > arr.length) start = arr.length
+        ```
+    - `deleteCount = 0{:js}`：从 start 开始删除元素的个数
+    - `element{:js}`：插入到 start 的元素
+```js
+[1, 2, 3].splice(1, 2)       // [2, 3], arr: [1]
+[1, 2, 3].splice(1, 2, 0, 0) // [2, 3], arr: [1, 0, 0]
+```
+### Every
+- **描述**：是否所有元素都满足条件
+- **语法**：`every(callbackFn(v, i, a), thisArg?){:js}`
+```js
+[1, 2, 3].every(x => x > 0) // true
+```
+### Some
+- **描述**：是否存在元素满足条件
+- **语法**：`some(callbackFn(v, i, a), thisArg?){:js}`
+```js
+[1, 2, 3].some(x => x < 0) // false
+```
+### Includes
+- **描述**：是包含某个值
+- **语法**：`includes(value, position?){:js}`
+- **参数**
+	- `value{:js}`：查询的值
+    - `position = 0{:js}`：查询的起始位置
+```js
+[1, 2, 3].includes(1)    // true
+[1, 2, 3].includes(1, 1) // false
+```
+### Keys
+- **描述**：返回一个迭代器，包含元素的键
+- **语法**：`keys(){:js}`
+```js
+for (let key of ['a', 'b', 'c'].keys()) {
+    console.log(key) // 0, 1, 2
+}
+```
+### Values
+- **描述**：返回一个迭代器，包含元素的值
+- **语法**：`values(){:js}`
+```js
+for (let val of ['a', 'b', 'c'].values()) {
+    console.log(val) // a, b, c
+}
+```
+### Entries
+- **描述**：返回一个迭代器，包含元素的键值对
+- **语法**：`entries(){:js}`
+```js
+for (let [key, val] of ['a', 'b', 'c'].entries()) {
+    console.log(key, val) // 0a, 1b, 2c
+}
+```
+### Join
+- **描述**：将元素连接为字符串
+- **语法**：`join(separator?){:js}`
+- **参数**
+    - `separator = ','{:js}`：分隔符
+```js
+[1, 2, 3].join()    // '1,2,3'
+[1, 2, 3].join('-') // '1-2-3'
+```
+### At
+- **描述**：访问索引位置元素
+- **语法**：`at(index){:js}`
+- **参数**
+    - `index{:js}`：索引
+        ```js filename="索引边界处理"
+        if (index < 0) index = index + arr.length
+        ```
+```js
+[1, 2, 3].at(0)  // 1
+[1, 2, 3].at(-1) // 3
 ```
