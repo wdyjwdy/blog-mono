@@ -11,7 +11,7 @@ Array(3)       // [ , , ]
 Array(1, 2, 3) // [1, 2, 3]
 ```
 ## Static Methods
-### From
+### from
 - **描述**：创建数组
 - **语法**：`Array.from(arrayLike, mapFn?, thisArg?){:js}`
 - **参数**
@@ -24,7 +24,7 @@ Array.from(new Set([1, 2])) // [1, 2]
 
 Array.from([1, 2, 3], x => 2 * x) // [2, 4, 6]
 ```
-### Of
+### of
 - **描述**：创建数组
 - **语法**：`Array.of(...elements){:js}`
 - **参数**
@@ -33,14 +33,14 @@ Array.from([1, 2, 3], x => 2 * x) // [2, 4, 6]
 Array.of(3)       // [3]
 Array.of(1, 2, 3) // [1, 2, 3]
 ```
-### IsArray
+### isArray
 - **描述**：判断是否是数组
 - **语法**：`Array.isArray(value){:js}`
 ```js
 Array.isArray([1, 2, 3]) // true
 ```
 ## Instance Methods
-### Map
+### map
 - **描述**：映射数组元素
 - **语法**：`map(callbackFn, thisArg?){:js}`
 - **参数**
@@ -59,13 +59,13 @@ Array.isArray([1, 2, 3]) // true
 // callbackFn(value, index, array)
 [1, 2, 3].map((value, index, array) => array[0]) // [1, 1, 1]
 ```
-### FlatMap
+### flatMap
 - **描述**：映射数组元素，然后展平一层
 - **语法**：`flatMap(callbackFn(v, i, a), thisArg?){:js}`
 ```js
 [1, 2, 3].flatMap(x => [x, x]) // [1, 1, 2, 2, 3, 3]
 ```
-### Reduce
+### reduce
 - **描述**：叠加数组结果
 - **语法**：`reduce(callbackFn, initialValue?){:js}`
 - **参数**
@@ -78,25 +78,25 @@ Array.isArray([1, 2, 3]) // true
 ```js
 [1, 2, 3].reduce((prev, value) => prev + value, 10) // 16
 ```
-### ReduceRight
+### reduceRight
 - **描述**：叠加数组结果
 - **语法**：`reduceRight(callbackFn(p, v, i, a), initialValue?){:js}`
 ```js
 [1, 2, 3].reduceRight((prev, value) => prev + value, 10) // 16
 ```
-### Filter
+### filter
 - **描述**：过滤不满足条件的元素，并返回新数组
 - **语法**：`filter(callbackFn(v, i, a), thisArg?){:js}`
 ```js
 [1, 2, 3].filter(x => x > 1) // [2, 3]
 ```
-### ForEach
+### forEach
 - **描述**：遍历数组
 - **语法**：`forEach(callbackFn(v, i, a), thisArg?){:js}`
 ```js
 [1, 2, 3].forEach(x => console.log(x)) // 1, 2, 3
 ```
-### Sort
+### sort
 - **描述**：原地排序数组，并返回该数组
 - **语法**：`sort(compareFn?){:js}`
 - **参数**
@@ -107,13 +107,13 @@ Array.isArray([1, 2, 3]) // true
 [1, 2, 10].sort() // [1, 10, 2]
 [1, 2, 10].sort((a, b) => a - b) // [1, 2, 10]
 ```
-### Reverse
+### reverse
 - **描述**：原地反转数组，并返回该数组
 - **语法**：`reverse(){:js}`
 ```js
 [1, 2, 3].reverse() // [3, 2, 1]
 ```
-### Flat
+### flat
 - **描述**：展平数组，并返回新数组
 - **语法**：`flat(depth?){:js}`
 - **参数**
@@ -122,61 +122,61 @@ Array.isArray([1, 2, 3]) // true
 [1, 2, [3, [4]]].flat(1) // [1, 2, 3, [4]]
 [1, 2, [3, [4]]].flat(2) // [1, 2, 3, 4]
 ```
-### Find
+### find
 - **描述**：查找首个满足条件的元素
 - **语法**：`find(callbackFn(v, i, a), thisArg?){:js}`
 ```js
 [10, 20, 30].find(x => x > 10) // 20
 [10, 20, 30].find(x => x < 10) // undefined
 ```
-### FindLast
+### findLast
 - **描述**：查找最后一个满足条件的元素
 - **语法**：`findLast(callbackFn(v, i, a), thisArg?){:js}`
 ```js
 [10, 20, 30].findLast(x => x > 10) // 30
 [10, 20, 30].findLast(x => x < 10) // undefined
 ```
-### FindIndex
+### findIndex
 - **描述**：查找首个满足条件元素的索引
 - **语法**：`findIndex(callbackFn(v, i, a), thisArg?){:js}`
 ```js
 [10, 20, 30].findIndex(x => x > 10) // 1
 [10, 20, 30].findIndex(x => x < 10) // -1
 ```
-### FindLastIndex
+### findLastIndex
 - **描述**：查找最后一个满足条件元素的索引
 - **语法**：`findLastIndex(callbackFn(v, i, a), thisArg?){:js}`
 ```js
 [10, 20, 30].findLastIndex(x => x > 10) // 2
 [10, 20, 30].findLastIndex(x => x < 10) // -1
 ```
-### Push
+### push
 - **描述**：添加元素到数组末尾，并返回数组长度
 - **语法**：`push(...elements){:js}`
 ```js
 [1, 2].push(3)    // 3, arr: [1, 2, 3]
 [1, 2].push(3, 4) // 4, arr: [1, 2, 3, 4]
 ```
-### Pop
+### pop
 - **描述**：删除数组末尾元素，并返回该元素
 - **语法**：`pop(){:js}`
 ```js
 [1, 2].pop()    // 2, arr: [1]
 ```
-### Unshift
+### unshift
 - **描述**：添加元素到数组开头，并返回数组长度
 - **语法**：`unshift(...elements){:js}`
 ```js
 [1, 2].unshift(3)    // 3, arr: [3, 1, 2]
 [1, 2].unshift(3, 4) // 4, arr: [3, 4, 1, 2]
 ```
-### Shift
+### shift
 - **描述**：删除数组开头元素，并返回该元素
 - **语法**：`shift(){:js}`
 ```js
 [1, 2].shift()    // 1, arr: [2]
 ```
-### Concat
+### concat
 - **描述**：拼接数组，并返回新数组
 - **语法**：`concat(...elements){:js}`
 ```js
@@ -185,7 +185,7 @@ Array.isArray([1, 2, 3]) // true
 [1, 2].concat([3])      // [1, 2, 3]
 [1, 2].concat([3], [4]) // [1, 2, 3, 4]
 ```
-### Splice
+### splice
 - **描述**：原地修改数组，并返回包含被删除元素的数组
 - **语法**：`splice(start, deleteCount?, ...elements){:js}`
 - **参数**
@@ -200,19 +200,19 @@ Array.isArray([1, 2, 3]) // true
 [1, 2, 3].splice(1, 2)       // [2, 3], arr: [1]
 [1, 2, 3].splice(1, 2, 0, 0) // [2, 3], arr: [1, 0, 0]
 ```
-### Every
+### every
 - **描述**：是否所有元素都满足条件
 - **语法**：`every(callbackFn(v, i, a), thisArg?){:js}`
 ```js
 [1, 2, 3].every(x => x > 0) // true
 ```
-### Some
+### some
 - **描述**：是否存在元素满足条件
 - **语法**：`some(callbackFn(v, i, a), thisArg?){:js}`
 ```js
 [1, 2, 3].some(x => x < 0) // false
 ```
-### Includes
+### includes
 - **描述**：是包含某个值
 - **语法**：`includes(value, position?){:js}`
 - **参数**
@@ -222,7 +222,7 @@ Array.isArray([1, 2, 3]) // true
 [1, 2, 3].includes(1)    // true
 [1, 2, 3].includes(1, 1) // false
 ```
-### Keys
+### keys
 - **描述**：返回一个迭代器，包含元素的键
 - **语法**：`keys(){:js}`
 ```js
@@ -230,7 +230,7 @@ for (let key of ['a', 'b', 'c'].keys()) {
     console.log(key) // 0, 1, 2
 }
 ```
-### Values
+### values
 - **描述**：返回一个迭代器，包含元素的值
 - **语法**：`values(){:js}`
 ```js
@@ -238,7 +238,7 @@ for (let val of ['a', 'b', 'c'].values()) {
     console.log(val) // a, b, c
 }
 ```
-### Entries
+### entries
 - **描述**：返回一个迭代器，包含元素的键值对
 - **语法**：`entries(){:js}`
 ```js
@@ -246,7 +246,7 @@ for (let [key, val] of ['a', 'b', 'c'].entries()) {
     console.log(key, val) // 0a, 1b, 2c
 }
 ```
-### Join
+### join
 - **描述**：将元素连接为字符串
 - **语法**：`join(separator?){:js}`
 - **参数**
@@ -255,7 +255,7 @@ for (let [key, val] of ['a', 'b', 'c'].entries()) {
 [1, 2, 3].join()    // '1,2,3'
 [1, 2, 3].join('-') // '1-2-3'
 ```
-### At
+### at
 - **描述**：访问索引位置元素
 - **语法**：`at(index){:js}`
 - **参数**

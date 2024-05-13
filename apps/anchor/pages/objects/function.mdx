@@ -1,0 +1,52 @@
+# Function
+## Instance Methods
+### call
+- **描述**：修改函数的 this，并调用
+- **语法**：`call(thisArg, ...args){:js}`
+```js
+function sum(a, b) {
+    return this.initValue + a + b
+}
+sum.call({ initValue: 100 }, 1, 2) // 103
+```
+### apply
+- **描述**：修改函数的 this，并调用
+- **语法**：`apply(thisArg, args){:js}`
+```js
+function sum(a, b) {
+    return this.initValue + a + b
+}
+sum.apply({ initValue: 100 }, [1, 2]) // 103
+```
+### bind
+- **描述**：修改函数的 this，并返回该函数
+- **语法**：`bind(thisArg, ...args){:js}`
+```js
+function sum(a, b) {
+    return this.initValue + a + b
+}
+let bindSum = sum.bind({ initValue: 100 })
+bindSum(1, 2) // 103
+```
+### toString
+- **描述**：返回函数源码字符串
+- **语法**：`toString(){:js}`
+```js
+function sum(a, b) { return a + b }
+sum.toString() // 'function sum(a, b) { return a + b }'
+```
+## Instance Properties
+### name
+- **描述**：函数名
+- **语法**：`fn.name{:js}`
+```js
+function hello() {}
+hello.name // 'hello'
+```
+### length
+- **描述**：函数参数的个数
+- **语法**：`fn.length{:js}`
+```js
+function hello(a, b) {}
+hello.length // 2
+```
