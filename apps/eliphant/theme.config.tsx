@@ -9,7 +9,7 @@ const config: DocsThemeConfig = {
   logo: (
     <>
       <img src='/site/logo.png' width={40} height={40} alt='logo'/>
-      <span style={{fontWeight: 800, paddingLeft: '10px'}}>Code Anchor</span>
+      <span style={{fontWeight: 800, paddingLeft: '10px'}}>Code Eliphant</span>
     </>
   ),
   useNextSeoProps() {

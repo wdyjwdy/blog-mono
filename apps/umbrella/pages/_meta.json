@@ -5,10 +5,10 @@
   },
   "js": "JS",
   "css": "CSS",
-  "code-anchor": {
-    "title": "code-anchor",
+  "code-eliphant": {
+    "title": "code-eliphant",
     "type": "page",
-    "href": "https://code-anchor.vercel.app/",
+    "href": "https://code-eliphant.vercel.app/",
     "newWindow": true
   },
   "code-forest": {
