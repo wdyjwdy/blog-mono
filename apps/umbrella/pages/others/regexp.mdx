@@ -1,0 +1,14 @@
+# Regular Expressions
+## trim
+- `' code'{:js}` *->* `'code'{:js}`
+- `'code '{:js}` *->* `'code'{:js}`
+- `' code '{:js}` *->* `'code'{:js}`
+```js
+' code '.replace(/^\s+|\s+$/g, '')
+```
+## underline-camel
+- `'set_state'{:js}` *->* `'setState'{:js}`
+- `'hello'{:js}` *->* `'hello'{:js}`
+```js
+'set_state'.replace(/_+(\w)/, (a,b) => b.toUpperCase())
+```
