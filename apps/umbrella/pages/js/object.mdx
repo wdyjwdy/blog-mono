@@ -1,5 +1,6 @@
 # Object
-## Create
+## Static Methods
+### create
 ![create](public/img/js/object/create.png)
 1. 创建一个空实例
 2. 空实例原型 *->* `proto`
@@ -12,7 +13,7 @@ function create(proto) {
 
 Object.create = create
 ```
-## Assign
+### assign
 ```js
 function assign(target, ...sources) {
     for (let source of sources) {
@@ -25,7 +26,56 @@ function assign(target, ...sources) {
 
 Object.assign = assign
 ```
-## Instanceof
+### keys
+1. 遍历对象的属性
+2. 仅保留对象的[自有可枚举属性]()
+```js {5}
+function keys(obj) {
+    let result = []
+    for (let key in obj) {
+        if (Object.hasOwn(obj, key)) {
+            result.push(key)
+        }
+    }
+    return result
+}
+
+Object.keys = keys
+```
+### values
+1. 遍历对象的属性
+2. 仅保留对象的[自有可枚举属性]()
+```js {5}
+function values(obj) {
+    let result = []
+    for (let key in obj) {
+        if (Object.hasOwn(obj, key)) {
+            result.push(obj[key])
+        }
+    }
+    return result
+}
+
+Object.values = values
+```
+### entries
+1. 遍历对象的属性
+2. 仅保留对象的[自有可枚举属性]()
+```js {5}
+function entries(obj) {
+    let result = []
+    for (let key in obj) {
+        if (Object.hasOwn(obj, key)) {
+            result.push([key, obj[key]])
+        }
+    }
+    return result
+}
+
+Object.entries = entries
+```
+## Others
+### instanceof
 ![instanceof](public/img/js/object/instanceof.png)
 1. 遍历 `a` 的原型链
 2. 检查 `b` 的原型是否在其中
@@ -39,7 +89,7 @@ function Instanceof(a, b) {
     return false
 }
 ```
-## New
+### new
 ![new](public/img/js/object/new.png)
 1. 创建一个空实例
 2. 调用构造函数（`this` *->* 空实例）
@@ -52,7 +102,7 @@ function New(fn, ...args) {
     return instance
 }
 ```
-## Extends
+### extends
 ![extends](public/img/js/object/extends.png)
 1. 子类中调用父类（`this` *->* 子类 `this`）
 2. 子类原型 *->* 父类原型

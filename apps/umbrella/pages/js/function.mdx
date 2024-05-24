@@ -1,5 +1,6 @@
 # Function
-## Call
+## Instance Methods
+### call
 ![call](public/img/js/function/call.png)
 1. 将函数设为 `thisArg` 的属性
 2. 调用函数
@@ -13,7 +14,7 @@ function call(thisArg = window, ...args) { // 逐值传参
 
 Function.prototype.call = call
 ```
-## Apply
+### apply
 ![call](public/img/js/function/call.png)
 1. 将函数设为 `thisArg` 的属性
 2. 调用函数
@@ -27,7 +28,7 @@ function apply(thisArg = window, args) { // 参数数组
 
 Function.prototype.apply = apply
 ```
-## Bind
+### bind
 ![call](public/img/js/function/call.png)
 1. 修改函数 `this` 指向，并返回修改后的函数
 ```js

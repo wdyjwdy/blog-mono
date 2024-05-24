@@ -1,5 +1,6 @@
 # Array
-## Map
+## Instance Methods
+### map
 ![map](public/img/js/array/map.png)
 ```js
 function map(fn, thisArg = window) {
@@ -13,7 +14,7 @@ function map(fn, thisArg = window) {
 
 Array.prototype.map = map
 ```
-## Reduce
+### reduce
 ![reduce](public/img/js/array/reduce.png)
 ```js
 function reduce(fn, initValue) {
@@ -29,7 +30,7 @@ function reduce(fn, initValue) {
 
 Array.prototype.reduce = reduce
 ```
-## Filter
+### filter
 ![filter](public/img/js/array/filter.png)
 ```js
 function filter(fn, thisArg = window) {
@@ -45,7 +46,7 @@ function filter(fn, thisArg = window) {
 
 Array.prototype.filter = filter
 ```
-## ForEach
+### forEach
 ![foreach](public/img/js/array/foreach.png)
 ```js
 function forEach(fn, thisArg = window) {
@@ -57,7 +58,7 @@ function forEach(fn, thisArg = window) {
 
 Array.prototype.forEach = forEach
 ```
-## Flat
+### flat
 ![flat](public/img/js/array/flat.png)
 ```js
 function flat(depth = 1) {
@@ -75,11 +76,66 @@ function flat(depth = 1) {
 
 Array.prototype.flat = flat
 ```
-## Deduplicate
-```js
-function deduplicate(arr) {
-    return arr.filter((value, index, array) => {
-        return index === array.indexOf(value)
-    })
+### keys
+```js {7}
+function keys() {
+    let array = this
+    let index = 0
+    return {
+        next() {
+            if (index < array.length) {
+                return { value: index++, done: false }
+            } else {
+                return { value: undefined, done: true }
+            }
+        },
+        [Symbol.iterator]() {
+            return this
+        }
+    }
 }
+
+Array.prototype.keys = keys
+```
+### values
+```js {7}
+function values() {
+    let array = this
+    let index = 0
+    return {
+        next() {
+            if (index < array.length) {
+                return { value: array[index++], done: false }
+            } else {
+                return { value: undefined, done: true }
+            }
+        },
+        [Symbol.iterator]() {
+            return this
+        }
+    }
+}
+
+Array.prototype.values = values
+```
+### entries
+```js {7}
+function entries() {
+    let array = this
+    let index = 0
+    return {
+        next() {
+            if (index < array.length) {
+                return { value: [index, array[index++]], done: false }
+            } else {
+                return { value: undefined, done: true }
+            }
+        },
+        [Symbol.iterator]() {
+            return this
+        }
+    }
+}
+
+Array.prototype.entries = entries
 ```
