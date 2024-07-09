@@ -16,7 +16,7 @@ function twoSum(numbers, target) {
 > [力扣链接](https://leetcode.cn/problems/sum-of-square-numbers/description/)
 ```js
 function judgeSquareSum(c) {
-    let [a, b] = [0, Math.floor(Math.sqrt(c))]
+    let [a, b] = [0, Math.ceil(Math.sqrt(c))]
     while (a <= b) {
         let sum = a ** 2 + b ** 2
         if (sum < c) a++

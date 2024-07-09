@@ -33,3 +33,13 @@ img {
     fill:#33302d !important;
   }
 }
+
+.default > rect {
+  fill:#d5dfdf !important;
+  stroke:#2b6c61 !important;
+}
+@media (prefers-color-scheme: dark) {
+  .default > rect {
+    fill:#33302d !important;
+  }
+}
