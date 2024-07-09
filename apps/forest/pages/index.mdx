@@ -1,17 +1,101 @@
+import { Tabs, Box, Table, Badge, Strong, Flex } from '@radix-ui/themes';
+
+export function DataTable({ data }) {
+    return (
+        <Table.Root variant="surface">
+          <Table.Header>
+            <Table.Row>
+              <Table.ColumnHeaderCell  width="200px">题目</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell justify="center" width="52px">难度</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell justify="center">标签</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell justify="center" width="52px">力扣</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell justify="center" width="52px">答案</Table.ColumnHeaderCell>
+            </Table.Row>
+          </Table.Header>
+
+          <Table.Body>
+            {data.map(({ name, level, link, answer, tags }) => {
+                return (
+                    <Table.Row>
+                      <Table.Cell><Strong>{name}</Strong></Table.Cell>
+                      <Table.Cell justify="center"><Badge color={level === "简单" ? "green" : "orange"}>{level}</Badge></Table.Cell>
+                      <Table.Cell justify="center">{tags.map(tag => {
+                        return (
+                            <>
+                                <Badge variant="soft" color="gray">{tag}</Badge>
+                                <span> </span>
+                            </>
+                        )
+                      })}</Table.Cell>
+                      <Table.Cell justify="center"><a href={link}>链接</a></Table.Cell>
+                      <Table.Cell justify="center"><a href={answer}>答案</a></Table.Cell>
+                    </Table.Row>
+                )
+            })}
+          </Table.Body>
+        </Table.Root>
+    )
+}
+
+export function DataTab() {
+    let dataList = {
+        "双指针": [
+            { name: "两数之和 II", level: "中等", link: "https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted/description/", answer: "/leetcode/two-pointers#两数之和-ii", tags: ["双指针"] },
+            { name: "平方数之和", level: "中等", link: "https://leetcode.cn/problems/sum-of-square-numbers/description/", answer: "/leetcode/two-pointers#平方数之和", tags: ["双指针"] },
+            { name: "反转元音字母", level: "简单", link: "https://leetcode.cn/problems/reverse-vowels-of-a-string/description/", answer: "/leetcode/two-pointers#反转元音字母", tags: ["双指针"] },
+            { name: "判断子序列", level: "简单", link: "https://leetcode.cn/problems/is-subsequence/description/", answer: "/leetcode/two-pointers#判断子序列", tags: ["双指针"] },
+            { name: "合并有序数组", level: "简单", link: "https://leetcode.cn/problems/merge-sorted-array/description/", answer: "/leetcode/two-pointers#合并有序数组", tags: ["双指针"] },
+            { name: "移动零", level: "简单", link: "https://leetcode.cn/problems/move-zeroes/description/", answer: "/leetcode/two-pointers#移动零", tags: ["双指针"] },
+            { name: "有序数组的平方", level: "简单", link: "https://leetcode.cn/problems/squares-of-a-sorted-array/description/", answer: "/leetcode/two-pointers#有序数组的平方", tags: ["双指针"] },
+            { name: "有序数组去重", level: "简单", link: "https://leetcode.cn/problems/remove-duplicates-from-sorted-array/description/", answer: "/leetcode/two-pointers#有序数组去重", tags: ["双指针"] },
+            { name: "有序数组去重 II", level: "中等", link: "https://leetcode.cn/problems/remove-duplicates-from-sorted-array-ii/description/", answer: "/leetcode/two-pointers#有序数组去重-ii", tags: ["双指针"] },
+            { name: "盛最多水的容器", level: "中等", link: "https://leetcode.cn/problems/container-with-most-water/description/", answer: "/leetcode/two-pointers#盛最多水的容器", tags: ["双指针"] },
+        ],
+        "滑动窗口": [
+            { name: "无重复字符的最长子串", level: "中等", link: "https://leetcode.cn/problems/longest-substring-without-repeating-characters/description/", answer: "/leetcode/sliding-window#无重复字符的最长子串", tags: ["滑窗"] },
+            { name: "字符串的排列", level: "中等", link: "https://leetcode.cn/problems/permutation-in-string/description/", answer: "/leetcode/sliding-window#字符串的排列", tags: ["滑窗"] },
+        ],
+        "哈希表": [
+            { name: "字母异位词分组", level: "中等", link: "https://leetcode.cn/problems/group-anagrams/description/", answer: "/leetcode/hash-map#字母异位词分组", tags: ["哈希"] },
+        ],
+        "动态规划": [
+            { name: "爬楼梯", level: "简单", link: "https://leetcode.cn/problems/climbing-stairs/description/", answer: "/leetcode/dp#爬楼梯", tags: ["动规"] },
+            { name: "打家劫舍", level: "中等", link: "https://leetcode.cn/problems/house-robber/description/", answer: "/leetcode/dp#打家劫舍", tags: ["动规"] },
+            { name: "最小路径和", level: "中等", link: "https://leetcode.cn/problems/minimum-path-sum/description/", answer: "/leetcode/dp#最小路径和", tags: ["动规", "矩阵"] },
+            { name: "不同路径", level: "中等", link: "https://leetcode.cn/problems/unique-paths/description/", answer: "/leetcode/dp#不同路径", tags: ["动规", "矩阵"] },
+            { name: "不同路径 II", level: "中等", link: "https://leetcode.cn/problems/unique-paths-ii/description/", answer: "/leetcode/dp#不同路径-ii", tags: ["动规", "矩阵"] },
+            { name: "最大子数组和", level: "中等", link: "https://leetcode.cn/problems/maximum-subarray/description/", answer: "/leetcode/dp#最大子数组和", tags: ["动规"] },
+        ],
+        "数组": [
+            { name: "合并区间", level: "中等", link: "https://leetcode.cn/problems/merge-intervals/description/", answer: "/leetcode/array#合并区间", tags: ["数组"] },
+            { name: "轮转数组", level: "中等", link: "https://leetcode.cn/problems/rotate-array/description/", answer: "/leetcode/array#轮转数组", tags: ["数组"] },
+        ],
+    }
+
+    return (
+        <Tabs.Root defaultValue="双指针">
+          <Tabs.List>
+            {Object.keys(dataList).map(key => {
+                return <Tabs.Trigger value={key}>{key}</Tabs.Trigger>
+            })}
+          </Tabs.List>
+
+          <Box pt="3">
+            {Object.keys(dataList).map(key => {
+                return (
+                    <Tabs.Content value={key}>
+                      <DataTable data={dataList[key]} />
+                    </Tabs.Content>
+                )
+            })}
+          </Box>
+        </Tabs.Root>
+    )
+}
+
 # Quick Start
-> 前端算法题汇总
-## LeetCode
-- **双指针**\
-[两数之和 II](/leetcode/two-pointers#两数之和-ii),
-[平方数之和](/leetcode/two-pointers#平方数之和)\
-[反转元音字母](/leetcode/two-pointers#反转元音字母),
-[判断子序列](/leetcode/two-pointers#判断子序列),
-[合并有序数组](/leetcode/two-pointers#合并有序数组)\
-[移动零](/leetcode/two-pointers#移动零),
-[有序数组的平方](/leetcode/two-pointers#有序数组的平方)\
-[有序数组去重](/leetcode/two-pointers#有序数组去重),
-[有序数组去重 II](/leetcode/two-pointers#有序数组去重-ii)\
-[盛最多水的容器](/leetcode/two-pointers#盛最多水的容器)
+<DataTab />
+
 - **排序**\
 [冒泡排序](/leetcode/sort#冒泡排序),
 [选择排序](/leetcode/sort#选择排序),

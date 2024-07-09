@@ -1,0 +1,14 @@
+# 哈希表
+## 字母异位词分组
+1. 易位词按序排列后都相同
+```js
+function groupAnagrams(strs: string[]): string[][] {
+    let map = new Map() // 哈希计数
+    for (let str of strs) {
+        let key = str.split('').sort().join('') // 按序排列
+        let val = map.get(key) ?? []
+        map.set(key, [...val, str])
+    }
+    return [...map.values()]
+};
+```
