@@ -1,11 +1,12 @@
-import { Tabs, Box, Table, Badge, Strong, Flex } from '@radix-ui/themes';
+import { Tabs, Box, Table, Badge, Strong, Flex, Checkbox } from '@radix-ui/themes';
 
 export function DataTable({ data }) {
     return (
         <Table.Root variant="surface">
           <Table.Header>
             <Table.Row>
-              <Table.ColumnHeaderCell  width="200px">题目</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell width="40px"></Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell width="200px">题目</Table.ColumnHeaderCell>
               <Table.ColumnHeaderCell justify="center" width="52px">难度</Table.ColumnHeaderCell>
               <Table.ColumnHeaderCell justify="center">标签</Table.ColumnHeaderCell>
               <Table.ColumnHeaderCell justify="center" width="52px">力扣</Table.ColumnHeaderCell>
@@ -17,6 +18,7 @@ export function DataTable({ data }) {
             {data.map(({ name, level, link, answer, tags }) => {
                 return (
                     <Table.Row>
+                      <Table.Cell><Checkbox  color="green" /></Table.Cell>
                       <Table.Cell><Strong>{name}</Strong></Table.Cell>
                       <Table.Cell justify="center"><Badge color={level === "简单" ? "green" : "orange"}>{level}</Badge></Table.Cell>
                       <Table.Cell justify="center">{tags.map(tag => {
@@ -65,6 +67,16 @@ export function DataTab() {
             { name: "不同路径", level: "中等", link: "https://leetcode.cn/problems/unique-paths/description/", answer: "/leetcode/dp#不同路径", tags: ["动规", "矩阵"] },
             { name: "不同路径 II", level: "中等", link: "https://leetcode.cn/problems/unique-paths-ii/description/", answer: "/leetcode/dp#不同路径-ii", tags: ["动规", "矩阵"] },
             { name: "最大子数组和", level: "中等", link: "https://leetcode.cn/problems/maximum-subarray/description/", answer: "/leetcode/dp#最大子数组和", tags: ["动规"] },
+            { name: "分割等和子集", level: "中等", link: "https://leetcode.cn/problems/partition-equal-subset-sum/description/", answer: "/leetcode/dp#分割等和子集", tags: ["动规", "背包"] },
+        ],
+        "贪心": [
+            { name: "分发饼干", level: "简单", link: "https://leetcode.cn/problems/assign-cookies/description/", answer: "/leetcode/greedy#分发饼干", tags: ["贪心"] },
+            { name: "无重叠区间", level: "中等", link: "https://leetcode.cn/problems/non-overlapping-intervals/description/", answer: "/leetcode/greedy#无重叠区间", tags: ["贪心"] },
+            { name: "用最少数量的箭引爆气球", level: "中等", link: "https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/description/", answer: "/leetcode/greedy#用最少数量的箭引爆气球", tags: ["贪心"] },
+            { name: "买卖股票的最佳时机", level: "简单", link: "https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/description/", answer: "/leetcode/greedy#买卖股票的最佳时机", tags: ["贪心"] },
+            { name: "买卖股票的最佳时机 II", level: "中等", link: "https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/description/", answer: "/leetcode/greedy#买卖股票的最佳时机-ii", tags: ["贪心"] },
+            { name: "跳跃游戏", level: "中等", link: "https://leetcode.cn/problems/jump-game/description/", answer: "/leetcode/greedy#跳跃游戏", tags: ["贪心"] },
+            { name: "跳跃游戏 II", level: "中等", link: "https://leetcode.cn/problems/jump-game-ii/description/", answer: "/leetcode/greedy#跳跃游戏-ii", tags: ["贪心"] },
         ],
         "数组": [
             { name: "合并区间", level: "中等", link: "https://leetcode.cn/problems/merge-intervals/description/", answer: "/leetcode/array#合并区间", tags: ["数组"] },
@@ -74,7 +86,7 @@ export function DataTab() {
 
     return (
         <Tabs.Root defaultValue="双指针">
-          <Tabs.List>
+          <Tabs.List color='cyan'>
             {Object.keys(dataList).map(key => {
                 return <Tabs.Trigger value={key}>{key}</Tabs.Trigger>
             })}

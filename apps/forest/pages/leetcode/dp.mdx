@@ -94,3 +94,36 @@ function maxSubArray(nums: number[]): number {
     return Math.max(...dp)
 };
 ```
+## 分割等和子集
+$$dp_{i, j} = \max (dp_{i - 1, j}, dp_{i - 1, j - w} + v)$$
+1. 重量：`nums[i]`
+2. 价值：`nums[i]`
+3. 容量：`sum / 2`
+4. 目标：求能装的最大价值
+```js {20}
+function canPartition(nums: number[]): boolean {
+    let sum = nums.reduce((a, b) => a + b)
+    if (sum % 2 === 1) return false // 特殊值
+
+    let cap = sum / 2
+    let [row, col] = [nums.length, cap + 1]
+    let dp = Array(row).fill(0).map(() => Array(col).fill(0))
+
+    for (let j = 0; j < col; j++) { // 处理 dp 第一行
+        let [w, v] = [nums[0], nums[0]]
+        dp[0][j] = j < w ? 0 : v
+    }
+
+    for (let i = 1; i < row; i++) {
+        for (let j = 1; j < col; j++) {
+            let [w, v] = [nums[i], nums[i]]
+            if (j < w) {
+                dp[i][j] = dp[i - 1][j]
+            } else {
+                dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - w] + v)
+            }
+        }
+    }
+    return dp[row - 1][col - 1] === cap
+};
+```

@@ -4,5 +4,10 @@
   "linked-list": "链表",
   "binary-tree": "二叉树",
   "matrix": "矩阵",
-  "backtrack": "回朔"
+  "backtrack": "回朔",
+  "array": "数组",
+  "dp": "动态规划",
+  "greedy": "贪心",
+  "hash-map": "哈希表",
+  "sliding-window": "滑动窗口"
 }
