@@ -1,5 +1,94 @@
 import { Tabs, Box, Table, Badge, Strong, Flex, Checkbox } from '@radix-ui/themes';
 
+export function Data() {
+    return {
+        "双指针": [
+            { name: "两数之和 II", level: "中等", link: "https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted/description/", answer: "/leetcode/two-pointers#两数之和-ii", tags: ["双指针"] },
+            { name: "平方数之和", level: "中等", link: "https://leetcode.cn/problems/sum-of-square-numbers/description/", answer: "/leetcode/two-pointers#平方数之和", tags: ["双指针"] },
+            { name: "反转元音字母", level: "简单", link: "https://leetcode.cn/problems/reverse-vowels-of-a-string/description/", answer: "/leetcode/two-pointers#反转元音字母", tags: ["双指针"] },
+            { name: "判断子序列", level: "简单", link: "https://leetcode.cn/problems/is-subsequence/description/", answer: "/leetcode/two-pointers#判断子序列", tags: ["双指针"] },
+            { name: "合并有序数组", level: "简单", link: "https://leetcode.cn/problems/merge-sorted-array/description/", answer: "/leetcode/two-pointers#合并有序数组", tags: ["双指针"] },
+            { name: "移动零", level: "简单", link: "https://leetcode.cn/problems/move-zeroes/description/", answer: "/leetcode/two-pointers#移动零", tags: ["双指针"] },
+            { name: "有序数组的平方", level: "简单", link: "https://leetcode.cn/problems/squares-of-a-sorted-array/description/", answer: "/leetcode/two-pointers#有序数组的平方", tags: ["双指针"] },
+            { name: "有序数组去重", level: "简单", link: "https://leetcode.cn/problems/remove-duplicates-from-sorted-array/description/", answer: "/leetcode/two-pointers#有序数组去重", tags: ["双指针"] },
+            { name: "有序数组去重 II", level: "中等", link: "https://leetcode.cn/problems/remove-duplicates-from-sorted-array-ii/description/", answer: "/leetcode/two-pointers#有序数组去重-ii", tags: ["双指针"] },
+            { name: "盛最多水的容器", level: "中等", link: "https://leetcode.cn/problems/container-with-most-water/description/", answer: "/leetcode/two-pointers#盛最多水的容器", tags: ["双指针"] },
+        ],
+        "滑动窗口": [
+            { name: "无重复字符的最长子串", level: "中等", link: "https://leetcode.cn/problems/longest-substring-without-repeating-characters/description/", answer: "/leetcode/sliding-window#无重复字符的最长子串", tags: ["滑窗"] },
+            { name: "字符串的排列", level: "中等", link: "https://leetcode.cn/problems/permutation-in-string/description/", answer: "/leetcode/sliding-window#字符串的排列", tags: ["滑窗"] },
+        ],
+        "哈希表": [
+            { name: "字母异位词分组", level: "中等", link: "https://leetcode.cn/problems/group-anagrams/description/", answer: "/leetcode/hash-map#字母异位词分组", tags: ["哈希"] },
+        ],
+        "动态规划": [
+            { name: "爬楼梯", level: "简单", link: "https://leetcode.cn/problems/climbing-stairs/description/", answer: "/leetcode/dp#爬楼梯", tags: ["动规"] },
+            { name: "打家劫舍", level: "中等", link: "https://leetcode.cn/problems/house-robber/description/", answer: "/leetcode/dp#打家劫舍", tags: ["动规"] },
+            { name: "最小路径和", level: "中等", link: "https://leetcode.cn/problems/minimum-path-sum/description/", answer: "/leetcode/dp#最小路径和", tags: ["动规", "矩阵"] },
+            { name: "不同路径", level: "中等", link: "https://leetcode.cn/problems/unique-paths/description/", answer: "/leetcode/dp#不同路径", tags: ["动规", "矩阵"] },
+            { name: "不同路径 II", level: "中等", link: "https://leetcode.cn/problems/unique-paths-ii/description/", answer: "/leetcode/dp#不同路径-ii", tags: ["动规", "矩阵"] },
+            { name: "最大子数组和", level: "中等", link: "https://leetcode.cn/problems/maximum-subarray/description/", answer: "/leetcode/dp#最大子数组和", tags: ["动规"] },
+            { name: "分割等和子集", level: "中等", link: "https://leetcode.cn/problems/partition-equal-subset-sum/description/", answer: "/leetcode/dp#分割等和子集", tags: ["动规", "背包"] },
+        ],
+        "贪心": [
+            { name: "分发饼干", level: "简单", link: "https://leetcode.cn/problems/assign-cookies/description/", answer: "/leetcode/greedy#分发饼干", tags: ["贪心"] },
+            { name: "无重叠区间", level: "中等", link: "https://leetcode.cn/problems/non-overlapping-intervals/description/", answer: "/leetcode/greedy#无重叠区间", tags: ["贪心"] },
+            { name: "用最少数量的箭引爆气球", level: "中等", link: "https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/description/", answer: "/leetcode/greedy#用最少数量的箭引爆气球", tags: ["贪心"] },
+            { name: "买卖股票的最佳时机", level: "简单", link: "https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/description/", answer: "/leetcode/greedy#买卖股票的最佳时机", tags: ["贪心"] },
+            { name: "买卖股票的最佳时机 II", level: "中等", link: "https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/description/", answer: "/leetcode/greedy#买卖股票的最佳时机-ii", tags: ["贪心"] },
+            { name: "跳跃游戏", level: "中等", link: "https://leetcode.cn/problems/jump-game/description/", answer: "/leetcode/greedy#跳跃游戏", tags: ["贪心"] },
+            { name: "跳跃游戏 II", level: "中等", link: "https://leetcode.cn/problems/jump-game-ii/description/", answer: "/leetcode/greedy#跳跃游戏-ii", tags: ["贪心"] },
+            { name: "种花问题", level: "简单", link: "https://leetcode.cn/problems/can-place-flowers/description/", answer: "/leetcode/greedy#种花问题", tags: ["贪心"] },
+        ],
+        "二叉树": [
+            { name: "前序遍历", level: "简单", link: "https://leetcode.cn/problems/binary-tree-preorder-traversal/description/", answer: "/leetcode/binary-tree#前序遍历", tags: ["二叉树"] },
+            { name: "中序遍历", level: "简单", link: "https://leetcode.cn/problems/binary-tree-inorder-traversal/description/", answer: "/leetcode/binary-tree#中序遍历", tags: ["二叉树"] },
+            { name: "后序遍历", level: "简单", link: "https://leetcode.cn/problems/binary-tree-postorder-traversal/description/", answer: "/leetcode/binary-tree#后序遍历", tags: ["二叉树"] },
+            { name: "层序遍历", level: "中等", link: "https://leetcode.cn/problems/binary-tree-level-order-traversal/description/", answer: "/leetcode/binary-tree#层序遍历", tags: ["二叉树"] },
+            { name: "节点个数", level: "简单", link: "https://leetcode.cn/problems/count-complete-tree-nodes/description/", answer: "/leetcode/binary-tree#节点个数", tags: ["二叉树"] },
+            { name: "最大深度", level: "简单", link: "https://leetcode.cn/problems/maximum-depth-of-binary-tree/description/", answer: "/leetcode/binary-tree#最大深度", tags: ["二叉树"] },
+            { name: "最小深度", level: "简单", link: "https://leetcode.cn/problems/minimum-depth-of-binary-tree/description/", answer: "/leetcode/binary-tree#最小深度", tags: ["二叉树"] },
+            { name: "平衡二叉树", level: "简单", link: "https://leetcode.cn/problems/balanced-binary-tree/description/", answer: "/leetcode/binary-tree#平衡二叉树", tags: ["二叉树"] },
+            { name: "二叉树的直径", level: "简单", link: "https://leetcode.cn/problems/diameter-of-binary-tree/description/", answer: "/leetcode/binary-tree#二叉树的直径", tags: ["二叉树"] },
+            { name: "相同的树", level: "简单", link: "https://leetcode.cn/problems/same-tree/description/", answer: "/leetcode/binary-tree#相同的树", tags: ["二叉树"] },
+            { name: "对称二叉树", level: "简单", link: "https://leetcode.cn/problems/symmetric-tree/description/", answer: "/leetcode/binary-tree#对称二叉树", tags: ["二叉树"] },
+            { name: "翻转二叉树", level: "简单", link: "https://leetcode.cn/problems/invert-binary-tree/description/", answer: "/leetcode/binary-tree#翻转二叉树", tags: ["二叉树"] },
+            { name: "合并二叉树", level: "简单", link: "https://leetcode.cn/problems/merge-two-binary-trees/description/", answer: "/leetcode/binary-tree#合并二叉树", tags: ["二叉树"] },
+            { name: "路径总和", level: "简单", link: "https://leetcode.cn/problems/path-sum/description/", answer: "/leetcode/binary-tree#路径总和", tags: ["二叉树"] },
+            { name: "数字之和", level: "中等", link: "https://leetcode.cn/problems/sum-root-to-leaf-numbers/description/", answer: "/leetcode/binary-tree#数字之和", tags: ["二叉树"] },
+        ],
+        "链表": [
+            { name: "相交链表", level: "简单", link: "https://leetcode.cn/problems/intersection-of-two-linked-lists/description/", answer: "/leetcode/linked-list#相交链表", tags: ["链表"] },
+            { name: "反转链表", level: "简单", link: "https://leetcode.cn/problems/reverse-linked-list/description/", answer: "/leetcode/linked-list#反转链表", tags: ["链表"] },
+            { name: "合并有序链表", level: "简单", link: "https://leetcode.cn/problems/merge-two-sorted-lists/description/", answer: "/leetcode/linked-list#合并有序链表", tags: ["链表"] },
+            { name: "有序链表去重", level: "简单", link: "https://leetcode.cn/problems/remove-duplicates-from-sorted-list/description/", answer: "/leetcode/linked-list#有序链表去重", tags: ["链表"] },
+            { name: "删除倒数节点", level: "中等", link: "https://leetcode.cn/problems/remove-nth-node-from-end-of-list/description/", answer: "/leetcode/linked-list#删除倒数节点", tags: ["链表"] },
+            { name: "两两交换节点", level: "简单", link: "https://leetcode.cn/problems/swap-nodes-in-pairs/description/", answer: "/leetcode/linked-list#两两交换节点", tags: ["链表"] },
+            { name: "两数相加", level: "中等", link: "https://leetcode.cn/problems/add-two-numbers/description/", answer: "/leetcode/linked-list#两数相加", tags: ["链表"] },
+            { name: "环形链表", level: "简单", link: "https://leetcode.cn/problems/linked-list-cycle/description/", answer: "/leetcode/linked-list#环形链表", tags: ["链表"] },
+            { name: "环形链表 II", level: "中等", link: "https://leetcode.cn/problems/linked-list-cycle-ii/description/", answer: "/leetcode/linked-list#环形链表-ii", tags: ["链表"] },
+            { name: "链表的中间结点", level: "简单", link: "https://leetcode.cn/problems/middle-of-the-linked-list/description/", answer: "/leetcode/linked-list#链表的中间结点", tags: ["链表"] },
+        ],
+        "回朔": [
+            { name: "全排列", level: "简单", link: "https://leetcode.cn/problems/permutations/description/", answer: "/leetcode/backtrack#全排列", tags: ["回朔"] },
+            { name: "子集", level: "简单", link: "https://leetcode.cn/problems/subsets/description/", answer: "/leetcode/backtrack#子集", tags: ["回朔"] },
+            { name: "电话号码的字母组合", level: "简单", link: "https://leetcode.cn/problems/letter-combinations-of-a-phone-number/description/", answer: "/leetcode/backtrack#电话号码的字母组合", tags: ["回朔"] },
+        ],
+        "数组": [
+            { name: "合并区间", level: "中等", link: "https://leetcode.cn/problems/merge-intervals/description/", answer: "/leetcode/array#合并区间", tags: ["数组"] },
+            { name: "轮转数组", level: "中等", link: "https://leetcode.cn/problems/rotate-array/description/", answer: "/leetcode/array#轮转数组", tags: ["数组"] },
+        ],
+        "矩阵": [
+            { name: "岛屿数量", level: "中等", link: "https://leetcode.cn/problems/number-of-islands/description/", answer: "/leetcode/matrix#岛屿数量", tags: ["矩阵"] },
+        ],
+        "排序": [
+            { name: "冒泡排序", level: "中等", link: "https://leetcode.cn/problems/sort-an-array/description/", answer: "/leetcode/sort#冒泡排序", tags: ["排序"] },
+            { name: "选择排序", level: "中等", link: "https://leetcode.cn/problems/sort-an-array/description/", answer: "/leetcode/sort#选择排序", tags: ["排序"] },
+            { name: "快速排序", level: "中等", link: "https://leetcode.cn/problems/sort-an-array/description/", answer: "/leetcode/sort#快速排序", tags: ["排序"] },
+        ]
+    }
+}
+
 export function DataTable({ data }) {
     return (
         <Table.Root variant="surface">
@@ -40,53 +129,11 @@ export function DataTable({ data }) {
 }
 
 export function DataTab() {
-    let dataList = {
-        "双指针": [
-            { name: "两数之和 II", level: "中等", link: "https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted/description/", answer: "/leetcode/two-pointers#两数之和-ii", tags: ["双指针"] },
-            { name: "平方数之和", level: "中等", link: "https://leetcode.cn/problems/sum-of-square-numbers/description/", answer: "/leetcode/two-pointers#平方数之和", tags: ["双指针"] },
-            { name: "反转元音字母", level: "简单", link: "https://leetcode.cn/problems/reverse-vowels-of-a-string/description/", answer: "/leetcode/two-pointers#反转元音字母", tags: ["双指针"] },
-            { name: "判断子序列", level: "简单", link: "https://leetcode.cn/problems/is-subsequence/description/", answer: "/leetcode/two-pointers#判断子序列", tags: ["双指针"] },
-            { name: "合并有序数组", level: "简单", link: "https://leetcode.cn/problems/merge-sorted-array/description/", answer: "/leetcode/two-pointers#合并有序数组", tags: ["双指针"] },
-            { name: "移动零", level: "简单", link: "https://leetcode.cn/problems/move-zeroes/description/", answer: "/leetcode/two-pointers#移动零", tags: ["双指针"] },
-            { name: "有序数组的平方", level: "简单", link: "https://leetcode.cn/problems/squares-of-a-sorted-array/description/", answer: "/leetcode/two-pointers#有序数组的平方", tags: ["双指针"] },
-            { name: "有序数组去重", level: "简单", link: "https://leetcode.cn/problems/remove-duplicates-from-sorted-array/description/", answer: "/leetcode/two-pointers#有序数组去重", tags: ["双指针"] },
-            { name: "有序数组去重 II", level: "中等", link: "https://leetcode.cn/problems/remove-duplicates-from-sorted-array-ii/description/", answer: "/leetcode/two-pointers#有序数组去重-ii", tags: ["双指针"] },
-            { name: "盛最多水的容器", level: "中等", link: "https://leetcode.cn/problems/container-with-most-water/description/", answer: "/leetcode/two-pointers#盛最多水的容器", tags: ["双指针"] },
-        ],
-        "滑动窗口": [
-            { name: "无重复字符的最长子串", level: "中等", link: "https://leetcode.cn/problems/longest-substring-without-repeating-characters/description/", answer: "/leetcode/sliding-window#无重复字符的最长子串", tags: ["滑窗"] },
-            { name: "字符串的排列", level: "中等", link: "https://leetcode.cn/problems/permutation-in-string/description/", answer: "/leetcode/sliding-window#字符串的排列", tags: ["滑窗"] },
-        ],
-        "哈希表": [
-            { name: "字母异位词分组", level: "中等", link: "https://leetcode.cn/problems/group-anagrams/description/", answer: "/leetcode/hash-map#字母异位词分组", tags: ["哈希"] },
-        ],
-        "动态规划": [
-            { name: "爬楼梯", level: "简单", link: "https://leetcode.cn/problems/climbing-stairs/description/", answer: "/leetcode/dp#爬楼梯", tags: ["动规"] },
-            { name: "打家劫舍", level: "中等", link: "https://leetcode.cn/problems/house-robber/description/", answer: "/leetcode/dp#打家劫舍", tags: ["动规"] },
-            { name: "最小路径和", level: "中等", link: "https://leetcode.cn/problems/minimum-path-sum/description/", answer: "/leetcode/dp#最小路径和", tags: ["动规", "矩阵"] },
-            { name: "不同路径", level: "中等", link: "https://leetcode.cn/problems/unique-paths/description/", answer: "/leetcode/dp#不同路径", tags: ["动规", "矩阵"] },
-            { name: "不同路径 II", level: "中等", link: "https://leetcode.cn/problems/unique-paths-ii/description/", answer: "/leetcode/dp#不同路径-ii", tags: ["动规", "矩阵"] },
-            { name: "最大子数组和", level: "中等", link: "https://leetcode.cn/problems/maximum-subarray/description/", answer: "/leetcode/dp#最大子数组和", tags: ["动规"] },
-            { name: "分割等和子集", level: "中等", link: "https://leetcode.cn/problems/partition-equal-subset-sum/description/", answer: "/leetcode/dp#分割等和子集", tags: ["动规", "背包"] },
-        ],
-        "贪心": [
-            { name: "分发饼干", level: "简单", link: "https://leetcode.cn/problems/assign-cookies/description/", answer: "/leetcode/greedy#分发饼干", tags: ["贪心"] },
-            { name: "无重叠区间", level: "中等", link: "https://leetcode.cn/problems/non-overlapping-intervals/description/", answer: "/leetcode/greedy#无重叠区间", tags: ["贪心"] },
-            { name: "用最少数量的箭引爆气球", level: "中等", link: "https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/description/", answer: "/leetcode/greedy#用最少数量的箭引爆气球", tags: ["贪心"] },
-            { name: "买卖股票的最佳时机", level: "简单", link: "https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/description/", answer: "/leetcode/greedy#买卖股票的最佳时机", tags: ["贪心"] },
-            { name: "买卖股票的最佳时机 II", level: "中等", link: "https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/description/", answer: "/leetcode/greedy#买卖股票的最佳时机-ii", tags: ["贪心"] },
-            { name: "跳跃游戏", level: "中等", link: "https://leetcode.cn/problems/jump-game/description/", answer: "/leetcode/greedy#跳跃游戏", tags: ["贪心"] },
-            { name: "跳跃游戏 II", level: "中等", link: "https://leetcode.cn/problems/jump-game-ii/description/", answer: "/leetcode/greedy#跳跃游戏-ii", tags: ["贪心"] },
-        ],
-        "数组": [
-            { name: "合并区间", level: "中等", link: "https://leetcode.cn/problems/merge-intervals/description/", answer: "/leetcode/array#合并区间", tags: ["数组"] },
-            { name: "轮转数组", level: "中等", link: "https://leetcode.cn/problems/rotate-array/description/", answer: "/leetcode/array#轮转数组", tags: ["数组"] },
-        ],
-    }
+    let dataList = Data()
 
     return (
         <Tabs.Root defaultValue="双指针">
-          <Tabs.List color='cyan'>
+          <Tabs.List color='gray'>
             {Object.keys(dataList).map(key => {
                 return <Tabs.Trigger value={key}>{key}</Tabs.Trigger>
             })}
@@ -107,39 +154,3 @@ export function DataTab() {
 
 # Quick Start
 <DataTab />
-
-- **排序**\
-[冒泡排序](/leetcode/sort#冒泡排序),
-[选择排序](/leetcode/sort#选择排序),
-[快速排序](/leetcode/sort#快速排序)
-- **二叉树**\
-[前序遍历](/leetcode/binary-tree#前序遍历),
-[中序遍历](/leetcode/binary-tree#中序遍历),
-[后序遍历](/leetcode/binary-tree#后序遍历),
-[层序遍历](/leetcode/binary-tree#层序遍历),
-[节点个数](/leetcode/binary-tree#节点个数)\
-[最大深度](/leetcode/binary-tree#最大深度),
-[最小深度](/leetcode/binary-tree#最小深度),
-[平衡二叉树](/leetcode/binary-tree#平衡二叉树),
-[二叉树的直径](/leetcode/binary-tree#二叉树的直径)\
-[相同的树](/leetcode/binary-tree#相同的树),
-[对称二叉树](/leetcode/binary-tree#对称二叉树)\
-[翻转二叉树](/leetcode/binary-tree#翻转二叉树),
-[合并二叉树](/leetcode/binary-tree#合并二叉树)
-- **链表**\
-[相交链表](/leetcode/linked-list#相交链表),
-[反转链表](/leetcode/linked-list#反转链表),
-[合并有序链表](/leetcode/linked-list#合并有序链表)\
-[有序链表去重](/leetcode/linked-list#有序链表去重),
-[删除倒数节点](/leetcode/linked-list#删除倒数节点),
-[两两交换节点](/leetcode/linked-list#两两交换节点)\
-[两数相加](/leetcode/linked-list#两数相加)\
-[环形链表](/leetcode/linked-list#环形链表),
-[环形链表 II](/leetcode/linked-list#环形链表-ii),
-[链表的中间结点](/leetcode/linked-list#链表的中间结点)
-- **矩阵**\
-[岛屿数量](/leetcode/matrix#岛屿数量)
-- **回朔**\
-[全排列](/leetcode/backtrack#全排列),
-[子集](/leetcode/backtrack#子集),
-[电话号码的字母组合](/leetcode/backtrack#电话号码的字母组合)

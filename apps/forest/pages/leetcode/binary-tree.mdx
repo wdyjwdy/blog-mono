@@ -1,196 +1,239 @@
 # 二叉树
 ## 前序遍历
-[力扣链接](https://leetcode.cn/problems/binary-tree-preorder-traversal/description/)
 ![preorder](public/img/leetcode/tree/preorder.png)
 1. 根 *->* 左 *->* 右
-```js
-function preorderTraversal(root) {
-    let out = []
+```js {5-7}
+function preorderTraversal(root: TreeNode | null): number[] {
     function dfs(root) {
-        if (root) {
-            out.push(root.val) // 根
-            dfs(root.left) // 左
-            dfs(root.right) // 右
-        }
+        if (!root) return // 节点不存在，跳出
+
+        res.push(root.val) // 根
+        dfs(root.left) // 左
+        dfs(root.right) // 右
     }
+
+    let res = []
     dfs(root)
-    return out
+    return res
 };
 ```
 ## 中序遍历
-[力扣链接](https://leetcode.cn/problems/binary-tree-inorder-traversal/description/)
 ![inorder](public/img/leetcode/tree/inorder.png)
 1. 左 *->* 根 *->* 右
-```js
-function inorderTraversal(root) {
-    let out = []
+```js {5-7}
+function inorderTraversal(root: TreeNode | null): number[] {
     function dfs(root) {
-        if (root) {
-            dfs(root.left) // 左
-            out.push(root.val) // 根
-            dfs(root.right) // 右
-        }
+        if (!root) return // 节点不存在，跳出
+
+        dfs(root.left) // 左
+        res.push(root.val) // 根
+        dfs(root.right) // 右
     }
+
+    let res = []
     dfs(root)
-    return out
+    return res
 };
 ```
 ## 后序遍历
-[力扣链接](https://leetcode.cn/problems/binary-tree-postorder-traversal/description/)
 ![postorder](public/img/leetcode/tree/postorder.png)
 1. 左 *->* 右 *->* 根
-```js
-function postorderTraversal(root) {
-    let out = []
+```js {5-7}
+function postorderTraversal(root: TreeNode | null): number[] {
     function dfs(root) {
-        if (root) {
-            dfs(root.left) // 左
-            dfs(root.right) // 右
-            out.push(root.val) // 根
-        }
+        if (!root) return // 节点不存在，跳出
+
+        dfs(root.left) // 左
+        dfs(root.right) // 右
+        res.push(root.val) // 根
     }
+
+    let res = []
     dfs(root)
-    return out
+    return res
 };
 ```
 ## 层序遍历
-[力扣链接](https://leetcode.cn/problems/binary-tree-level-order-traversal/description/)
 ![levelorder](public/img/leetcode/tree/levelorder.png)
 1. 上 *->* 中 *->* 下
 ```js
-function levelOrder(root) {
-    if (!root) return []
-    let out = []
-    let currLevels = [root]
-    while (currLevels.length) {
-        let nextLevels = []
-        let values = []
-        for (let level of currLevels) {
-            values.push(level.val)
-            if (level.left) nextLevels.push(level.left)
-            if (level.right) nextLevels.push(level.right)
+function levelOrder(root: TreeNode | null): number[][] {
+    function bfs(root) {
+        if (!root) return // 节点不存在，跳出
+
+        let level = [root]
+        while (level.length > 0) {
+            let nextLevel = []
+            for (let l of level) {
+                if (l.left) nextLevel.push(l.left)
+                if (l.right) nextLevel.push(l.right)
+            }
+            res.push(level.map(l => l.val))  
+            level = nextLevel // 更新下一层
         }
-        currLevels = nextLevels
-        out.push(values)
     }
-    return out
+
+    let res = []
+    bfs(root)
+    return res
 };
 ```
 ## 节点个数
-[力扣链接](https://leetcode.cn/problems/count-complete-tree-nodes/description/)
-```js
-function countNodes(root) {
-    let count = 0
+1. 使用前序遍历，记录节点个数
+```js {5}
+function countNodes(root: TreeNode | null): number {
     function dfs(root) {
-        if (root) {
-            count++
-            dfs(root.left)
-            dfs(root.right)
-        }
+        if (!root) return // 节点不存在，跳出
+ 
+        count++ // 根
+        dfs(root.left) // 左
+        dfs(root.right) // 右
     }
+ 
+    let count = 0
     dfs(root)
     return count
 };
 ```
 ## 最大深度
-[力扣链接](https://leetcode.cn/problems/maximum-depth-of-binary-tree/description/)
 1. 最大深度 = 子节点的最大深度 + 1
-```js
-function maxDepth(root) {
+```js {5}
+function maxDepth(root: TreeNode | null): number {
     if (!root) return 0
-    let [left,  right] = [maxDepth(root.left), maxDepth(root.right)]
+
+    let [left, right] = [maxDepth(root.left), maxDepth(root.right)]
     return Math.max(left, right) + 1
 };
 ```
 ## 最小深度
-[力扣链接](https://leetcode.cn/problems/minimum-depth-of-binary-tree/description/)
 1. 最小深度 = 子节点的最小深度 + 1（需要左右节点都存在）
 ```js
-function minDepth(root) {
+function minDepth(root: TreeNode | null): number {
     if (!root) return 0
-    else if (root.left && root.right) return Math.min(minDepth(root.left), minDepth(root.right)) + 1
-    else return minDepth(root.left || root.right) + 1
+    if (!root.left && !root.right) return 1
+    if (!root.left) return minDepth(root.right) + 1
+    if (!root.right) return minDepth(root.left) + 1
+    return Math.min(minDepth(root.left), minDepth(root.right)) + 1
 };
 ```
 ## 平衡二叉树
-1. 遍历树的深度
-2. `left`, `right` 的差值大于 1，则不是平衡二叉树
-```js
-function isBalanced(root) {
+1. 遍历树的最大深度
+2. 每轮递归，检查 `l - r`
+```js {6}
+function isBalanced(root: TreeNode | null): boolean {
     function dfs(root) {
         if (!root) return 0
-        let [left, right] = [dfs(root.left), dfs(root.right)]
-        if (Math.abs(left - right) > 1) return -Infinity
-        else return Math.max(left, right) + 1
+
+        let [l, r] = [dfs(root.left), dfs(root.right)]
+        if (Math.abs(l - r) > 1) res = false
+        return Math.max(l, r) + 1
     }
-    return dfs(root) !== -Infinity
+
+    let res = true
+    dfs(root)
+    return res
 };
 ```
 ## 二叉树的直径
-[力扣链接](https://leetcode.cn/problems/diameter-of-binary-tree/description/)
-1. 遍历树的深度
-2. 经过节点的最长路径长度为 `left` + `right`
-```js
-function diameterOfBinaryTree(root) {
-    let out = 0
+1. 遍历树的最大深度
+2. 每轮递归，比较 `l + r`
+```js {6}
+function diameterOfBinaryTree(root: TreeNode | null): number {
     function dfs(root) {
         if (!root) return 0
-        let [left, right] = [dfs(root.left), dfs(root.right)]
-        out = Math.max(out, left + right)
-        return Math.max(left, right) + 1
+
+        let [l, r] = [dfs(root.left), dfs(root.right)]
+        res = Math.max(res, l + r)
+        return Math.max(l, r) + 1
     }
+
+    let res = 0
     dfs(root)
-    return out
+    return res
 };
 ```
 ## 相同的树
-[力扣链接](https://leetcode.cn/problems/same-tree/description/)
 1. 树 `a`, `b` 相同，需要满足 `a.left === b.left` 和  `a.right === b.right`
-```js
-function isSameTree(p, q) {
-    function dfs(a, b) {
-        if (!a && !b) return true
-        else if (!a || !b) return false
-        else if (a.val !== b.val) return false
-        else return dfs(a.left, b.left) && dfs(a.right, b.right)
-    }
-    return dfs(p, q)
+```js {5}
+function isSameTree(p: TreeNode | null, q: TreeNode | null): boolean {
+    if (!p && !q) return true
+    if (!p || !q) return false
+    if (p.val !== q.val) return false
+    return isSameTree(p.left, q.left) && isSameTree(p.right, q.right)
 };
 ```
 ## 对称二叉树
-[力扣链接](https://leetcode.cn/problems/symmetric-tree/description/)
 1. 树 `a`, `b` 对称，需要满足 `a.left === b.right` 和  `a.right === b.left`
-```js
-function isSymmetric(root) {
-    function dfs(a, b) {
-        if (!a && !b) return true
-        else if (!a || !b) return false
-        else if (a.val !== b.val) return false
-        else return dfs(a.left, b.right) && dfs(a.right, b.left)
+```js {6}
+function isSymmetric(root: TreeNode | null): boolean {
+    function dfs(p, q) {
+        if (!p && !q) return true
+        if (!p || !q) return false
+        if (p.val !== q.val) return false
+        return dfs(p.left, q.right) && dfs(p.right, q.left)
     }
+
     return dfs(root, root)
 };
 ```
 ## 翻转二叉树
-[力扣链接](https://leetcode.cn/problems/invert-binary-tree/description/)
 ```js
 function invertTree(root) {
     if (!root) return root;
+
     [root.left, root.right] = [invertTree(root.right), invertTree(root.left)]
     return root
 };
 ```
 ## 合并二叉树
-[力扣链接](https://leetcode.cn/problems/merge-two-binary-trees/description/)
 ```js
-function mergeTrees(root1, root2) {
+function mergeTrees(root1: TreeNode | null, root2: TreeNode | null): TreeNode | null {
     if (!root1) return root2
     if (!root2) return root1
+    
     let merged = new TreeNode(
-        root1.val + root2.val,
+        root1.val += root2.val,
         mergeTrees(root1.left, root2.left),
         mergeTrees(root1.right, root2.right)
     )
     return merged
+};
+```
+## 路径总和
+1. 前序遍历，同时计算路径和
+```js {5-8}
+function hasPathSum(root: TreeNode | null, targetSum: number): boolean {
+    function dfs(root, sum) {
+        if (!root) return
+
+        sum += root.val // 根
+        if (!root.left && !root.right) { // 叶子节点
+            if (sum === targetSum) res = true
+        }
+        dfs(root.left, sum) // 左
+        dfs(root.right, sum) // 右
+    }
+
+    let res = false
+    dfs(root, 0)
+    return res
+};
+```
+## 数字之和
+1. 前序遍历，同时计算路径和
+```js {5-6}
+function sumNumbers(root: TreeNode | null): number {
+    function dfs(root, sum) {
+        if (!root) return
+
+        sum = 10 * sum + root.val //根
+        if (!root.left && !root.right) res += sum
+        dfs(root.left, sum) // 左
+        dfs(root.right, sum) // 右
+    }
+
+    let res = 0
+    dfs(root, 0)
+    return res
 };
 ```

@@ -96,3 +96,21 @@ function jump(nums: number[]): number {
     return stepCount
 };
 ```
+## 种花问题
+1. 只能在 `[0, 0, 0]` 中间种花
+```js
+function canPlaceFlowers(flowerbed: number[], n: number): boolean {
+    flowerbed.push(0)
+    flowerbed.unshift(0)
+    
+    let count = 0
+    for (let i = 0; i <= flowerbed.length - 3; i++) {
+        if (flowerbed.slice(i, i + 3).join('') === '000') {
+            flowerbed[i + 1] = 1
+            count++
+        }
+    }
+
+    return  count >= n
+};
+```
