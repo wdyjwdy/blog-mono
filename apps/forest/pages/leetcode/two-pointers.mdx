@@ -1,6 +1,5 @@
 # 双指针
 ## 两数之和 II
-> [力扣链接](https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted/description/)
 ```js
 function twoSum(numbers, target) {
     let [a, b] = [0, numbers.length - 1]
@@ -13,7 +12,6 @@ function twoSum(numbers, target) {
 };
 ```
 ## 平方数之和
-> [力扣链接](https://leetcode.cn/problems/sum-of-square-numbers/description/)
 ```js
 function judgeSquareSum(c) {
     let [a, b] = [0, Math.ceil(Math.sqrt(c))]
@@ -27,7 +25,6 @@ function judgeSquareSum(c) {
 };
 ```
 ## 反转元音字母
-> [力扣链接](https://leetcode.cn/problems/reverse-vowels-of-a-string/description/)
 1. 找到左右两边第一个元音字母，然后交换
 ```js filename="双指针"
 function reverseVowels(s) {
@@ -60,7 +57,6 @@ function reverseVowels(s: string): string {
 };
 ```
 ## 判断子序列
-> [力扣链接](https://leetcode.cn/problems/is-subsequence/description/)
 ```js
 function isSubsequence(s: string, t: string): boolean {
     let a = 0
@@ -71,7 +67,6 @@ function isSubsequence(s: string, t: string): boolean {
 };
 ```
 ## 合并有序数组
-> [力扣链接](https://leetcode.cn/problems/merge-sorted-array/description/)
 1. 反向遍历，按大小排序
 ```js
 function merge(nums1: number[], m: number, nums2: number[], n: number): void {
@@ -87,7 +82,6 @@ function merge(nums1: number[], m: number, nums2: number[], n: number): void {
 };
 ```
 ## 移动零
-> [力扣链接](https://leetcode.cn/problems/move-zeroes/description/)
 1. 将非零数往前移
 ```js
 function moveZeroes(nums: number[]): void {
@@ -101,7 +95,6 @@ function moveZeroes(nums: number[]): void {
 };
 ```
 ## 有序数组的平方
-> [力扣链接](https://leetcode.cn/problems/squares-of-a-sorted-array/description/)
 1. 将较大的数，前插到数组中
 ```js
 function sortedSquares(nums) {
@@ -121,7 +114,6 @@ function sortedSquares(nums) {
 };
 ```
 ## 有序数组去重
-> [力扣链接](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/description/)
 1. 将不同的数往前移
 ```js
 function removeDuplicates(nums) {
@@ -137,7 +129,6 @@ function removeDuplicates(nums) {
 };
 ```
 ## 有序数组去重 II
-> [力扣链接](https://leetcode.cn/problems/remove-duplicates-from-sorted-array-ii/description/)
 1. 将不同的数往前移
 ```js
 function removeDuplicates(nums) {
@@ -153,7 +144,6 @@ function removeDuplicates(nums) {
 };
 ```
 ## 盛最多水的容器
-> [力扣链接](https://leetcode.cn/problems/container-with-most-water/description/)
 1. 移动短板，面积才有可能增大
 ```js
 function maxArea(height) {
@@ -168,7 +158,6 @@ function maxArea(height) {
 };
 ```
 ## 三数之和
-> [力扣链接](https://leetcode.cn/problems/3sum/description/)
 1. 外层循环，固定 `i`
 2. 内存双指针，寻找 `j`, `k`
 ```js {7-8,19-20}

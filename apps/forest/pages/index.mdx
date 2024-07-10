@@ -107,7 +107,7 @@ export function DataTable({ data }) {
             {data.map(({ name, level, link, answer, tags }) => {
                 return (
                     <Table.Row>
-                      <Table.Cell><Checkbox  color="green" /></Table.Cell>
+                      <Table.Cell><Checkbox color="green" /></Table.Cell>
                       <Table.Cell><Strong>{name}</Strong></Table.Cell>
                       <Table.Cell justify="center"><Badge color={level === "简单" ? "green" : "orange"}>{level}</Badge></Table.Cell>
                       <Table.Cell justify="center">{tags.map(tag => {
