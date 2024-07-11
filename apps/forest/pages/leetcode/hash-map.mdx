@@ -1,4 +1,69 @@
 # 哈希表
+## 两数之和
+1. 哈希表储存数字下标
+2. 遍历时，在表中查询 `target - num`
+```js
+function twoSum(nums: number[], target: number): number[] {
+    let map = new Map()
+    for (let [i, num] of nums.entries()) {
+        let key = target - num
+        if (map.has(key)) return [map.get(key), i]
+        else map.set(num, i)
+    }
+};
+```
+## 存在重复元素
+1. 哈希表储存数字
+2. 遍历时，检查是否有重复数字
+```js
+function containsDuplicate(nums: number[]): boolean {
+    let set = new Set()
+    for (let num of nums) {
+        if (set.has(num)) return true
+        else set.add(num)
+    }
+    return false
+};
+```
+## 最长和谐子序列
+1. 哈希计数
+2. `map.get(key) + map.get(key + 1)` 是一个子序列长度
+```js
+function findLHS(nums: number[]): number {
+    let map = new Map()
+    for (let num of nums) {
+        map.set(num, (map.get(num) ?? 0) + 1)
+    }
+
+    let maxlen = 0
+    for (let [key, val] of map) {
+        if (map.has(key + 1)) {
+            maxlen = Math.max(maxlen, val + map.get(key + 1))
+        }
+    }
+
+    return maxlen
+};
+```
+## 最长连续序列
+1. 从可能的起点开始找
+```js
+function longestConsecutive(nums: number[]): number {
+    let set = new Set(nums)
+    let maxlen = 0
+    for (let val of set) {
+        if (set.has(val - 1)) continue // 不是起点
+
+        let count = 0
+        while (set.has(val + count)) {
+            set.delete(val + count) // 删除已经找过的点
+            count++
+        }
+        maxlen = Math.max(maxlen, count)
+    }
+    return maxlen
+};
+```
 ## 字母异位词分组
 1. 易位词按序排列后都相同
 ```js

@@ -24,13 +24,14 @@ function permute(nums: number[]): number[][] {
     function dfs(x) {
         if (x === nums.length) {
             res.push(path.slice())
-        } else {
-            let unVisited = nums.filter(x => !path.includes(x))
-            for (let val of unVisited) {
-                path.push(val)
-                dfs(x + 1) // 选择未访问的元素
-                path.pop()
-            }
+            return
+        }
+        
+        let unVisited = nums.filter(x => !path.includes(x))
+        for (let val of unVisited) {
+            path.push(val) // 选择未访问过的元素
+            dfs(x + 1)
+            path.pop()
         }
     }
     
@@ -64,12 +65,13 @@ function subsets(nums: number[]): number[][] {
     function dfs(x) {
         if (x === nums.length) {
             res.push(path.slice())
-        } else {
-            dfs(x + 1) // 不选
-            path.push(nums[x])
-            dfs(x + 1) // 选
-            path.pop()
+            return
         }
+
+        dfs(x + 1) // 不选
+        path.push(nums[x]) // 选
+        dfs(x + 1)
+        path.pop()
     }
 
     let res = []
@@ -97,19 +99,20 @@ flowchart TD
 ```
 ```js
 function letterCombinations(digits: string): string[] {
-    let map = ['abc', 'def', 'ghi', 'jkl', 'mno', 'pqrs', 'tuv', 'wxyz']
+    let map = ["abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"]
     let arr = digits.split('').map(x => map[Number(x) - 2])
-    if (digits.length === 0) return []
+    if (digits === '') return []
     
     function dfs(x) {
         if (x === arr.length) {
             res.push(path.join(''))
-        } else {
-            for (let val of arr[x]) {
-                path.push(val)
-                dfs(x + 1)
-                path.pop()
-            }
+            return
+        }
+
+        for (let v of arr[x]) {
+            path.push(v)
+            dfs(x + 1)
+            path.pop()
         }
     }
 

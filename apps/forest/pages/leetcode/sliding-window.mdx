@@ -4,20 +4,20 @@
 2. 右指针，字符不重复时递增
 ```js
 function lengthOfLongestSubstring(s: string): number {
-    let b = 0
-    let res = 0
+    let [a, b] = [0, 0]
+    let maxlen = 0
     let set = new Set()
 
-    for (let a = 0; a < s.length; a++) {
+    while (a < s.length) {
         while (b < s.length && !set.has(s[b])) {
             set.add(s[b])
             b++
         }
-        res = Math.max(res, b - a)
+        maxlen = Math.max(maxlen, set.size)
         set.delete(s[a])
+        a++
     }
-
-    return res
+    return maxlen
 };
 ```
 ## 字符串的排列
@@ -31,7 +31,7 @@ function checkInclusion(s1: string, s2: string): boolean {
             map.set(t1[i], (map.get(t1[i]) ?? 0) + 1)
             map.set(s1[i], (map.get(s1[i]) ?? 0) - 1)
         }
-        return Array.from(map.values()).every(x => x === 0)
+        return [...map.values()].every(x => x === 0)
     }
 
     let [m, n] = [s1.length, s2.length]

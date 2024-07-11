@@ -18,7 +18,19 @@ export function Data() {
             { name: "无重复字符的最长子串", level: "中等", link: "https://leetcode.cn/problems/longest-substring-without-repeating-characters/description/", answer: "/leetcode/sliding-window#无重复字符的最长子串", tags: ["滑窗"] },
             { name: "字符串的排列", level: "中等", link: "https://leetcode.cn/problems/permutation-in-string/description/", answer: "/leetcode/sliding-window#字符串的排列", tags: ["滑窗"] },
         ],
+        "二分查找": [
+            { name: "平方根 ", level: "简单", link: "https://leetcode.cn/problems/sqrtx/description/", answer: "/leetcode/binary-search#平方根 ", tags: ["二分查找"] },
+            { name: "比目标字母大的最小字母", level: "简单", link: "https://leetcode.cn/problems/find-smallest-letter-greater-than-target/description/", answer: "/leetcode/binary-search#比目标字母大的最小字母", tags: ["二分查找"] },
+            { name: "有序数组中的单一元素", level: "中等", link: "https://leetcode.cn/problems/single-element-in-a-sorted-array/description/", answer: "/leetcode/binary-search#有序数组中的单一元素", tags: ["二分查找"] },
+            { name: "第一个错误的版本", level: "简单", link: "https://leetcode.cn/problems/first-bad-version/description/", answer: "/leetcode/binary-search#第一个错误的版本", tags: ["二分查找"] },
+            { name: "旋转排序数组中的最小值", level: "中等", link: "https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array/description/", answer: "/leetcode/binary-search#旋转排序数组中的最小值", tags: ["二分查找"] },
+            { name: "查找目标值区间", level: "中等", link: "https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/description/", answer: "/leetcode/binary-search#查找目标值区间", tags: ["二分查找"] },
+        ],
         "哈希表": [
+            { name: "两数之和", level: "简单", link: "https://leetcode.cn/problems/two-sum/description/", answer: "/leetcode/hash-map#两数之和", tags: ["哈希"] },
+            { name: "存在重复元素", level: "简单", link: "https://leetcode.cn/problems/contains-duplicate/description/", answer: "/leetcode/hash-map#存在重复元素", tags: ["哈希"] },
+            { name: "最长和谐子序列", level: "简单", link: "https://leetcode.cn/problems/longest-harmonious-subsequence/description/", answer: "/leetcode/hash-map#最长和谐子序列", tags: ["哈希"] },
+            { name: "最长连续序列", level: "中等", link: "https://leetcode.cn/problems/longest-consecutive-sequence/description/", answer: "/leetcode/hash-map#最长连续序列", tags: ["哈希"] },
             { name: "字母异位词分组", level: "中等", link: "https://leetcode.cn/problems/group-anagrams/description/", answer: "/leetcode/hash-map#字母异位词分组", tags: ["哈希"] },
         ],
         "动态规划": [
@@ -38,7 +50,7 @@ export function Data() {
             { name: "买卖股票的最佳时机 II", level: "中等", link: "https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/description/", answer: "/leetcode/greedy#买卖股票的最佳时机-ii", tags: ["贪心"] },
             { name: "跳跃游戏", level: "中等", link: "https://leetcode.cn/problems/jump-game/description/", answer: "/leetcode/greedy#跳跃游戏", tags: ["贪心"] },
             { name: "跳跃游戏 II", level: "中等", link: "https://leetcode.cn/problems/jump-game-ii/description/", answer: "/leetcode/greedy#跳跃游戏-ii", tags: ["贪心"] },
-            { name: "种花问题", level: "简单", link: "https://leetcode.cn/problems/can-place-flowers/description/", answer: "/leetcode/greedy#种花问题", tags: ["贪心"] },
+            { name: "种花问题", level: "简单", link: "https://leetcode.cn/problems/can-place-flowers/description/", answer: "/leetcode/greedy#种花问题", tags: ["贪心", "滑窗"] },
         ],
         "二叉树": [
             { name: "前序遍历", level: "简单", link: "https://leetcode.cn/problems/binary-tree-preorder-traversal/description/", answer: "/leetcode/binary-tree#前序遍历", tags: ["二叉树"] },
@@ -58,21 +70,37 @@ export function Data() {
             { name: "数字之和", level: "中等", link: "https://leetcode.cn/problems/sum-root-to-leaf-numbers/description/", answer: "/leetcode/binary-tree#数字之和", tags: ["二叉树"] },
         ],
         "链表": [
-            { name: "相交链表", level: "简单", link: "https://leetcode.cn/problems/intersection-of-two-linked-lists/description/", answer: "/leetcode/linked-list#相交链表", tags: ["链表"] },
+            { name: "相交链表", level: "简单", link: "https://leetcode.cn/problems/intersection-of-two-linked-lists/description/", answer: "/leetcode/linked-list#相交链表", tags: ["链表", "哈希表"] },
             { name: "反转链表", level: "简单", link: "https://leetcode.cn/problems/reverse-linked-list/description/", answer: "/leetcode/linked-list#反转链表", tags: ["链表"] },
             { name: "合并有序链表", level: "简单", link: "https://leetcode.cn/problems/merge-two-sorted-lists/description/", answer: "/leetcode/linked-list#合并有序链表", tags: ["链表"] },
             { name: "有序链表去重", level: "简单", link: "https://leetcode.cn/problems/remove-duplicates-from-sorted-list/description/", answer: "/leetcode/linked-list#有序链表去重", tags: ["链表"] },
-            { name: "删除倒数节点", level: "中等", link: "https://leetcode.cn/problems/remove-nth-node-from-end-of-list/description/", answer: "/leetcode/linked-list#删除倒数节点", tags: ["链表"] },
+            { name: "删除倒数节点", level: "中等", link: "https://leetcode.cn/problems/remove-nth-node-from-end-of-list/description/", answer: "/leetcode/linked-list#删除倒数节点", tags: ["链表", "双指针"] },
             { name: "两两交换节点", level: "简单", link: "https://leetcode.cn/problems/swap-nodes-in-pairs/description/", answer: "/leetcode/linked-list#两两交换节点", tags: ["链表"] },
             { name: "两数相加", level: "中等", link: "https://leetcode.cn/problems/add-two-numbers/description/", answer: "/leetcode/linked-list#两数相加", tags: ["链表"] },
-            { name: "环形链表", level: "简单", link: "https://leetcode.cn/problems/linked-list-cycle/description/", answer: "/leetcode/linked-list#环形链表", tags: ["链表"] },
-            { name: "环形链表 II", level: "中等", link: "https://leetcode.cn/problems/linked-list-cycle-ii/description/", answer: "/leetcode/linked-list#环形链表-ii", tags: ["链表"] },
-            { name: "链表的中间结点", level: "简单", link: "https://leetcode.cn/problems/middle-of-the-linked-list/description/", answer: "/leetcode/linked-list#链表的中间结点", tags: ["链表"] },
+            { name: "环形链表", level: "简单", link: "https://leetcode.cn/problems/linked-list-cycle/description/", answer: "/leetcode/linked-list#环形链表", tags: ["链表", "哈希表"] },
+            { name: "环形链表 II", level: "中等", link: "https://leetcode.cn/problems/linked-list-cycle-ii/description/", answer: "/leetcode/linked-list#环形链表-ii", tags: ["链表", "哈希表"] },
+            { name: "链表的中间结点", level: "简单", link: "https://leetcode.cn/problems/middle-of-the-linked-list/description/", answer: "/leetcode/linked-list#链表的中间结点", tags: ["链表", "双指针"] },
         ],
         "回朔": [
             { name: "全排列", level: "简单", link: "https://leetcode.cn/problems/permutations/description/", answer: "/leetcode/backtrack#全排列", tags: ["回朔"] },
             { name: "子集", level: "简单", link: "https://leetcode.cn/problems/subsets/description/", answer: "/leetcode/backtrack#子集", tags: ["回朔"] },
             { name: "电话号码的字母组合", level: "简单", link: "https://leetcode.cn/problems/letter-combinations-of-a-phone-number/description/", answer: "/leetcode/backtrack#电话号码的字母组合", tags: ["回朔"] },
+        ],
+        "栈": [
+            { name: "有效的括号", level: "简单", link: "https://leetcode.cn/problems/valid-parentheses/description/", answer: "/leetcode/stack#有效的括号", tags: ["栈"] },
+            { name: "每日温度", level: "中等", link: "https://leetcode.cn/problems/daily-temperatures/description/", answer: "/leetcode/stack#每日温度", tags: ["栈"] },
+            { name: "下一个更大元素 I", level: "简单", link: "https://leetcode.cn/problems/next-greater-element-i/description/", answer: "/leetcode/stack#下一个更大元素-i", tags: ["栈"] },
+            { name: "下一个更大元素 II", level: "中等", link: "https://leetcode.cn/problems/next-greater-element-ii/description/", answer: "/leetcode/stack#下一个更大元素-ii", tags: ["栈"] },
+        ],
+        "字符串": [
+            { name: "有效的字母异位词", level: "简单", link: "https://leetcode.cn/problems/valid-anagram/description/", answer: "/leetcode/string#有效的字母异位词", tags: ["字符串", "哈希"] },
+            { name: "最长回文串", level: "简单", link: "https://leetcode.cn/problems/longest-palindrome/description/", answer: "/leetcode/string#最长回文串", tags: ["字符串", "哈希"] },
+            { name: "同构字符串", level: "简单", link: "https://leetcode.cn/problems/isomorphic-strings/description/", answer: "/leetcode/string#同构字符串", tags: ["字符串", "哈希"] },
+            { name: "字符串相加", level: "简单", link: "https://leetcode.cn/problems/add-strings/description/", answer: "/leetcode/string#字符串相加", tags: ["字符串"] },
+            { name: "最长公共前缀", level: "简单", link: "https://leetcode.cn/problems/longest-common-prefix/description/", answer: "/leetcode/string#最长公共前缀", tags: ["字符串"] },
+            { name: "罗马数字转整数", level: "简单", link: "https://leetcode.cn/problems/roman-to-integer/description/", answer: "/leetcode/string#罗马数字转整数", tags: ["字符串", "哈希"] },
+            { name: "整数转罗马数字", level: "中等", link: "https://leetcode.cn/problems/integer-to-roman/description/", answer: "/leetcode/string#整数转罗马数字", tags: ["字符串", "哈希"] },
+            { name: "第一个匹配项的下标", level: "简单", link: "https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/description/", answer: "/leetcode/string#第一个匹配项的下标", tags: ["字符串", "滑窗"] },
         ],
         "数组": [
             { name: "合并区间", level: "中等", link: "https://leetcode.cn/problems/merge-intervals/description/", answer: "/leetcode/array#合并区间", tags: ["数组"] },
@@ -107,7 +135,7 @@ export function DataTable({ data }) {
             {data.map(({ name, level, link, answer, tags }) => {
                 return (
                     <Table.Row>
-                      <Table.Cell><Checkbox color="green" /></Table.Cell>
+                      <Table.Cell><Checkbox color="green" size="3" /></Table.Cell>
                       <Table.Cell><Strong>{name}</Strong></Table.Cell>
                       <Table.Cell justify="center"><Badge color={level === "简单" ? "green" : "orange"}>{level}</Badge></Table.Cell>
                       <Table.Cell justify="center">{tags.map(tag => {

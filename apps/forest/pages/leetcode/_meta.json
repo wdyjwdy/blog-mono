@@ -9,5 +9,8 @@
   "dp": "动态规划",
   "greedy": "贪心",
   "hash-map": "哈希表",
-  "sliding-window": "滑动窗口"
+  "sliding-window": "滑动窗口",
+  "binary-search": "二分查找",
+  "stack": "栈",
+  "string": "字符串"
 }
