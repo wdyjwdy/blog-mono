@@ -84,10 +84,9 @@ function canJump(nums: number[]): boolean {
 1. 记录每一步能跳到的最远距离
 ```js
 function jump(nums: number[]): number {
-    if (nums.length <= 1) return 0 // 特殊值
-    
-    let maxDistance = nums[0] + 1 // 一步能跳到的最远距离
-    let stepCount = 1
+    let maxDistance = 1 // 当前能跳到的最远距离
+    let stepCount = 0
+
     while (maxDistance < nums.length) {
         let distances = nums.slice(0, maxDistance).map((v, i) => v + i + 1)
         maxDistance = Math.max(...distances)
