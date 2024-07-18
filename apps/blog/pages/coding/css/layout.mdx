@@ -1,0 +1,107 @@
+import { Tabs, Tab } from 'nextra/components'
+
+# Layout
+## 三列布局
+![3col](public/img/coding/css/layout/3col.png)
+<Tabs items={['Flex', 'Grid', 'Float + Calc', 'Position']}>
+    <Tab>
+    ```sass {6}
+    .container
+        display: flex
+    .left
+        width: 100px
+    .center
+        flex: 1
+    .right
+        width: 100px
+    ```
+    </Tab>
+    <Tab>
+    ```sass {3}
+    .container
+        display: grid
+        grid-template-columns: 100px auto 100px
+    ```
+    </Tab>
+    <Tab>
+    ```sass {6}
+    .left
+        float: left
+        width: 100px
+    .center
+        float: left
+        width: calc(100% - 200px) // 100% 表示容器宽度
+    .eight
+        float: left
+        width: 100px
+    ```
+    </Tab>
+    <Tab>
+    ```sass {9-10}
+    .container
+        position: relative
+    .left
+        position: absolute
+        width: 100px
+        left: 0px
+    .center
+        position: absolute
+        left: 100px // 同时指定 left, right，元素会被拉伸
+        right 100px
+    .right
+        position: absolute
+        width: 100px
+        right: 0px
+    ```
+    </Tab>
+</Tabs>
+## 水平垂直居中
+![center](public/img/coding/css/layout/center.png)
+<Tabs items={['Flex', 'Grid', 'Position + Translate']}>
+    <Tab>
+    ```sass {3-4}
+    .container
+        display: flex
+        justify-content: center
+        align-items: center
+    ```
+    </Tab>
+    <Tab>
+    ```sass {3}
+    .container
+        display: grid
+        place-items: center
+    ```
+    </Tab>
+    <Tab>
+    ```sass {5-7}
+    .container
+        position: relative
+    .item
+        position: absolute
+        top: 50% // container 宽度的 50%
+        left: 50%
+        transform: translate(-50%, -50%) // item 宽度的 50%
+    ```
+    </Tab>
+</Tabs>
+## 导航栏
+![navbar](public/img/coding/css/layout/navbar.png)
+<Tabs items={['Flex + Margin', 'Float']}>
+    <Tab>
+    ```sass
+    .container
+        display: flex
+    .D
+        margin-left: auto // margin 会填充剩余空间
+    ```
+    </Tab>
+    <Tab>
+    ```sass
+    .A .B .C
+        float: left
+    .D .E
+        float: right
+    ```
+    </Tab>
+</Tabs>

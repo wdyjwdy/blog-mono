@@ -1,23 +1,28 @@
-import { Tabs, Box, Text } from '@radix-ui/themes';
+import { Box, Flex, Card, Text, Button } from '@radix-ui/themes'
+import Link from 'next/link'
 
-<Tabs.Root defaultValue="account">
-  <Tabs.List>
-    <Tabs.Trigger value="account">Account</Tabs.Trigger>
-    <Tabs.Trigger value="documents">Documents</Tabs.Trigger>
-    <Tabs.Trigger value="settings">Settings</Tabs.Trigger>
-  </Tabs.List>
-
-  <Box pt="3">
-    <Tabs.Content value="account">
-      <Text size="2">Make changes to your account.</Text>
-    </Tabs.Content>
-
-    <Tabs.Content value="documents">
-      <Text size="2">Access and update your documents.</Text>
-    </Tabs.Content>
-
-    <Tabs.Content value="settings">
-      <Text size="2">Edit your profile or update contact information.</Text>
-    </Tabs.Content>
-  </Box>
-</Tabs.Root>
+<Flex justify="center" gap="5" p="5">
+    <Flex gap="3">
+        <Card>
+            <Flex gap="2" direction="column">
+                <Text size="4" weight="bold">✍🏼 手写题</Text>
+                <Flex gap="1" direction="column">
+                    <Button variant="soft"><Link href="/coding/intro">算法</Link></Button>
+                    <Button variant="soft"><Link href="/coding/intro">JavaScript</Link></Button>
+                    <Button variant="soft"><Link href="/coding/intro">CSS</Link></Button>
+                    <Button variant="soft"><Link href="/coding/intro">设计模式</Link></Button>
+                </Flex>
+            </Flex>
+        </Card>
+    </Flex>
+    <Flex gap="3">
+        <Card>
+            <Flex gap="2" direction="column">
+                <Text size="4" weight="bold">📜 极简文档</Text>
+                <Flex gap="1" direction="column">
+                    <Button variant="soft"><Link href="/docs/intro">JavaScript</Link></Button>
+                </Flex>
+            </Flex>
+        </Card>
+    </Flex>
+</Flex>

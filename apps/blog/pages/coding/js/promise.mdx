@@ -1,0 +1,42 @@
+# Promise
+## Static Methods
+### all
+```js {6}
+function all(promises) {
+    return new Promise((resolve, reject) => {
+        let result = []
+        const onFullfiled = val => {
+            result.push(val)
+            if (result.length === promises.length) resolve(result)
+        }
+        const onRejected = val => {
+            reject(val)
+        }
+        for (let promise of promises) {
+            if (promise instanceof Promise) {
+                promise.then(onFullfiled, onRejected)
+            } else {
+                onFullfiled(promise)
+            }
+        }
+    })
+}
+
+Promise.all = all
+```
+### race
+```js {5}
+function race(promises) {
+    return new Promise((resolve, reject) => {
+        for (let promise of promises) {
+            if (promise instanceof Promise) {
+                promise.then(resolve, reject)
+            } else {
+                resolve(promise)
+            }
+        }
+    })
+}
+
+Promise.race = race
+```

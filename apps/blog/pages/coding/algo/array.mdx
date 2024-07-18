@@ -1,0 +1,30 @@
+# 数组
+## 合并区间
+1. 按区间起点排序
+2. 当区间重叠时，进行合并
+```js {6}
+function merge(intervals: number[][]): number[][] {
+    intervals.sort((a, b) => a[0] - b[0])
+    let res = [intervals[0]]
+    for (let [a, b] of intervals.slice(1)) {
+        let [x, y] = res.at(-1)
+        if (a <= y) { // 区间重叠
+            res.at(-1)[1] = Math.max(b, y)
+        } else {
+            res.push([a, b])
+        }
+    }
+    return res
+};
+```
+## 轮转数组
+1. 索引映射：`i` -> `(i + k) % len`
+```js {4}
+function rotate(nums: number[], k: number): void {
+    let arr = nums.slice()
+    for (let [i, v] of arr.entries()) {
+        let index = (i + k) % nums.length
+        nums[index] = v
+    }
+};
+```

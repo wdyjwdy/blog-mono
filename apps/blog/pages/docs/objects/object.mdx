@@ -1,0 +1,78 @@
+import { Callout } from 'nextra/components'
+
+# Object
+## Static Methods
+### create
+- **描述**：创建一个新对象，并指定其原型
+- **语法**：`Object.create(proto, props?){:js}`
+- **参数**
+    - `proto{:js}`：指定的原型
+    - `props{:js}`：属性描述符
+```js
+let obj = Object.create({ a: 1 })
+Object.getPrototypeOf(obj) // { a: 1 }
+```
+<Callout>
+`{}{:js}` 等价于 `Object.create(Object.prototype){:js}`
+</Callout>
+### assign
+- **描述**：将源对象的[自有可枚举属性]()复制到目标对象，并返回修改后的目标对象
+- **语法**：`Object.assign(target, ...sources){:js}`
+- **参数**
+    - `target{:js}`：目标对象
+    - `source{:js}`：源对象
+```js
+Object.assign({ a: 1 }, { b: 2 }) // { a: 1, b: 2 }
+```
+### keys
+- **描述**：返回一个数组，包含了对象[自有可枚举属性]()的键
+- **语法**：`Object.keys(obj){:js}`
+```js
+Object.keys([1, 2, 3])      // ['0', '1', '2']
+Object.keys({ a: 1, b: 2 }) // ['a', 'b'] 
+```
+### values
+- **描述**：返回一个数组，包含了对象[自有可枚举属性]()的值
+- **语法**：`Object.values(obj){:js}`
+```js
+Object.values([1, 2, 3])      // [1, 2, 3]
+Object.values({ a: 1, b: 2 }) // [1, 2] 
+```
+### entries
+- **描述**：返回一个数组，包含了对象[自有可枚举属性]()的键值对
+- **语法**：`Object.entries(obj){:js}`
+```js
+Object.entries([1, 2, 3])      // [['0', 1], ['1', 2], ['2', 3]]
+Object.entries({ a: 1, b: 2 }) // [['a', 1], ['b', 2]] 
+```
+### fromEntries
+- **描述**：将键值对转化为对象
+- **语法**：`Object.fromEntries(iterable){:js}`
+```js
+Object.fromEntries([['a', 1], ['b', 2]]) // { a: 1, b: 2 }
+```
+### getPrototypeOf
+- **描述**：返回对象的原型
+- **语法**：`Object.getPrototypeOf(obj){:js}`
+```js
+let obj = Object.create({ a: 1 })
+Object.getPrototypeOf(obj) // { a: 1 }
+```
+### setPrototypeOf
+- **描述**：修改对象的原型
+- **语法**：`Object.setPrototypeOf(obj, proto){:js}`
+```js
+let obj = Object.create({ a: 1 })
+Object.setPrototypeOf(obj, { b: 2 })
+Object.getPrototypeOf(obj) // { b: 2 }
+```
+## Instance Methods
+## Instance Properties
+### constructor
+- **描述**：指向构造函数
+- **语法**：`obj.constructor{:js}`
+```js
+function Animal() {}
+let obj = new Animal()
+obj.constructor // Animal
+```

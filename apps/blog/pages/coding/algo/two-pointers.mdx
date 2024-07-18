@@ -1,0 +1,190 @@
+# 双指针
+## 两数之和 II
+```js
+function twoSum(numbers, target) {
+    let [a, b] = [0, numbers.length - 1]
+    while (a < b) {
+        let sum = numbers[a] + numbers[b]
+        if (sum < target) a++
+        else if (sum > target) b--
+        else return [a + 1, b + 1]
+    }
+};
+```
+## 平方数之和
+```js
+function judgeSquareSum(c) {
+    let [a, b] = [0, Math.ceil(Math.sqrt(c))]
+    while (a <= b) {
+        let sum = a ** 2 + b ** 2
+        if (sum < c) a++
+        else if (sum > c) b--
+        else return true
+    }
+    return false
+};
+```
+## 反转元音字母
+1. 找到左右两边第一个元音字母，然后交换
+```js filename="双指针"
+function reverseVowels(s) {
+    let vowels = new Set('aeiouAEIOU')
+    let arr = Array.from(s)
+    let [a, b] = [0, arr.length - 1]
+    while (a < b) {
+        while (!vowels.has(arr[a]) && a < b) a++ // 左边第一个元音字母
+        while (!vowels.has(arr[b]) && a < b) b-- // 右边第一个元音字母
+        [arr[a], arr[b]] = [arr[b], arr[a]]
+        a++
+        b--
+    }
+    return arr.join('')
+};
+```
+1. 提取出元音字母，
+2. 反转数组后，依次放回
+```js filename="数组"
+function reverseVowels(s: string): string {
+    let vowels = new Set('aeiouAEIOU')
+    let arr = s.split('')
+    let vowelArr = arr.filter(x => vowels.has(x)).reverse()
+    for (let [i, v] of arr.entries()) {
+        if (vowels.has(v)) {
+            arr[i] = vowelArr.shift() // 依次放回
+        }
+    }
+    return arr.join('')
+};
+```
+## 判断子序列
+```js
+function isSubsequence(s: string, t: string): boolean {
+    let a = 0
+    for (let b of t) {
+        if (b === s[a]) a++
+    }
+    return a === s.length
+};
+```
+## 合并有序数组
+1. 反向遍历，按大小排序
+```js
+function merge(nums1: number[], m: number, nums2: number[], n: number): void {
+    let [a, b, c] = [m - 1, n - 1, m + n - 1]
+    while (b >= 0) {
+        let [n1, n2] = [nums1[a] ?? -Infinity, nums2[b]] // 处理 nums[a] 越界
+        if (n1 > n2) {
+            nums1[c] = n1; a--; c--;
+        } else {
+            nums1[c] = n2; b--; c--;
+        }
+    }
+};
+```
+## 移动零
+1. 将非零数往前移
+```js
+function moveZeroes(nums: number[]): void {
+    let a = 0
+    for (let b of nums.keys()) {
+        if (nums[b] !== 0) {
+            [nums[a], nums[b]] = [nums[b], nums[a]]
+            a++
+        }
+    }
+};
+```
+## 有序数组的平方
+1. 将较大的数，前插到数组中
+```js
+function sortedSquares(nums) {
+    let [a, b] = [0, nums.length - 1]
+    let out = []
+    while (a <= b) {
+        let [A, B] = [nums[a] ** 2, nums[b] ** 2]
+        if (A > B) {
+            out.unshift(A)
+            a++
+        } else {
+            out.unshift(B)
+            b--
+        }
+    }
+    return out
+};
+```
+## 有序数组去重
+1. 将不同的数往前移
+```js
+function removeDuplicates(nums) {
+    let [a, b] = [1, 1]
+    while (b < nums.length) {
+        if (nums[b] !== nums[a - 1]) {
+            nums[a] = nums[b]
+            a++
+        }
+        b++
+    }
+    return a
+};
+```
+## 有序数组去重 II
+1. 将不同的数往前移
+```js
+function removeDuplicates(nums) {
+    let [a, b] = [2, 2]
+    while (b < nums.length) {
+        if (nums[b] !== nums[a - 2]) {
+            nums[a] = nums[b]
+            a++
+        }
+        b++
+    }
+    return a
+};
+```
+## 盛最多水的容器
+1. 移动短板，面积才有可能增大
+```js
+function maxArea(height) {
+    let [a, b] = [0, height.length - 1]
+    let maxArea = 0
+    while (a < b) {
+        let area = (b - a) * Math.min(height[a], height[b])
+        maxArea = Math.max(maxArea, area)
+        height[a] < height[b] ? a++ : b-- // 移动短板
+    }
+    return maxArea
+};
+```
+## 三数之和
+1. 外层循环，固定 `i`
+2. 内存双指针，寻找 `j`, `k`
+```js {7-8,19-20}
+function threeSum(nums: number[]): number[][] {
+    nums.sort((a, b) => a - b)
+    let n = nums.length
+    let res = []
+
+    for (let i = 0; i <= n - 3; i++) { // 外层循环，固定 i
+        if (nums[i] > 0) break // 剪枝
+        if (i > 0 && nums[i] === nums[i - 1]) continue // 去重
+
+        let [j, k] = [i + 1, n - 1]
+        while (j < k) { // 内层双指针，寻找 j, k
+            let sum = nums[i] + nums[j] + nums[k]
+            if (sum < 0) j++
+            else if (sum > 0)  k--
+            else {
+                res.push([nums[i], nums[j], nums[k]])
+                j++
+                k--
+                while (j < k && nums[j] === nums[j - 1]) j++ // 去重
+                while (j < k && nums[k] === nums[k + 1]) k-- // 去重
+            }
+        }
+    }
+
+    return res
+};
+```

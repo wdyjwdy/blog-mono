@@ -1,0 +1,124 @@
+# 回朔
+## 全排列
+```mermaid
+flowchart TD
+    A("[ ]")
+    A -- 1 --> B("[ 1 ]")
+    A -- 2 --> C("[ 2 ]")
+    A -- 3 --> D("[ 3 ]")
+    B -- 2 --> E("[ 1, 2 ]")
+    B -- 3 --> F("[ 1, 3 ]")
+    C -- 1 --> G("[ 2, 1 ]")
+    C -- 3 --> H("[ 2, 3 ]")
+    D -- 1 --> I("[ 3, 1 ]")
+    D -- 2 --> J("[ 3, 2 ]")
+    E -- 3 --> K("[ 1, 2, 3 ]")
+    F -- 2 --> L("[ 1, 3, 2 ]")
+    G -- 3 --> M("[ 2, 1, 3 ]")
+    H -- 1 --> N("[ 2, 3, 1 ]") 
+    I -- 2 --> O("[ 3, 1, 2 ]")
+    J -- 1 --> P("[ 3, 2, 1 ]")
+```
+```js
+function permute(nums: number[]): number[][] {
+    function dfs(x) {
+        if (x === nums.length) {
+            res.push(path.slice())
+            return
+        }
+        
+        let unVisited = nums.filter(x => !path.includes(x))
+        for (let val of unVisited) {
+            path.push(val) // 选择未访问过的元素
+            dfs(x + 1)
+            path.pop()
+        }
+    }
+    
+    let res = []
+    let path = []
+    dfs(0)
+    return res
+};
+```
+## 子集
+```mermaid
+flowchart TD
+    A("[ ]")
+    A -- 1 --> B("[ 1 ]")
+    A --> C("[ ]")
+    B -- 2 --> D("[ 1, 2 ]")
+    B --> E("[ 1 ]")
+    C -- 2 --> F("[ 2 ]")
+    C --> G("[ ]")
+    D -- 3 --> H("[ 1, 2, 3 ]")
+    D --> I("[ 1, 2 ]")
+    E -- 3 --> J("[ 1, 3 ]")
+    E --> K("[ 1 ]")
+    F -- 3 --> L("[ 2, 3 ]")
+    F --> M("[ 2 ]")
+    G -- 3 --> N("[ 3 ]")
+    G --> O("[ ]")
+```
+```js
+function subsets(nums: number[]): number[][] {
+    function dfs(x) {
+        if (x === nums.length) {
+            res.push(path.slice())
+            return
+        }
+
+        dfs(x + 1) // 不选
+        path.push(nums[x]) // 选
+        dfs(x + 1)
+        path.pop()
+    }
+
+    let res = []
+    let path = []
+    dfs(0)
+    return res
+};
+```
+## 电话号码的字母组合
+```mermaid
+flowchart TD
+    A("[ ]")
+    A -- a --> B
+    A -- b --> H
+    A -- c --> L
+    B("[ a ]") -- d --> E("[ a, d ]")
+    B("[ a ]") -- e --> F("[ a, e ]")
+    B("[ a ]") -- f --> G("[ a, f ]")
+    H("[ b ]") -- d --> I("[ b, d ]")
+    H("[ b ]") -- e --> J("[ b, e ]")
+    H("[ b ]") -- f --> K("[ b, f ]")
+    L("[ c ]") -- d --> M("[ c, d ]")
+    L("[ c ]") -- e --> N("[ c, e ]")
+    L("[ c ]") -- f --> O("[ c, f ]")
+```
+```js
+function letterCombinations(digits: string): string[] {
+    let map = ["abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"]
+    let arr = digits.split('').map(x => map[Number(x) - 2])
+    if (digits === '') return []
+    
+    function dfs(x) {
+        if (x === arr.length) {
+            res.push(path.join(''))
+            return
+        }
+
+        for (let v of arr[x]) {
+            path.push(v)
+            dfs(x + 1)
+            path.pop()
+        }
+    }
+
+    let res = []
+    let path = []
+    dfs(0)
+    return res
+};
+```

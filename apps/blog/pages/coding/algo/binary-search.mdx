@@ -1,0 +1,96 @@
+# 二分查找
+## 平方根
+```js
+function mySqrt(x: number): number {
+    let [a, b] = [0, x]
+    while (a <= b) {
+        let m = Math.floor((a + b) / 2)
+        if (m * m < x) a = m + 1
+        else if (m * m > x) b = m - 1
+        else return m
+    }
+    return b
+};
+```
+## 比目标字母大的最小字母
+```js
+function nextGreatestLetter(letters: string[], target: string): string {
+    let [a, b] = [0, letters.length - 1]
+    while (a <= b) {
+        let m = Math.floor((a + b) / 2)
+        if (letters[m] <= target) a = m + 1
+        else b = m - 1
+    }
+    return a === letters.length ? letters[0] : letters[a]
+};
+```
+## 有序数组中的单一元素
+```js
+function singleNonDuplicate(nums: number[]): number {
+    function lessthan(i) {
+        return i % 2 === 0
+            ? nums[i] === nums[i + 1]
+            : nums[i] === nums[i - 1]
+    }
+
+    let [a, b] = [0, nums.length - 1]
+    while (a <= b) {
+        let m = Math.floor((a + b) / 2)
+        if (lessthan(m)) a = m + 1
+        else b = m - 1
+    }
+    return nums[a]
+};
+```
+## 第一个错误的版本
+```js
+var solution = function(isBadVersion: any) {
+
+    return function(n: number): number {
+        let [a, b] = [1, n]
+        while (a <= b) {
+            let m = Math.floor((a + b) / 2)
+            if (!isBadVersion(m)) a = m + 1
+            else b = m - 1
+        }
+        return a
+    };
+};
+```
+## 旋转排序数组中的最小值
+```js
+function findMin(nums: number[]): number {
+    function lessthan(i) {
+        return nums[i] > nums.at(-1)
+    }
+
+    let [a, b] = [0, nums.length - 1]
+    while (a <= b) {
+        let m = Math.floor((a + b) / 2)
+        if (lessthan(m)) a = m + 1
+        else b = m - 1
+    }
+    return nums[a]
+};
+```
+## 查找目标值区间
+```js
+function searchRange(nums: number[], target: number): number[] {
+    function bs(x) {
+        let [a, b] = [0, nums.length - 1]
+        while (a <= b) {
+            let m = Math.floor((a + b) / 2)
+            if (nums[m] < x) a = m + 1
+            else b = m - 1
+        }
+        return a
+    }
+
+    let [a, b] = [bs(target), bs(target + 1) - 1]
+    if (nums[a] === target && nums[b] === target) {
+        return [a, b]
+    } else {
+        return [-1, -1]
+    }
+};
+```

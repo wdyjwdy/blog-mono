@@ -1,0 +1,284 @@
+import { Callout } from 'nextra/components'
+
+# String
+## Instance Methods
+### at
+- **描述**：返回索引位置字符串
+- **语法**：`at(index){:js}`
+- **参数**
+    - `index = 0{:js}`：索引
+        ```js filename="索引边界处理"
+        if (index < 0) index = index + str.length
+        ```
+- **返回值**：`string`, `undefined`
+```js
+'hello'.at()   // 'h'
+'hello'.at(0)  // 'h'
+'hello'.at(-1) // 'o'
+
+'hello'.at(10) // undefined
+```
+### charAt
+- **描述**：返回索引位置的字符串
+- **语法**：`charAt(index){:js}`
+- **参数**
+    - `index = 0{:js}`：索引
+- **返回值**：`string`, `-1`
+```js
+'hello'.charAt()  // 'h'
+'hello'.charAt(1) // 'e'
+
+'hello'.charAt(-1) // ''
+'hello'.charAt(10) // ''
+```
+### indexOf
+![indexof](public/img/docs/js/string/indexof.png)
+- **描述**：返回字符串首次出现位置的索引
+- **语法**：`IndexOf(string, position?){:js}`
+- **参数**
+    - `string{:js}`：需要查询的字符串
+    - `position = 0{:js}`：查询起始位置
+- **返回值**：`number`
+```js
+'hi hi hi'.indexOf('hi')    // 0
+'hi hi hi'.indexOf('hi', 2) // 3
+'hi hi hi'.indexOf('hello') // -1
+
+'hi hi hi'.indexOf('') // 0
+```
+### lastIndexOf
+![lastindexof](public/img/docs/js/string/lastindexof.png)
+- **描述**：返回字符串最后一次出现位置的索引
+- **语法**：`lastIndexOf(string, position?){:js}`
+- **参数**
+    - `string{:js}`：需要查询的字符串
+    - `position = 0{:js}`：查询起始位置
+- **返回值**：`number`
+```js
+'hi hi hi'.lastIndexOf('hi')    // 6
+'hi hi hi'.lastIndexOf('hi', 2) // 0
+'hi hi hi'.lastIndexOf('hello') // -1
+
+'hi hi hi'.lastIndexOf('') // 8
+```
+### startsWith
+- **描述**：判断是否以某字符串开头
+- **语法**：`startsWith(string, position?){:js}`
+    - `string{:js}`：需要查询的字符串
+    - `position = 0{:js}`：查询起始位置
+- **返回值**：`boolean`
+```js
+'hello'.startsWith('h')    // true
+'hello'.startsWith('h', 1) // false
+```
+### endsWith
+- **描述**：判断是否以某字符串结尾
+- **语法**：`endsWith(string, position?){:js}`
+    - `string{:js}`：需要查询的字符串
+    - `position = str.length{:js}`：查询起始位置
+- **返回值**：`boolean`
+```js
+'hello'.endsWith('o')    // true
+'hello'.endsWith('o', 4) // false
+```
+### includes
+- **描述**：判断是否包含某字符串
+- **语法**：`includes(string, position?){:js}`
+    - `string{:js}`：需要查询的字符串
+    - `position = 0{:js}`：查询起始位置
+- **返回值**：`boolean`
+```js
+'hello'.includes('h')    // true
+'hello'.includes('h', 1) // false
+```
+### slice
+![slice](public/img/docs/js/string/slice.png)
+- **描述**：提取子字符串
+- **语法**：`slice(start, end?){:js}`
+- **参数**
+    - `start{:js}`：起点
+    - `end{:js}`：终点
+        ```js filename="索引边界处理"
+        if (typeof start !== 'number') start = 0
+        if (typeof end !== 'number') end = str.length
+        if (index < 0) index = index + str.length
+        if (index > str.length) index = str.length
+        if (start > end) start = end
+        ```
+- **返回值**：`string`
+```js
+// 正向切片
+'code-anchor'.slice() // 'code-anchor'
+'code-anchor'.slice(5) // 'anchor'
+'code-anchor'.slice(0, 4) // 'code'
+
+// 逆向切片
+'code-anchor'.slice(-1) // 'r'
+'code-anchor'.slice(0, -1) // 'code-ancho'
+```
+### substring
+![slice](public/img/docs/js/string/slice.png)
+- **描述**：提取子字符串
+- **语法**：`slice(start, end?){:js}`
+- **参数**
+    - `start{:js}`：起点
+    - `end{:js}`：终点
+        ```js filename="索引边界处理"
+        if (typeof start !== 'number') start = 0
+        if (typeof end !== 'number') end = str.length
+        if (index < 0) index = 0
+        if (index > str.length) index = str.length
+        if (start > end) [start, end] = [end, start]
+        ```
+- **返回值**：`string`
+```js
+// 正向切片
+'code-anchor'.substring() // 'code-anchor'
+'code-anchor'.substring(5) // 'anchor'
+'code-anchor'.substring(0, 4) // 'code'
+
+// 逆向切片
+'code-anchor'.substring('code-anchor'.length - 1) // 'r'
+'code-anchor'.substring(0, 'code-anchor'.length - 1) // 'code-ancho'
+```
+### trim
+- **描述**：移除字符串两端[空白字符](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Lexical_grammar#%E7%A9%BA%E7%99%BD%E7%AC%A6)
+- **语法**：`trim(){:js}`
+- **返回值**：`string`
+```js
+'  code  '.trim() // 'code'
+```
+### trimStart
+- **描述**：移除字符串左端[空白字符](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Lexical_grammar#%E7%A9%BA%E7%99%BD%E7%AC%A6)
+- **语法**：`trimStart(){:js}`
+- **返回值**：`string`
+```js
+'  code  '.trimStart() // 'code  '
+```
+### trimEnd
+- **描述**：移除字符串右端[空白字符](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Lexical_grammar#%E7%A9%BA%E7%99%BD%E7%AC%A6)
+- **语法**：`trimEnd(){:js}`
+- **返回值**：`string`
+```js
+'  code  '.trimEnd() // '  code'
+```
+### padStart
+- **描述**：从左填充字符串
+- **语法**：`PadStart(length, string?){:js}`
+- **参数**
+    - `length{:js}`：填充后，字符串的长度
+    - `string = ' '{:js}`：填充的字符串
+- **返回值**：`string`
+```js
+'hello'.padStart(10)       // '     hello'
+'hello'.padStart(10, '.')  // '.....hello'
+'hello'.padStart(10, '._') // '._._.hello'
+```
+### padEnd
+- **描述**：从右填充字符串
+- **语法**：`PadEnd(length, string?){:js}`
+- **参数**
+    - `length{:js}`：填充后，字符串的长度
+    - `string = ' '{:js}`：填充的字符串
+- **返回值**：`string`
+```js
+'hello'.padEnd(10)       // 'hello     '
+'hello'.padEnd(10, '.')  // 'hello.....'
+'hello'.padEnd(10, '._') // 'hello._._.'
+```
+### toUpperCase
+- **描述**：将字符串转化为大写
+- **语法**：`toUpperCase(){:js}`
+- **返回值**：`string`
+```js
+'hello'.toUpperCase() // 'HELLO'
+```
+### toLowerCase
+- **描述**：将字符串转化为小写
+- **语法**：`toLowerCase(){:js}`
+- **返回值**：`string`
+```js
+'HELLO'.toLowerCase() // 'hello'
+```
+### replace
+- **描述**：替换首次匹配的值
+- **语法**：`replace(regexp, replacement){:js}`
+- **参数**
+    - `regexp{:js}`：正则表达式
+    - `replacement{:js}`：替换的字符串
+- **返回值**：`string`
+```js
+'hello'.replace(/l/, '_') // 'he_lo'
+```
+### replaceAll
+- **描述**：替换所有匹配的值
+- **语法**：`replaceAll(regexp, replacement){:js}`
+- **参数**
+    - `regexp{:js}`：正则表达式
+    - `replacement{:js}`：替换的字符串
+- **返回值**：`string`
+```js
+'hello'.replaceAll(/l/g, '_') // 'he__o'
+```
+### match
+- **描述**：返回首次匹配信息
+- **语法**：`match(regexp){:js}`
+- **参数**
+    - `regexp{:js}`：正则表达式
+- **返回值**：`array`, `null`
+```js
+'hello'.match(/o/) // ['o', index: 4, input: 'hello', groups: undefined]
+'hello'.match(/x/) // null
+```
+### matchAll
+- **描述**：返回所有匹配信息
+- **语法**：`matchAll(regexp){:js}`
+- **参数**
+    - `regexp{:js}`：正则表达式
+- **返回值**：`iterator`
+```js
+'hello'.matchAll(/o/g) // iterator: [['o', index: 4, input: 'hello', groups: undefined]]
+'hello'.matchAll(/x/g) // iterator: []
+```
+### search
+- **描述**：返回首次匹配的索引
+- **语法**：`search(regexp){:js}`
+- **参数**
+    - `regexp{:js}`：正则表达式
+- **返回值**：`number`
+```js
+'hello'.search(/o/) // 4
+'hello'.search(/x/) // -1
+```
+### split
+- **描述**：分割字符串
+- **语法**：`split(separator, limit?){:js}`
+- **参数**
+    - `separator{:js}`：分割符
+    - `limit = Infinity{:js}`：数组长度上限
+- **返回值**：`array`
+```js
+'hello'.split('')  // ['h', 'e', 'l', 'l', 'o']
+'hi hi'.split(' ') // ['hi', 'hi']
+```
+### repeat
+- **描述**：重复复制字符串
+- **语法**：`repeat(count){:js}`
+- **参数**
+    - `count = 0{:js}`：重复次数
+- **返回值**：`string`
+```js
+'hi'.repeat(0) // ''
+'hi'.repeat(1) // 'hi'
+'hi'.repeat(2) // 'hihi'
+```
+### concat
+- **描述**：字符串拼接
+- **语法**：`concat(...strs){:js}`
+- **参数**
+    - `strs{:js}`：需要拼接的字符串
+- **返回值**：`string`
+```js
+'hi'.concat('-')       // 'hi-'
+'hi'.concat('-', 'hi') // 'hi-hi'
+```

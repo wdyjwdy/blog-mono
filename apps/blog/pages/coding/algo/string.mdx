@@ -1,0 +1,143 @@
+# 字符串
+## 有效的字母异位词
+1. 判断 `s`, `t` 的字符计数是否相同
+```js
+function isAnagram(s: string, t: string): boolean {
+    let [m, n] = [s.length, t.length]
+    if (m !== n) return false
+
+    let map = new Map()
+    for (let i = 0; i < n; i++) {
+        map.set(s[i], (map.get(s[i]) ?? 0) + 1)
+        map.set(t[i], (map.get(t[i]) ?? 0) - 1)
+    }
+
+    return [...map.values()].every(x => x === 0)
+};
+```
+## 最长回文串
+1. 字母对
+2. 字母对 + 单个字母
+```js
+function longestPalindrome(s: string): number {
+    let map = new Map()
+    for (let c of s) {
+        map.set(c, (map.get(c) ?? 0) + 1)
+    }
+
+    let [odd, even] = [0, 0]
+    for (let v of map.values()) {
+        odd += v % 2
+        even += v - v % 2
+    }
+
+    return odd ? even + 1 : even
+};
+```
+## 同构字符串
+```js
+function isIsomorphic(s: string, t: string): boolean {
+    let map = new Map()
+    let set = new Set()
+    for (let i = 0; i < s.length; i++) {
+        if (!map.has(s[i]) && !set.has(t[i])) {
+            map.set(s[i], t[i])
+            set.add(t[i])
+        } else {
+            if (map.get(s[i]) !== t[i]) return false
+        }
+    }
+    return true
+};
+```
+## 字符串相加
+```js
+function addStrings(num1: string, num2: string): string {
+    let [a, b] = [num1.length - 1, num2.length - 1]
+    let res = []
+    let carry = 0
+    while (a >= 0 || b >= 0) {
+        let l = a >= 0 ? Number(num1[a--]) : 0
+        let r = b >= 0 ? Number(num2[b--]) : 0
+        let sum = l + r + carry
+        res.unshift(sum % 10)
+        carry = sum >= 10 ? 1 : 0
+    }
+    if (carry) res.unshift(1)
+    return res.join('')
+};
+```
+## 最长公共前缀
+```js
+function longestCommonPrefix(strs: string[]): string {
+    let res = ''
+    for (let [i, v] of Object.entries(strs[0])) {
+        for (let s of strs) {
+            if (s[i] !== v) return res
+        }
+        res += v
+    }
+    return res
+};
+```
+## 罗马数字转整数
+```js
+function romanToInt(s: string): number {
+    let map = new Map([
+        ['I', 1],
+        ['V', 5],
+        ['X', 10],
+        ['L', 50],
+        ['C', 100],
+        ['D', 500],
+        ['M', 1000],
+    ])
+    let res = 0
+    for (let i = 0; i < s.length; i++) {
+        let v = map.get(s[i])
+        let next = map.get(s[i + 1]) ?? 0
+        res += v >= next ? v : -v
+    }
+    return res
+};
+```
+## 整数转罗马数字
+```js
+function intToRoman(num: number): string {
+    let map = new Map([
+        ['M',  1000],
+        ['CM', 900],
+        ['D',  500],
+        ['CD', 400],
+        ['C',  100],
+        ['XC', 90],
+        ['L',  50],
+        ['XL', 40],
+        ['X',  10],
+        ['IX', 9],
+        ['V',  5],
+        ['IV', 4],
+        ['I',  1]
+    ])
+    let res = ''
+    for (let [k, v] of map) {
+        while (num >= v) {
+            num -= v
+            res += k
+        }
+    }
+    return res
+};
+```
+## 第一个匹配项的下标
+```js
+function strStr(haystack: string, needle: string): number {
+    let [m, n] = [haystack.length, needle.length]
+    if (n > m) return -1
+
+    for (let i = 0; i <= m - n; i++) {
+        if (haystack.slice(i, i + n) === needle) return i
+    }
+    return -1
+};
+```

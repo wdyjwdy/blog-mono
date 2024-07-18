@@ -1,0 +1,43 @@
+# 滑动窗口
+## 无重复字符的最长子串
+1. 左指针，顺序递增
+2. 右指针，字符不重复时递增
+```js
+function lengthOfLongestSubstring(s: string): number {
+    let [a, b] = [0, 0]
+    let maxlen = 0
+    let set = new Set()
+
+    while (a < s.length) {
+        while (b < s.length && !set.has(s[b])) {
+            set.add(s[b])
+            b++
+        }
+        maxlen = Math.max(maxlen, set.size)
+        set.delete(s[a])
+        a++
+    }
+    return maxlen
+};
+```
+## 字符串的排列
+1. 长度相同，才可能是排列
+2. 字符计数相同，则是一个排列
+```js
+function checkInclusion(s1: string, s2: string): boolean {
+    function check(t1) {
+        let map = new Map() // 计数
+        for (let i = 0; i < t1.length; i++) {
+            map.set(t1[i], (map.get(t1[i]) ?? 0) + 1)
+            map.set(s1[i], (map.get(s1[i]) ?? 0) - 1)
+        }
+        return [...map.values()].every(x => x === 0)
+    }
+
+    let [m, n] = [s1.length, s2.length]
+    for (let i = 0; i <= n - m; i++) {
+        if (check(s2.slice(i, i + m))) return true // 取长度相同的字符串
+    }
+    return false
+};
+```
