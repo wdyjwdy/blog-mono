@@ -9,7 +9,7 @@ const config: DocsThemeConfig = {
   logo: (
     <>
       <img src='/site/logo.png' width={40} height={40} alt='logo'/>
-      <span style={{fontWeight: 800, paddingLeft: '10px'}}>Code Umbrella</span>
+      <span style={{ fontFamily: "cursive", fontSize: "26px", fontWeight: "bold", paddingLeft: '10px'}}>Blog</span>
     </>
   ),
   useNextSeoProps() {

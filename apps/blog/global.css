@@ -9,20 +9,6 @@ em {
   font-style: normal;
 }
 
-img {
-  background-image: none !important;
-}
-
-@media (prefers-color-scheme: dark) {
-  img {
-    background: radial-gradient(#aaaaaa, #3e1527)  !important;
-    border-radius: 10px  !important;
-  }
-  img[alt="logo"] {
-    background: none !important;
-  }
-}
-
 /* Mermaid Color */
 .Yellow > rect {
   fill:#fff4e6 !important;

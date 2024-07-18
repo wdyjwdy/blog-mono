@@ -36,8 +36,6 @@ importers:
 
   apps/blog: {}
 
-  apps/umbrella: {}
-
 packages:
 
   /@babel/runtime@7.20.6:
