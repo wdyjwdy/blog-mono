@@ -1,7 +1,7 @@
 import { Table, Flex, Button, Separator } from '@radix-ui/themes';
 import Link from 'next/link'
 
-export default function CreateTable({ data, root }) {
+export default function CreateTable({ data, doc, path }) {
     return (
         <>
             <Table.Root variant="surface">
@@ -22,7 +22,7 @@ export default function CreateTable({ data, root }) {
                             <Flex gap="1" align="center" wrap="wrap">
                               {
                                 values.flatMap((value, index) => {
-                                  let arr = value.map(x => <Link href={`/coding/${root}/${key.toLowerCase()}#${x}`}><Button variant="soft" size="1">{x}</Button></Link>)
+                                  let arr = value.map(x => <Link href={`/${doc}/${path}/${key.toLowerCase()}#${x.toLowerCase()}`}><Button variant="soft" size="1">{x}</Button></Link>)
                                   arr.push(<Separator orientation="vertical" size="1" style={{ margin: "0 6px" }} />)
                                   if (index === values.length - 1) arr.pop()
                                   return arr
