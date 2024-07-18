@@ -4,23 +4,24 @@ import Link from 'next/link'
 <Flex justify="center" gap="5" p="5">
     <Flex gap="3">
         <Card>
-            <Flex gap="2" direction="column">
+            <Flex gap="2" direction="column" width="160px">
                 <Text size="4" weight="bold">✍🏼 手写题</Text>
-                <Flex gap="1" direction="column">
-                    <Button variant="soft"><Link href="/coding/intro">算法</Link></Button>
-                    <Button variant="soft"><Link href="/coding/intro">JavaScript</Link></Button>
-                    <Button variant="soft"><Link href="/coding/intro">CSS</Link></Button>
-                    <Button variant="soft"><Link href="/coding/intro">设计模式</Link></Button>
+                <Flex gap="1" wrap="wrap">
+                    <Link href="/coding/intro#算法"><Button variant="soft">算法</Button></Link>
+                    <Link href="/coding/intro#设计模式"><Button variant="soft">设计模式</Button></Link>
+                    <Link href="/coding/intro#js"><Button variant="soft">JavaScript</Button></Link>
+                    <Link href="/coding/intro#css"><Button variant="soft">CSS</Button></Link>
+                    <Link href="/coding/intro#js"><Button variant="soft">Lodash</Button></Link>
                 </Flex>
             </Flex>
         </Card>
     </Flex>
     <Flex gap="3">
         <Card>
-            <Flex gap="2" direction="column">
+            <Flex gap="2" direction="column" width="160px">
                 <Text size="4" weight="bold">📜 极简文档</Text>
-                <Flex gap="1" direction="column">
-                    <Button variant="soft"><Link href="/docs/intro">JavaScript</Link></Button>
+                <Flex gap="1" wrap="wrap">
+                    <Link href="/docs/intro"><Button variant="soft">JavaScript</Button></Link>
                 </Flex>
             </Flex>
         </Card>

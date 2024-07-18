@@ -1,1 +1,34 @@
-# 简介
+import { CreateTable } from '../../components'
+
+export function DataJS() {
+    return [
+        {
+            key: "Array",
+            values: [
+                ["Array", "from", "of", "isArray"],
+                ["map", "flatMap", "reduce", "reduceRight", "filter", "forEach"],
+                ["sort", "reverse", "flat"],
+                ["find", "findLast", "findIndex", "findLastIndex"],
+                ["push", "pop", "unshift", "shift", "concat", "splice"],
+                ["every", "some", "includes"],
+                ["keys", "values", "entries"],
+                ["join", "at"]
+            ]
+        },
+        {
+            key: "String",
+            values: [
+                ["at", "charAt", "indexOf", "lastIndexOf"],
+                ["startsWith", "endsWith", "includes"],
+                ["slice", "substring"],
+                ["trim", "trimStart", "trimEnd", "padStart", "padEnd"],
+                ["toUpperCase", "toLowerCase"],
+                ["replace", "replaceAll", "match", "matchAll", "search"],
+                ["split", "repeat", "concat"]
+            ]
+        },
+    ]
+}
+
+### JS
+<CreateTable data={DataJS()} root="js" />
