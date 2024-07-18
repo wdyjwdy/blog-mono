@@ -5,7 +5,7 @@
 
 /* 原生样式 */
 em {
-  color: #237c6f;
+  color: #ad1f48;
   font-style: normal;
 }
 
@@ -15,7 +15,7 @@ img {
 
 @media (prefers-color-scheme: dark) {
   img {
-    background: radial-gradient(#aaaaaa, #237c6f)  !important;
+    background: radial-gradient(#aaaaaa, #3e1527)  !important;
     border-radius: 10px  !important;
   }
   img[alt="logo"] {
@@ -31,16 +31,5 @@ img {
 @media (prefers-color-scheme: dark) {
   .Yellow > rect {
     fill:#33302d !important;
-  }
-}
-
-.default > rect {
-  fill:#d5dfdf !important;
-  stroke:#2b6c61 !important;
-}
-@media (prefers-color-scheme: dark) {
-  .default > rect {
-    fill:#2b6c61 !important;
-    stroke:#2b6c61 !important;
   }
 }
