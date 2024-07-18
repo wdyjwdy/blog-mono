@@ -9,7 +9,7 @@ const config: DocsThemeConfig = {
   logo: (
     <>
       <img src='/site/logo.png' width={40} height={40} alt='logo'/>
-      <span style={{fontWeight: 800, paddingLeft: '10px'}}>Code Fox</span>
+      <span style={{fontWeight: 800, paddingLeft: '10px'}}>Blog</span>
     </>
   ),
   useNextSeoProps() {
@@ -17,8 +17,8 @@ const config: DocsThemeConfig = {
       titleTemplate: '%s'
     }
   },
-  primaryHue: 20,
-  primarySaturation: 90,
+  primaryHue: 180,
+  primarySaturation: 50,
   search: {
     placeholder: 'Search'
   },

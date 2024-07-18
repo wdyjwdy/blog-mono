@@ -1,0 +1,19 @@
+{
+  "index": {
+      "title": "Home",
+      "type": "page",
+      "display": "hidden",
+      "theme": {
+          "layout": "raw"
+      }
+  },
+  "coding": {
+    "title": "算法",
+    "type": "page"
+  },
+  "*": {
+    "theme": {
+      "breadcrumb": false
+    }
+  }
+}
