@@ -19,3 +19,7 @@ em {
     fill:#33302d !important;
   }
 }
+
+.radix-themes {
+  background-color: gray;
+}
