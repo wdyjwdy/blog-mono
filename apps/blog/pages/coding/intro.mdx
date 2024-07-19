@@ -183,79 +183,73 @@ export function DataTab() {
     )
 }
 
-export function DataJS() {
-    return [
-        {
-            key: "Array",
-            values: [
-                ["map", "reduce", "filter", "forEach"],
-                ["flat"],
-                ["keys", "values", "entries"],
-            ]
-        },
-        {
-            key: "Function",
-            values: [
-                ["call", "apply", "bind"]
-            ]
-        },
-        {
-            key: "Object",
-            values: [
-                ["create", "assign"],
-                ["keys", "values", "entries"],
-                ["instanceof", "new", "extends"],
-            ]
-        },
-        {
-            key: "Promise",
-            values: [
-                ["all", "race"],
-            ]
-        },
-        {
-            key: "Lodash",
-            values: [
-                ["Throttle", "Debounce", "Memoize", "Curry"],
-                ["Clone-Shallow", "Clone-Deep"],
-            ]
-        },
-    ]
-}
+export const jsData = [
+    {
+        key: "Array",
+        values: [
+            ["map", "reduce", "filter", "forEach"],
+            ["flat"],
+            ["keys", "values", "entries"],
+        ]
+    },
+    {
+        key: "Function",
+        values: [
+            ["call", "apply", "bind"]
+        ]
+    },
+    {
+        key: "Object",
+        values: [
+            ["create", "assign"],
+            ["keys", "values", "entries"],
+            ["instanceof", "new", "extends"],
+        ]
+    },
+    {
+        key: "Promise",
+        values: [
+            ["all", "race"],
+        ]
+    },
+    {
+        key: "Lodash",
+        values: [
+            ["Throttle", "Debounce", "Memoize", "Curry"],
+            ["Clone-Shallow", "Clone-Deep"],
+        ]
+    },
+]
 
-export function DataCSS() {
-    return [
-        {
-            key: "Layout",
-            values: [
-                ["三列布局", "水平垂直居中", "导航栏"],
-            ]
-        },
-        {
-            key: "Shape",
-            values: [
-                ["三角形"]
-            ]
-        },
-    ]
-}
+export const cssData = [
+    {
+        key: "Layout",
+        values: [
+            ["三列布局", "水平垂直居中", "导航栏"],
+        ]
+    },
+    {
+        key: "Shape",
+        values: [
+            ["三角形"]
+        ]
+    },
+]
 
-export function DataDP() {
-    return [
-        {
-            key: "JS",
-            values: [
-                ["发布订阅模式"],
-            ]
-        }
-    ]
-}
+export const dpData = [
+    {
+        key: "JS",
+        values: [
+            ["发布订阅模式"],
+        ]
+    }
+]
 
 ### 算法
 <DataTab />
 ### JS
-<CreateTable data={DataJS()} doc="coding" path="js" />
+<CreateTable data={jsData} doc="coding" path="js" />
 ### CSS
-<CreateTable data={DataCSS()} doc="coding" path="css" />
+<CreateTable data={cssData} doc="coding" path="css" />
 ### 设计模式
-<CreateTable data={DataDP()} doc="coding" path="dp" />
+<CreateTable data={dpData} doc="coding" path="dp" />
