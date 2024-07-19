@@ -8,6 +8,9 @@ em {
   color: #ad1f48;
   font-style: normal;
 }
+h2 {
+  border-bottom-width: 0px !important;
+}
 
 /* Mermaid Color */
 .Yellow > rect {
@@ -18,8 +21,4 @@ em {
   .Yellow > rect {
     fill:#33302d !important;
   }
-}
-
-.radix-themes {
-  background-color: gray;
 }
