@@ -15,6 +15,23 @@
     "title": "文档",
     "type": "page"
   },
+  "tools": {
+    "display": "hidden",
+    "theme": {
+      "layout": "raw",
+      "navbar": false
+    }
+  },
+  "tools-menu": {
+    "title": "工具",
+    "type": "menu",
+    "items": {
+      "playground": {
+        "title": "JS Playground",
+        "href": "/tools/playground"
+      }
+    }
+  },
   "*": {
     "theme": {
       "breadcrumb": false
