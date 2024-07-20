@@ -1,4 +1,4 @@
-import { Flex, TextArea, Text, Strong, Button, Avatar } from '@radix-ui/themes';
+import { Flex, TextArea, Text, Strong, Button, Avatar, DropdownMenu } from '@radix-ui/themes';
 import { PlayIcon, EraserIcon } from '@radix-ui/react-icons'
 import { useState } from 'react'
 import Link from 'next/link'
@@ -28,6 +28,11 @@ export default function Playground() {
     setOutput('')
   }
 
+  function handleSnippets(e) {
+    let snippet = getSnippet(e.target.innerText, 'js')
+    if (snippet !== undefined )setInput(p => p + snippet)
+  }
+
   return (
     <Flex direction="column" p='5' gap="2" align='center'>
       <Flex gap='5' justify='between' width='90vw'>
@@ -36,6 +41,17 @@ export default function Playground() {
           <Text size='5'><Strong>JS Playground</Strong></Text>
         </Flex>
         <Flex gap='2' align='center'>
+          <DropdownMenu.Root>
+            <DropdownMenu.Trigger>
+              <Button variant="soft" color='gray'>Snippets<DropdownMenu.TriggerIcon /></Button>
+            </DropdownMenu.Trigger>
+            <DropdownMenu.Content onClick={handleSnippets}>
+              <DropdownMenu.Item>For Loop</DropdownMenu.Item>
+              <DropdownMenu.Separator />
+              <DropdownMenu.Item>Function</DropdownMenu.Item>
+              <DropdownMenu.Item>Class</DropdownMenu.Item>
+            </DropdownMenu.Content>
+          </DropdownMenu.Root>
           <Button color="gray" variant="outline" onClick={handleRun}>
             <PlayIcon /> Run
           </Button>
@@ -50,4 +66,15 @@ export default function Playground() {
       </Flex>
     </Flex>
   )
+}
+
+function getSnippet(key, lang) {
+  let snippets = {
+    "js": {
+      "For Loop": "\nfor (let i = 0; i < 10; i++) {\n    console.log(i)\n}",
+      "Class": "\nclass name {\n    constructor() {}\n}",
+      "Function": "\nfunction name() {\n    \n}"
+    }
+  }
+  return snippets[lang][key]
 }
