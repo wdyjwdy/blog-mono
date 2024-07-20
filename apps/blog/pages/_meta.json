@@ -15,8 +15,14 @@
     "title": "文档",
     "type": "page"
   },
+  "about": {
+    "title": "关于",
+    "type": "page",
+    "display": "hidden"
+  },
   "tools": {
     "display": "hidden",
+    "type": "page",
     "theme": {
       "layout": "raw",
       "navbar": false
