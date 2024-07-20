@@ -1,7 +1,8 @@
 import { Flex, TextArea, Text, Strong, Button, Avatar, DropdownMenu, Select, ScrollArea, Card } from '@radix-ui/themes';
 import { PlayIcon, EraserIcon } from '@radix-ui/react-icons'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
+import katex from 'katex'
 
 const placeholders = {
   'js': 'console.log("hello")',
@@ -10,7 +11,7 @@ const placeholders = {
 
 const snippets = {
   "js": {
-    "For Loop": "\nfor (let i = 0; i < 10; i++) {\n    console.log(i)\n}",
+    "For Loop": "\nfor (let i = 0; i < 3; i++) {\n    console.log(i)\n}",
     "Class": "\nclass name {\n    constructor() {}\n}",
     "Function": "\nfunction name() {\n    \n}"
   },
@@ -19,11 +20,13 @@ const snippets = {
   }
 }
 
+let keyIndex = 0
+
 export default function Playground() {
   const [lang, setLang] = useState('js')
   const [input, setInput ]= useState(placeholders['js'])
   const [output, setOutput ]= useState([])
-  const outputRef = useRef(null)
+  const outputRef = useRef()
 
   function handleInput(e) {
     setInput(e.target.value)
@@ -31,7 +34,7 @@ export default function Playground() {
 
   function addLog(text, color='gray') {
     let log = (
-      <Text as='p' color={color}>
+      <Text as='p' color={color} key={keyIndex++}>
         {`> ${JSON.stringify(text)}`}
       </Text>
     )
@@ -39,11 +42,15 @@ export default function Playground() {
   }
 
   function handleRun() {
-    try {
-      let res = eval(input.replaceAll('console.log', 'addLog'))
-      if(res !== undefined) addLog(res)
-    } catch(e) {
-      addLog(`${e}`, 'crimson')
+    if (lang === 'js') {
+      try {
+        let res = eval(input.replaceAll('console.log', 'addLog'))
+        if(res !== undefined) addLog(res)
+      } catch(e) {
+        addLog(`${e}`, 'crimson')
+      }
+    } else if (lang === 'math') {
+      setOutput(p => [...p, <MathTex key={keyIndex++} exp={input} />])
     }
   }
 
@@ -52,7 +59,9 @@ export default function Playground() {
   }
 
   function handleSnippets(e) {
-    setInput(p => p + snippets[lang][e.target.innerText])
+    let snippet = snippets[lang][e.target.innerText]
+    if (input === '') snippet = snippet.slice(1)
+    setInput(p => p + snippet)
   }
 
   return (
@@ -77,7 +86,7 @@ export default function Playground() {
               <Button variant="soft" color='gray'>Snippets<DropdownMenu.TriggerIcon /></Button>
             </DropdownMenu.Trigger>
             <DropdownMenu.Content>
-              {Object.keys(snippets[lang]).map(x => <DropdownMenu.Item onClick={handleSnippets}>{x}</DropdownMenu.Item>)}
+              {Object.keys(snippets[lang]).map(x => <DropdownMenu.Item key={x} onClick={handleSnippets}>{x}</DropdownMenu.Item>)}
             </DropdownMenu.Content>
           </DropdownMenu.Root>
           <Button color="gray" variant="outline" onClick={handleRun}>
@@ -96,4 +105,14 @@ export default function Playground() {
       </Flex>
     </Flex>
   )
+}
+
+function MathTex({ exp }) {
+  const ref = useRef();
+
+  useEffect(() => {
+    katex.render(exp, ref.current);
+  }, [exp]);
+
+  return <div ref={ref} />
 }
