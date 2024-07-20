@@ -6,7 +6,7 @@ import katex from 'katex'
 
 const placeholders = {
   'js': 'console.log("hello")',
-  'math': 'a + b = 1',
+  'math': 'e^{i \\pi} + 1 = 0',
 }
 
 const snippets = {
@@ -20,6 +20,11 @@ const snippets = {
   }
 }
 
+const msgColors = {
+  'info': 'gray',
+  'error': 'crimson',
+}
+
 let keyIndex = 0
 
 export default function Playground() {
@@ -28,17 +33,21 @@ export default function Playground() {
   const [output, setOutput ]= useState([])
   const outputRef = useRef()
 
-  function handleInput(e) {
-    setInput(e.target.value)
-  }
-
-  function addLog(text, color='gray') {
+  function addLog(msg, type='info') {
     let log = (
-      <Text as='p' color={color} key={keyIndex++}>
-        {`> ${JSON.stringify(text)}`}
+      <Text as='p' color={msgColors[type]} key={keyIndex++}>
+        {
+          type === 'info'
+            ? `> ${JSON.stringify(msg)}`
+            : `> ${msg}`
+        }
       </Text>
     )
     setOutput(p => [...p, log])
+  }
+
+  function handleInput(e) {
+    setInput(e.target.value)
   }
 
   function handleRun() {
@@ -47,10 +56,10 @@ export default function Playground() {
         let res = eval(input.replaceAll('console.log', 'addLog'))
         if(res !== undefined) addLog(res)
       } catch(e) {
-        addLog(`${e}`, 'crimson')
+        addLog(e, 'error')
       }
     } else if (lang === 'math') {
-      setOutput(p => [...p, <MathTex key={keyIndex++} exp={input} />])
+      setOutput(p => [...p, <MathTex key={keyIndex++} exp={input} addLog={addLog} />])
     }
   }
 
@@ -107,11 +116,12 @@ export default function Playground() {
   )
 }
 
-function MathTex({ exp }) {
+function MathTex({ exp, addLog }) {
   const ref = useRef();
 
   useEffect(() => {
-    katex.render(exp, ref.current);
+    try { katex.render(exp, ref.current) }
+    catch(e) { addLog(e.message, 'error') }
   }, [exp]);
 
   return <div ref={ref} />
