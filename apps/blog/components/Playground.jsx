@@ -77,7 +77,7 @@ export default function Playground() {
     <Flex direction="column" p='5' gap="2" align='center'>
       <Flex gap='5' justify='between' width='90vw'>
         <Flex gap='4' align='center'>
-          <Link href="/"><Avatar src='/site/logo.png' fallback="A" /></Link>
+          <Link href="/"><Avatar size='2' src='/site/logo.png' fallback="A" /></Link>
           <Text size='5'><Strong>Playground</Strong></Text>
           <Select.Root value={lang} onValueChange={v => {setLang(v); setInput(placeholders[v])}}>
             <Select.Trigger variant="soft" color='gray' />
