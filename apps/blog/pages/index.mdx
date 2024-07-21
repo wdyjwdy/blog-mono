@@ -1,7 +1,55 @@
 import { Box, Flex, Card, Text, Button, Inset, Em, AspectRatio } from '@radix-ui/themes'
 import Link from 'next/link'
 
-export function Verse({ img, word }) {
+export const quicks = [
+  { 
+    title: '✍🏼 手写题',
+    links: [
+      { label: '算法', href: '/coding/intro#算法' },
+      { label: '设计模式', href: '/coding/intro#设计模式' },
+      { label: 'JavaScript', href: '/coding/intro#js' },
+      { label: 'CSS', href: '/coding/intro#css' },
+      { label: 'Lodash', href: '/coding/intro#js' },
+    ]
+  },
+  { 
+    title: '📜 文档',
+    links: [
+      { label: 'JavaScript', href: '/docs/intro' },
+    ]
+  },
+  { 
+    title: '🛠️ 工具',
+    links: [
+      { label: 'JS Playground', href: '/tools/playground' },
+      { label: 'LaTex Playground', href: '/tools/playground' },
+    ]
+  },
+  { 
+    title: '💬 关于',
+    links: [
+      { label: '日志', href: '/about/logs' },
+    ]
+  }
+]
+
+export const verses = [
+  {
+    img: 'https://images.unsplash.com/photo-1552160793-cbaf3ebcba72?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    word: '虚空的虚空，虚空的虚空，凡事都是虚空。',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1714829732332-ee2cc7edbb7b?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    word: '言语要常常带着和气，好像用盐调和。',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1541429222367-285a893182f2?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    word: '光在你们中间还有不多的时候，应当趁着有光行走，免得黑暗临到你们。',
+  }
+]
+
+export function Verse({ data }) {
+  let { img, word } = data
   return (
     <Card>
       <Flex gap="2" direction="column" width="160px">
@@ -16,54 +64,26 @@ export function Verse({ img, word }) {
   )
 }
 
+export function Quick({ data }) {
+  let { title, links } = data
+  return (
+    <Card>
+      <Flex gap="2" direction="column" width="160px">
+        <Text size="4" weight="bold">{title}</Text>
+        <Flex gap="1" wrap="wrap">
+          {links.map(({ label, href }) => <Link key={label} href={href}><Button variant="soft">{label}</Button></Link>)}
+        </Flex>
+      </Flex>
+    </Card>
+  )
+}
+
 <Flex justify="center" gap="5" p="5" wrap="wrap">
-  <Card>
-    <Flex gap="2" direction="column" width="160px">
-      <Text size="4" weight="bold">✍🏼 手写题</Text>
-      <Flex gap="1" wrap="wrap">
-        <Link href="/coding/intro#算法"><Button variant="soft">算法</Button></Link>
-        <Link href="/coding/intro#设计模式"><Button variant="soft">设计模式</Button></Link>
-        <Link href="/coding/intro#js"><Button variant="soft">JavaScript</Button></Link>
-        <Link href="/coding/intro#css"><Button variant="soft">CSS</Button></Link>
-        <Link href="/coding/intro#js"><Button variant="soft">Lodash</Button></Link>
-      </Flex>
-    </Flex>
-  </Card>
-  <Card>
-    <Flex gap="2" direction="column" width="160px">
-      <Text size="4" weight="bold">📜 极简文档</Text>
-      <Flex gap="1" wrap="wrap">
-        <Link href="/docs/intro"><Button variant="soft">JavaScript</Button></Link>
-      </Flex>
-    </Flex>
-  </Card>
-  <Verse
-    img='https://images.unsplash.com/photo-1552160793-cbaf3ebcba72?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-    word='虚空的虚空，虚空的虚空，凡事都是虚空。'
-  />
-  <Card>
-    <Flex gap="2" direction="column" width="160px">
-      <Text size="4" weight="bold">🛠️ 工具</Text>
-      <Flex gap="1" wrap="wrap">
-        <Link href="/tools/playground"><Button variant="soft">JS Playground</Button></Link>
-        <Link href="/tools/playground"><Button variant="soft">LaTex Playground</Button></Link>
-      </Flex>
-    </Flex>
-  </Card>
-  <Card>
-    <Flex gap="2" direction="column" width="160px">
-      <Text size="4" weight="bold">💬 关于</Text>
-      <Flex gap="1" wrap="wrap">
-        <Link href="/about/logs"><Button variant="soft">日志</Button></Link>
-      </Flex>
-    </Flex>
-  </Card>
-  <Verse
-    img='https://images.unsplash.com/photo-1714829732332-ee2cc7edbb7b?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-    word='言语要常常带着和气，好像用盐调和。'
-  />
-  <Verse
-    img='https://images.unsplash.com/photo-1541429222367-285a893182f2?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-    word='光在你们中间还有不多的时候，应当趁着有光行走，免得黑暗临到你们。'
-  />
+  <Quick data={quicks[0]} />
+  <Verse data={verses[0]} />
+  <Quick data={quicks[1]} />
+  <Verse data={verses[1]} />
+  <Quick data={quicks[2]} />
+  <Verse data={verses[2]} />
+  <Quick data={quicks[3]} />
 </Flex>
