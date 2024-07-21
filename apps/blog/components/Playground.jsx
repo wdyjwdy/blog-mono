@@ -12,6 +12,7 @@ const placeholders = {
 const snippets = {
   "js": {
     "For Loop": "\nfor (let i = 0; i < 3; i++) {\n    console.log(i)\n}",
+    "Log": "\nconsole.log(i)\n",
     "Class": "\nclass name {\n    constructor() {}\n}",
     "Function": "\nfunction name() {\n    \n}"
   },
@@ -80,7 +81,7 @@ export default function Playground() {
           <Link href="/"><Avatar size='2' src='/site/logo.png' fallback="A" /></Link>
           <Text size='5'><Strong>Playground</Strong></Text>
           <Select.Root value={lang} onValueChange={v => {setLang(v); setInput(placeholders[v])}}>
-            <Select.Trigger variant="soft" color='gray' />
+            <Select.Trigger variant="surface" color='gray' />
             <Select.Content>
               <Select.Group>
                 <Select.Item value="js">JavaScript</Select.Item>
@@ -92,16 +93,16 @@ export default function Playground() {
         <Flex gap='2' align='center'>
           <DropdownMenu.Root>
             <DropdownMenu.Trigger>
-              <Button variant="soft" color='gray'>Snippets<DropdownMenu.TriggerIcon /></Button>
+              <Button variant="outline" color='gray'>Snippets<DropdownMenu.TriggerIcon /></Button>
             </DropdownMenu.Trigger>
             <DropdownMenu.Content>
               {Object.keys(snippets[lang]).map(x => <DropdownMenu.Item key={x} onClick={handleSnippets}>{x}</DropdownMenu.Item>)}
             </DropdownMenu.Content>
           </DropdownMenu.Root>
-          <Button color="gray" variant="outline" onClick={handleRun}>
+          <Button color="green" variant="soft" onClick={handleRun}>
             <PlayIcon /> Run
           </Button>
-          <Button color="gray" variant="outline" onClick={handleClear}>
+          <Button color="gray" variant="soft" onClick={handleClear}>
             <EraserIcon /> Clear
           </Button>
         </Flex>
