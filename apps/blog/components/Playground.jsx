@@ -1,77 +1,55 @@
-import { Flex, TextArea, Text, Strong, Button, Avatar, DropdownMenu, Select, ScrollArea, Card } from '@radix-ui/themes';
+import { Flex, Text, Strong, Button, Avatar, DropdownMenu, Select, Card } from '@radix-ui/themes';
 import { PlayIcon, EraserIcon } from '@radix-ui/react-icons'
 import { useState, useRef, useEffect } from 'react'
+import { Editor, Preview } from '../components'
 import Link from 'next/link'
 import katex from 'katex'
-
-const placeholders = {
-  'js': 'console.log("hello")',
-  'math': 'e^{i \\pi} + 1 = 0',
-}
-
-const snippets = {
-  "js": {
-    "For Loop": "\nfor (let i = 0; i < 3; i++) {\n    console.log(i)\n}",
-    "Log": "\nconsole.log(i)\n",
-    "Class": "\nclass name {\n    constructor() {}\n}",
-    "Function": "\nfunction name() {\n    \n}"
-  },
-  "math": {
-    "Matrix 2x2": "\n\\begin{cases}\n    a & c \\\\\n    b & d\n\\end{cases}"
-  }
-}
-
-const msgColors = {
-  'info': 'gray',
-  'error': 'crimson',
-}
 
 let keyIndex = 0
 
 export default function Playground() {
-  const [lang, setLang] = useState('js')
-  const [input, setInput ]= useState(placeholders['js'])
-  const [output, setOutput ]= useState([])
-  const outputRef = useRef()
+  const [lang, setLang] = useState('javascript')
+  const [code, setCode ]= useState(getPlaceholder(lang))
+  const [view, setView ]= useState([])
 
-  function addLog(msg, type='info') {
-    let log = (
-      <Text as='p' color={msgColors[type]} key={keyIndex++}>
-        {
-          type === 'info'
-            ? `> ${JSON.stringify(msg)}`
-            : `> ${msg}`
-        }
-      </Text>
-    )
-    setOutput(p => [...p, log])
+  function addViewLine(line) {
+    setView(p => [...p, line])
   }
 
-  function handleInput(e) {
-    setInput(e.target.value)
+  function addTextLine(text) {
+    addViewLine(<TextLine key={keyIndex++} message={text} />)
+  }
+
+  function handleCodeChange(e) {
+    setCode(e.target.value)
+  }
+
+  function handleSelectChange(v) {
+    setLang(v)
+    setCode(getPlaceholder(v))
   }
 
   function handleRun() {
-    if (lang === 'js') {
+    if (lang === 'javascript') {
       try {
-        let res = eval(input.replaceAll('console.log', 'addLog'))
-        if(res !== undefined) addLog(res)
+        let result = eval(code.replaceAll('console.log', 'addTextLine'))
+        if (result) addViewLine(<TextLine key={keyIndex++} message={result} />)
       } catch(e) {
-        addLog(e, 'error')
+        addViewLine(<TextLine key={keyIndex++} message={e} type='error' />)
       }
-    } else if (lang === 'math') {
-      setOutput(p => [...p, <MathTex key={keyIndex++} exp={input} addLog={addLog} />])
+    } else if (lang === 'latex') {
+      addViewLine(<MathLine key={keyIndex++} code={code} />)
     }
   }
 
   function handleClear() {
-    setOutput([])
+    setView([])
   }
 
   function handleSnippets(e) {
-    let snippet = snippets[lang][e.target.innerText]
-    if (input === '') snippet = snippet.slice(1)
-    setInput(p => p + snippet)
+    let snippet = getSnippet(lang, e.target.innerText)
+    if (code === '') snippet = snippet.slice(1)
+    setCode(p => p + snippet)
   }
 
   return (
@@ -80,12 +58,12 @@ export default function Playground() {
         <Flex gap='4' align='center'>
           <Link href="/"><Avatar size='2' src='/site/logo.png' fallback="A" /></Link>
           <Text size='5'><Strong>Playground</Strong></Text>
-          <Select.Root value={lang} onValueChange={v => {setLang(v); setInput(placeholders[v])}}>
+          <Select.Root value={lang} onValueChange={handleSelectChange}>
             <Select.Trigger variant="surface" color='gray' />
             <Select.Content>
               <Select.Group>
-                <Select.Item value="js">JavaScript</Select.Item>
-                <Select.Item value="math">Tex Math</Select.Item>
+                <Select.Item value="javascript">JavaScript</Select.Item>
+                <Select.Item value="latex">LaTex</Select.Item>
               </Select.Group>
             </Select.Content>
           </Select.Root>
@@ -96,7 +74,7 @@ export default function Playground() {
               <Button variant="outline" color='gray'>Snippets<DropdownMenu.TriggerIcon /></Button>
             </DropdownMenu.Trigger>
             <DropdownMenu.Content>
-              {Object.keys(snippets[lang]).map(x => <DropdownMenu.Item key={x} onClick={handleSnippets}>{x}</DropdownMenu.Item>)}
+              {getSnippet(lang).map(x => <DropdownMenu.Item key={x} onClick={handleSnippets}>{x}</DropdownMenu.Item>)}
             </DropdownMenu.Content>
           </DropdownMenu.Root>
           <Button color="green" variant="soft" onClick={handleRun}>
@@ -108,22 +86,68 @@ export default function Playground() {
         </Flex>
       </Flex>
       <Flex gap="2">
-        <TextArea value={input} onChange={handleInput} size="3" style={{ width: '60vw', height: '84vh' }} />
+        <Card style={{ width: '60vw', height: '84vh' }}>
+          <Editor code={code} lang={lang} handleCodeChange={handleCodeChange} />
+        </Card>
         <Card style={{ width: '30vw', height: '84vh' }}>
-          <ScrollArea ref={outputRef} scrollbars="both">{output}</ScrollArea>
+          <Preview lines={view} />
         </Card>
       </Flex>
     </Flex>
   )
 }
 
-function MathTex({ exp, addLog }) {
+function MathLine({ code }) {
   const ref = useRef();
-
+  
   useEffect(() => {
-    try { katex.render(exp, ref.current) }
-    catch(e) { addLog(e.message, 'error') }
-  }, [exp]);
+    try { katex.render(code, ref.current) }
+    catch(e) { 
+      ref.current.innerText = e.message
+      ref.current.setAttribute('data-accent-color', 'crimson')
+    }
+  }, [code]);
 
-  return <div ref={ref} />
+  return <Text as='p' ref={ref} />
+}
+
+function TextLine({ message, type='info' }) {
+  const colorMap = {
+    'info': 'gray',
+    'error': 'crimson',
+  }
+
+  let text = message
+  if (type === 'info') text = JSON.stringify(message)
+
+  return (
+    <Text as='p' color={colorMap[type]}>
+      {`${text}\n`}
+    </Text>
+  )
+}
+
+function getSnippet(lang, name) {
+  const snippets = {
+    'javascript': {
+      "For Loop": "\nfor (let i = 0; i < 3; i++) {\n    console.log(i)\n}",
+      "Log": "\nconsole.log(i)\n",
+      "Class": "\nclass name {\n    constructor() {}\n}",
+      "Function": "\nfunction name() {\n    \n}"
+    },
+    'latex': {
+      "Matrix 2x2": "\n\\begin{cases}\n    a & c \\\\\n    b & d\n\\end{cases}"
+    }
+  }
+  return name
+    ? snippets[lang][name]
+    : Object.keys(snippets[lang])
+}
+
+function getPlaceholder(lang) {
+  const placeholders = {
+    'javascript': 'console.log("hello")',
+    'latex': 'e^{i \\pi} + 1 = 0',
+  }
+  return placeholders[lang]
 }

@@ -9,7 +9,7 @@ const config: DocsThemeConfig = {
   logo: (
     <>
       <img src='/site/logo.png' width={40} height={40} alt='logo'/>
-      <span style={{ fontFamily: "cursive", fontSize: "26px", fontWeight: "bold", paddingLeft: '10px'}}>xxc no blog</span>
+      <span style={{ fontFamily: "cursive", fontSize: "26px", fontWeight: "bold", paddingLeft: '10px'}}>wdyjwdy</span>
     </>
   ),
   useNextSeoProps() {
