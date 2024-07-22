@@ -1,5 +1,5 @@
 import styles from './Editor.module.css'
-import { useState, useRef, useEffect, Fragment } from 'react'
+import { useRef, useEffect } from 'react'
 import { codeToHtml } from 'shiki'
 
 function Editor({ code, lang, handleCodeChange }) {
@@ -11,7 +11,7 @@ function Editor({ code, lang, handleCodeChange }) {
   )
 }
 
-function Highlight({ code, lang }) {
+function Highlight({ code, lang }) { 
   const ref = useRef()
 
   useEffect(() => {
