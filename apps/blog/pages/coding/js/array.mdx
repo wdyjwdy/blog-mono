@@ -1,141 +1,226 @@
+import { Info } from '../../../components'
+
 # Array
 ## Instance Methods
 ### map
-![map](public/img/coding/js/array/map.png)
+<Info
+  time='O(n)'
+  ecma='https://tc39.es/ecma262/#sec-array.prototype.map'
+  v8='https://github.com/v8/v8/blob/98d735069d0937f367852ed968a33210ceb527c2/src/js/array.js#L1036'
+/>
 ```js
-function map(fn, thisArg = window) {
-    let result = []
+function map(fn, thisArg) {
     let array = this
-    for (let [index, value] of array.entries()) {
-        result.push(fn.call(thisArg, value, index, array))
+    let n = array.length
+    let result = []
+ 
+    for (let i = 0; i < n; i++) {
+        if (!(i in array)) continue // 跳过空槽
+        
+        result[i] = fn.call(thisArg, array[i], i, array)
     }
+ 
     return result
 }
 
 Array.prototype.map = map
 ```
 ### reduce
-![reduce](public/img/coding/js/array/reduce.png)
+<Info
+  time='O(n)'
+  ecma='https://tc39.es/ecma262/#sec-array.prototype.reduce'
+  v8='https://github.com/v8/v8/blob/4.9-lkgr/src/js/array.js#L1505'
+/>
 ```js
 function reduce(fn, initValue) {
-    let [array, prevValue] = [this.slice(1), this[0]]
-    if (initValue !== undefined) {
-        [array, prevValue] = [this, initValue]
+    let array = this
+    let n = array.length
+    let prevValue = initValue
+    if (n === 0 && initValue === undefined) throw new TypeError()
+    
+    let i = 0
+    if (initValue === undefined) {
+        for (; i < n; i++) {
+            if (!(i in array)) continue // 跳过空槽
+            
+            prevValue = array[i]
+            i++
+            break
+        }
     }
-    for (let [index, value] of array.entries()) {
-        prevValue = fn(prevValue, value, index, value)
+
+    for (; i < n; i++) {
+        if (!(i in array)) continue // 跳过空槽
+
+        prevValue = fn(prevValue, array[i], i, array)
     }
+
     return prevValue
 }
 
 Array.prototype.reduce = reduce
 ```
 ### filter
-![filter](public/img/coding/js/array/filter.png)
+<Info
+  time='O(n)'
+  ecma='https://tc39.es/ecma262/#sec-array.prototype.filter'
+  v8='https://github.com/v8/v8/blob/98d735069d0937f367852ed968a33210ceb527c2/src/js/array.js#L1024'
+/>
 ```js
-function filter(fn, thisArg = window) {
-    let result = []
+function filter(fn, thisArg) {
     let array = this
-    for (let [index, value] of array.entries()) {
-        if (fn.call(thisArg, value, index, array)) {
-            result.push(value)
+    let n = array.length
+    let result = []
+
+    for (let i = 0; i < n; i++) {
+        if (!(i in array)) continue // 跳过空槽
+
+        if (fn.call(thisArg, array[i], i, array)) {
+            result[result.length] = array[i]
         }
     }
+
     return result
 }
 
 Array.prototype.filter = filter
 ```
 ### forEach
-![foreach](public/img/coding/js/array/foreach.png)
+<Info
+  time='O(n)'
+  ecma='https://tc39.es/ecma262/#sec-array.prototype.foreach'
+  v8='https://github.com/v8/v8/blob/4.9-lkgr/src/js/array.js#L1271'
+/>
 ```js
-function forEach(fn, thisArg = window) {
+function forEach(fn, thisArg) {
     let array = this
-    for (let [index, value] of array.entries()) {
-        fn.call(thisArg, value, index, array)
+    let n = array.length
+
+    for (let i = 0; i < n; i++) {
+        if (!(i in array)) continue // 跳过空槽
+
+        fn.call(thisArg, array[i], i, array)
     }
 }
 
 Array.prototype.forEach = forEach
 ```
 ### flat
-![flat](public/img/coding/js/array/flat.png)
+<Info
+  time='O(n \times depth)'
+  ecma='https://tc39.es/ecma262/#sec-array.prototype.flat'
+  v8='https://github.com/v8/v8/blob/main/src/builtins/array-flat.tq'
+/>
 ```js
 function flat(depth = 1) {
-    let result = []
     let array = this
-    for (let val of array) {
-        if (val instanceof Array && depth > 0) {
+    let n = array.length
+    let result = []
+
+    for (let i = 0; i < n; i++) {
+        if (!(i in array)) continue // 跳过空槽
+
+        let val = array[i]
+        if (Array.isArray(val) && depth > 0) {
             result.push(...val.flat(depth - 1))
         } else {
             result.push(val)
         }
     }
-    return reslut
+
+    return result
 }
 
 Array.prototype.flat = flat
 ```
-### keys
-```js {7}
-function keys() {
+### push
+<Info
+  time='O(k)'
+  ecma='https://tc39.es/ecma262/#sec-array.prototype.push'
+  v8='https://github.com/v8/v8/blob/98d735069d0937f367852ed968a33210ceb527c2/src/js/array.js#L414'
+/>
+```js
+function push(...items) {
     let array = this
-    let index = 0
-    return {
-        next() {
-            if (index < array.length) {
-                return { value: index++, done: false }
-            } else {
-                return { value: undefined, done: true }
-            }
-        },
-        [Symbol.iterator]() {
-            return this
-        }
+    let n = array.length
+    let k = items.length
+
+    for (let i = 0; i < k; i++) {
+        array[i + n] = items[i]
     }
+
+    array.length = n + k
+    return n + k
 }
 
-Array.prototype.keys = keys
+Array.prototype.push = push
 ```
-### values
-```js {7}
-function values() {
+### pop
+<Info
+  time='O(1)'
+  ecma='https://tc39.es/ecma262/#sec-array.prototype.pop'
+  v8='https://github.com/v8/v8/blob/98d735069d0937f367852ed968a33210ceb527c2/src/js/array.js#L394'
+/>
+```js
+function pop() {
     let array = this
-    let index = 0
-    return {
-        next() {
-            if (index < array.length) {
-                return { value: array[index++], done: false }
-            } else {
-                return { value: undefined, done: true }
-            }
-        },
-        [Symbol.iterator]() {
-            return this
-        }
-    }
+    let n = array.length
+    if (n === 0) return undefined
+
+    let last = array[n - 1]
+
+    array.length = n - 1
+    return last
 }
 
-Array.prototype.values = values
+Array.prototype.pop = pop
 ```
-### entries
-```js {7}
-function entries() {
+### unshift
+<Info
+  time='O(n + k)'
+  ecma='https://tc39.es/ecma262/#sec-array.prototype.unshift'
+  v8='https://github.com/v8/v8/blob/98d735069d0937f367852ed968a33210ceb527c2/src/js/array.js#L562'
+/>
+```js
+function unshift(...items) {
     let array = this
-    let index = 0
-    return {
-        next() {
-            if (index < array.length) {
-                return { value: [index, array[index++]], done: false }
-            } else {
-                return { value: undefined, done: true }
-            }
-        },
-        [Symbol.iterator]() {
-            return this
-        }
+    let n = array.length
+    let k = items.length
+    if (k === 0) return n
+
+    for (let i = n; i > 0; i--) {
+        array[i + k - 1] = array[i - 1]
     }
+    for (let j = 0; j < k; j++) {
+        array[j] = items[j]
+    }
+
+    array.length = n + k
+    return n + k
 }
 
-Array.prototype.entries = entries
+Array.prototype.unshift = unshift
+```
+### shift
+<Info
+  time='O(n)'
+  ecma='https://tc39.es/ecma262/#sec-array.prototype.shift'
+  v8='https://github.com/v8/v8/blob/98d735069d0937f367852ed968a33210ceb527c2/src/js/array.js#L535'
+/>
+```js
+function shift() {
+    let array = this
+    let n = array.length
+    if (n === 0) return undefined
+
+    let first = array[0]
+    for (let i = 1; i < n; i++) {
+        array[i - 1] = array[i]
+    }
+
+    array.length = n - 1
+    return first
+}
+
+Array.prototype.shift = shift
 ```

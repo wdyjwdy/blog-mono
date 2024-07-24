@@ -50,14 +50,19 @@ Array.isArray([1, 2, 3]) // true
 		- `array{:js}`：原数组
 	- `thisArg{:js}`：callbackFn 中 this 的值
 ```js
-// callbackFn(value)
-[1, 2, 3].map((value) => value * 2) //[2, 4, 6]
+// 基本
+[1, 2, 3].map((x) => x * 2)      // [2, 4, 6]
+[1, 2, 3].map((x, i) => i)       // [0, 1, 2]
+[1, 2, 3].map((x, i, a) => a[0]) // [1, 1, 1]
 
-// callbackFn(value, index)
-[1, 2, 3].map((value, index) => index) // [0, 1, 2]
+// 跳过空槽
+[1,  , 3].map(x => x) // [1, empty, 3]
 
-// callbackFn(value, index, array)
-[1, 2, 3].map((value, index, array) => array[0]) // [1, 1, 1]
+// 类数组
+Array.prototype.map.call(
+    { 0: 1, 1: 2, 2: 3, length: 3 },
+    x => x
+) // [1, 2, 3]
 ```
 ### flatMap
 - **描述**：映射数组元素，然后展平一层
@@ -76,7 +81,12 @@ Array.isArray([1, 2, 3]) // true
 		- `array{:js}`：原数组
 	- `initialValue = array[0]{:js}`：prevValue 的初始值
 ```js
-[1, 2, 3].reduce((prev, value) => prev + value, 10) // 16
+// 基础
+[1, 2, 3].reduce((a, b) => a + b)     // 6
+[1, 2, 3].reduce((a, b) => a + b, 10) // 16
+
+// 跳过空槽
+[1,  , 3].reduce((a, b) => a + b) // 4
 ```
 ### reduceRight
 - **描述**：叠加数组结果
@@ -151,7 +161,7 @@ Array.isArray([1, 2, 3]) // true
 [10, 20, 30].findLastIndex(x => x < 10) // -1
 ```
 ### push
-- **描述**：添加元素到数组末尾，并返回数组长度
+- **描述**：添加元素到数组末尾，并返回新数组长度
 - **语法**：`push(...elements){:js}`
 ```js
 [1, 2].push(3)    // 3, arr: [1, 2, 3]
@@ -161,20 +171,20 @@ Array.isArray([1, 2, 3]) // true
 - **描述**：删除数组末尾元素，并返回该元素
 - **语法**：`pop(){:js}`
 ```js
-[1, 2].pop()    // 2, arr: [1]
+[1, 2].pop() // 2, arr: [1]
 ```
 ### unshift
-- **描述**：添加元素到数组开头，并返回数组长度
+- **描述**：添加元素到数组开头，并返回新数组长度
 - **语法**：`unshift(...elements){:js}`
 ```js
-[1, 2].unshift(3)    // 3, arr: [3, 1, 2]
-[1, 2].unshift(3, 4) // 4, arr: [3, 4, 1, 2]
+[1, 2].unshift(0)     // 3, arr: [0, 1, 2]
+[1, 2].unshift(-1, 0) // 4, arr: [-1, 0, 1, 2]
 ```
 ### shift
 - **描述**：删除数组开头元素，并返回该元素
 - **语法**：`shift(){:js}`
 ```js
-[1, 2].shift()    // 1, arr: [2]
+[1, 2].shift() // 1, arr: [2]
 ```
 ### concat
 - **描述**：拼接数组，并返回新数组
