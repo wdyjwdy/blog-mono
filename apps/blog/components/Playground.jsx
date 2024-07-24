@@ -12,6 +12,11 @@ export default function Playground() {
   const [code, setCode ]= useState(getPlaceholder(lang))
   const [view, setView ]= useState([])
 
+  useEffect(() => {
+    let hash = window.location.hash
+    if (hash) setCode(getCodeFromHash(hash))
+  }, [])
+
   function addViewLine(line) {
     setView(p => [...p, line])
   }
@@ -50,6 +55,12 @@ export default function Playground() {
     let snippet = getSnippet(lang, e.target.innerText)
     if (code === '') snippet = snippet.slice(1)
     setCode(p => p + snippet)
+  }
+
+  function test(code, answer) {
+    let ok = JSON.stringify(code) === JSON.stringify(answer)
+    if (ok) addViewLine(<TextLine key={keyIndex++} message='ok' type='success' />)
+    else addViewLine(<TextLine key={keyIndex++} message='error' type='error' />)
   }
 
   return (
@@ -115,6 +126,7 @@ function TextLine({ message, type='info' }) {
   const colorMap = {
     'info': 'gray',
     'error': 'crimson',
+    'success': 'green',
   }
 
   let text = message
@@ -150,4 +162,11 @@ function getPlaceholder(lang) {
     'latex': 'e^{i \\pi} + 1 = 0',
   }
   return placeholders[lang]
+}
+
+function getCodeFromHash(hash) {
+  const codeMap = {
+    'js-flat': 'function flat(depth) {\n    // write your code\n}\nArray.prototype.flat = flat'
+  }
+  return codeMap[hash.slice(1)]
 }
