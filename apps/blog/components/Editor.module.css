@@ -33,6 +33,10 @@
   text-wrap: wrap;
 }
 
+.editor pre code {
+  display: block;
+}
+
 .editor pre code span {
   padding-left: 0px;
   text-wrap: wrap;
