@@ -25,10 +25,6 @@ export default function Playground() {
     addViewLine(<TextLine key={keyIndex++} message={text} />)
   }
 
-  function handleCodeChange(e) {
-    setCode(e.target.value)
-  }
-
   function handleSelectChange(v) {
     setLang(v)
     setCode(getPlaceholder(v))
@@ -59,8 +55,8 @@ export default function Playground() {
 
   function test(code, answer) {
     let ok = JSON.stringify(code) === JSON.stringify(answer)
-    if (ok) addViewLine(<TextLine key={keyIndex++} message='ok' type='success' />)
-    else addViewLine(<TextLine key={keyIndex++} message='error' type='error' />)
+    if (ok) addViewLine(<Text as='p' size='8' color='green'>✔︎</Text>)
+    else addViewLine(<Text as='p' size='8' color='red'>✗</Text>)
   }
 
   return (
@@ -98,7 +94,7 @@ export default function Playground() {
       </Flex>
       <Flex gap="2">
         <Card style={{ width: '60vw', height: '84vh' }}>
-          <Editor code={code} lang={lang} handleCodeChange={handleCodeChange} />
+          <Editor code={code} lang={lang} setCode={setCode} />
         </Card>
         <Card style={{ width: '30vw', height: '84vh' }}>
           <Preview lines={view} />
@@ -166,7 +162,8 @@ function getPlaceholder(lang) {
 
 function getCodeFromHash(hash) {
   const codeMap = {
-    'js-flat': 'function flat(depth) {\n    // write your code\n}\nArray.prototype.flat = flat'
+    'js-flat': 'function flat(depth) {\n    // write your code\n\n}\n\nArray.prototype.flat = flat\n\n//Test\ntest([1,2,[[3]]].flat(1), [1,2,[3]])\ntest([1,,2,[[3]]].flat(Infinity), [1,2,3])\n',
+    'js-map': 'Array.prototype.map = function(fn, thisArg) {\n    // write your code\n\n}\n\n// Test\ntest([1,2,3].map((x,i,v) => x+i+v[0]), [2,4,6])\ntest([1,,3].map(x => x), [1,,3])\n'
   }
   return codeMap[hash.slice(1)]
 }

@@ -40,7 +40,6 @@ function MathLine({ code }) {
   const ref = useRef();
   
   useEffect(() => {
-    console.log(code)
     try { katex.render(code, ref.current) }
     catch {}
   }, []);
