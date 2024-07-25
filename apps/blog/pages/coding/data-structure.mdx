@@ -1,5 +1,38 @@
+import { Table } from '@radix-ui/themes';
+
 # Data Structure
 ## Stack
+<Table.Root variant='surface'>
+  <Table.Header>
+    <Table.Row>
+      <Table.ColumnHeaderCell>Methods</Table.ColumnHeaderCell>
+      <Table.ColumnHeaderCell>Array</Table.ColumnHeaderCell>
+    </Table.Row>
+  </Table.Header>
+
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell>push</Table.Cell>
+      <Table.Cell>$O(1)$</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>pop</Table.Cell>
+      <Table.Cell>$O(1)$</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>peek</Table.Cell>
+      <Table.Cell>$O(1)$</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>size</Table.Cell>
+      <Table.Cell>$O(1)$</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>isEmpty</Table.Cell>
+      <Table.Cell>$O(1)$</Table.Cell>
+    </Table.Row>    
+  </Table.Body>
+</Table.Root>
 ```js
 class Stack {
     constructor() {
@@ -28,6 +61,37 @@ class Stack {
 }
 ```
 ## Queue
+<Table.Root variant='surface'>
+  <Table.Header>
+    <Table.Row>
+      <Table.ColumnHeaderCell>Methods</Table.ColumnHeaderCell>
+      <Table.ColumnHeaderCell>Array</Table.ColumnHeaderCell>
+    </Table.Row>
+  </Table.Header>
+
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell>push</Table.Cell>
+      <Table.Cell>$O(n)$</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>pop</Table.Cell>
+      <Table.Cell>$O(1)$</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>front</Table.Cell>
+      <Table.Cell>$O(1)$</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>size</Table.Cell>
+      <Table.Cell>$O(1)$</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>isEmpty</Table.Cell>
+      <Table.Cell>$O(1)$</Table.Cell>
+    </Table.Row>    
+  </Table.Body>
+</Table.Root>
 ```js
 class Queue {
     constructor() {
