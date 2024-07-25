@@ -1,0 +1,47 @@
+/* ---------------- Map  ---------------- */
+.map {
+  width: 100%;
+  border: 1px gainsboro solid;
+  border-radius: 10px; }
+  .map svg path {
+    fill: skyblue; }
+  .map svg path[class=selected] {
+    fill: indianred; }
+  .map svg path:hover {
+    fill: palevioletred;
+    filter: drop-shadow(0px 0px 10px gray);
+    transition: 0.3s; }
+
+@media (prefers-color-scheme: dark) {
+  .map {
+    border-color: gray; }
+    .map svg path {
+      fill: darkslateblue; }
+    .map svg path:hover {
+      filter: none; } }
+
+/* ---------------- Legend  ---------------- */
+.legend text {
+  font: 30px sans-serif; }
+
+.legend rect {
+  fill: whitesmoke; }
+
+@media (prefers-color-scheme: dark) {
+  .legend text {
+    fill: #ffffffb5; }
+  .legend rect {
+    fill: #1f1f1f; }
+  .legend g[class=item-1] circle {
+    fill: darkslateblue; } }
+
+/* ---------------- ToolTip  ---------------- */
+.tooltip {
+  background-color: whitesmoke;
+  border-radius: 2px;
+  padding: 0 4px;
+  position: absolute; }
+
+@media (prefers-color-scheme: dark) {
+  .tooltip {
+    background-color: #1f1f1f; } }
