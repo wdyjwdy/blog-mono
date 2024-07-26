@@ -1,121 +1,356 @@
-import { Table } from '@radix-ui/themes';
+import { Table, AspectRatio } from '@radix-ui/themes';
+import Image from 'next/image'
+ 
 
 # Data Structure
 ## Stack
-<Table.Root variant='surface'>
+<Image src="/img/coding/data-structure/stack.png" alt="stack" width={300} height={300} style={{ margin: '0 auto'}} />
+<Table.Root variant='surface' mt='20px'>
   <Table.Header>
     <Table.Row>
       <Table.ColumnHeaderCell>Methods</Table.ColumnHeaderCell>
-      <Table.ColumnHeaderCell>Array</Table.ColumnHeaderCell>
+      <Table.ColumnHeaderCell justify='center'>ArrayStack</Table.ColumnHeaderCell>
+      <Table.ColumnHeaderCell justify='center'>LinkedStack</Table.ColumnHeaderCell>
     </Table.Row>
   </Table.Header>
 
   <Table.Body>
     <Table.Row>
       <Table.Cell>push</Table.Cell>
-      <Table.Cell>$O(1)$</Table.Cell>
+      <Table.Cell justify='center'>$O(1)$</Table.Cell>
+      <Table.Cell justify='center'>$O(1)$</Table.Cell>
     </Table.Row>
     <Table.Row>
       <Table.Cell>pop</Table.Cell>
-      <Table.Cell>$O(1)$</Table.Cell>
+      <Table.Cell justify='center'>$O(1)$</Table.Cell>
+      <Table.Cell justify='center'>$O(1)$</Table.Cell>
     </Table.Row>
     <Table.Row>
       <Table.Cell>peek</Table.Cell>
-      <Table.Cell>$O(1)$</Table.Cell>
+      <Table.Cell justify='center'>$O(1)$</Table.Cell>
+      <Table.Cell justify='center'>$O(1)$</Table.Cell>
     </Table.Row>
     <Table.Row>
       <Table.Cell>size</Table.Cell>
-      <Table.Cell>$O(1)$</Table.Cell>
+      <Table.Cell justify='center'>$O(1)$</Table.Cell>
+      <Table.Cell justify='center'>$O(1)$</Table.Cell>
     </Table.Row>
     <Table.Row>
       <Table.Cell>isEmpty</Table.Cell>
-      <Table.Cell>$O(1)$</Table.Cell>
+      <Table.Cell justify='center'>$O(1)$</Table.Cell>
+      <Table.Cell justify='center'>$O(1)$</Table.Cell>
     </Table.Row>    
   </Table.Body>
 </Table.Root>
+### ArrayStack
 ```js
-class Stack {
+class ArrayStack {
     constructor() {
-        this.items = []
+        this.list = []
     }
     
-    push(item) {
-        this.items.push(item)
+    push(val) {
+        this.list.push(val)
     }
     
     pop() {
-        return this.items.pop()
+        return this.list.pop()
     }
 
     peek() {
-        return this.items.at(-1)
+        return this.list.at(-1)
     }
     
     size() {
-        return this.items.length
+        return this.list.length
     }
 
     isEmpty() {
-        return this.items.length === 0
+        return this.list.length === 0
+    }
+}
+```
+### LinkedStack
+[SinglyLinkedList](#singlylinkedlist)
+```js
+class LinkedStack {
+    constructor() {
+        this.list = new SinglyLinkedList()
+    }
+    
+    push(val) {
+        this.list.unshift(val)
+    }
+    
+    pop() {
+        if (this.list.size) {
+            let val = this.list.head.val
+            this.list.shift()
+            return val
+        } else {
+            return undefined
+        }
+    }
+
+    peek() {
+        if (this.list.size) {
+            return this.list.head.val
+        } else {
+            return undefined
+        }
+    }
+    
+    size() {
+        return this.list.size
+    }
+
+    isEmpty() {
+        return this.list.size === 0
     }
 }
 ```
 ## Queue
-<Table.Root variant='surface'>
+<Image src="/img/coding/data-structure/queue.png" alt="queue" width={300} height={300} style={{ margin: '0 auto' }} />
+<Table.Root variant='surface' mt='20px'>
   <Table.Header>
     <Table.Row>
       <Table.ColumnHeaderCell>Methods</Table.ColumnHeaderCell>
-      <Table.ColumnHeaderCell>Array</Table.ColumnHeaderCell>
+      <Table.ColumnHeaderCell justify='center'>ArrayQueue</Table.ColumnHeaderCell>
+      <Table.ColumnHeaderCell justify='center'>LinkedQueue</Table.ColumnHeaderCell>
     </Table.Row>
   </Table.Header>
 
   <Table.Body>
     <Table.Row>
-      <Table.Cell>push</Table.Cell>
-      <Table.Cell>$O(n)$</Table.Cell>
+      <Table.Cell>enqueue</Table.Cell>
+      <Table.Cell justify='center'>$O(1)$</Table.Cell>
+      <Table.Cell justify='center'>$O(1)$</Table.Cell>
     </Table.Row>
     <Table.Row>
-      <Table.Cell>pop</Table.Cell>
-      <Table.Cell>$O(1)$</Table.Cell>
+      <Table.Cell>dequeue</Table.Cell>
+      <Table.Cell justify='center'>$O(n)$</Table.Cell>
+      <Table.Cell justify='center'>$O(1)$</Table.Cell>
     </Table.Row>
     <Table.Row>
       <Table.Cell>front</Table.Cell>
-      <Table.Cell>$O(1)$</Table.Cell>
+      <Table.Cell justify='center'>$O(1)$</Table.Cell>
+      <Table.Cell justify='center'>$O(1)$</Table.Cell>
     </Table.Row>
     <Table.Row>
       <Table.Cell>size</Table.Cell>
-      <Table.Cell>$O(1)$</Table.Cell>
+      <Table.Cell justify='center'>$O(1)$</Table.Cell>
+      <Table.Cell justify='center'>$O(1)$</Table.Cell>
     </Table.Row>
     <Table.Row>
       <Table.Cell>isEmpty</Table.Cell>
-      <Table.Cell>$O(1)$</Table.Cell>
+      <Table.Cell justify='center'>$O(1)$</Table.Cell>
+      <Table.Cell justify='center'>$O(1)$</Table.Cell>
     </Table.Row>    
   </Table.Body>
 </Table.Root>
+### ArrayQueue
 ```js
-class Queue {
+class ArrayQueue {
     constructor() {
-        this.items = []
+        this.list = []
     }
 
-    enqueue(item) {
-        this.items.unshift(item)
+    enqueue(val) {
+        this.list.push(val)
     }
 
     dequeue() {
-        return this.items.pop()
+        return this.list.shift()
     }
     
     front() {
-        this.items.at(-1)
+        return this.list[0]
     }
     
     size() {
-        this.items.length
+        return this.list.length
     }
 
     isEmpty() {
-        this.items.length === 0
+        return this.list.length === 0
+    }
+}
+```
+### LinkedQueue
+[SinglyLinkedList](#singlylinkedlist)
+```js
+class LinkedQueue {
+    constructor() {
+        this.list = new SinglyLinkedList()
+    }
+
+    enqueue(val) {
+        this.list.push(val)
+    }
+
+    dequeue() {
+        if (this.list.size) {
+            let val = this.list.head.val
+            this.list.shift()
+            return val
+        } else {
+            return undefined
+        }
+    }
+    
+    front() {
+        if (this.list.size) {
+            return this.list.head.val
+        } else {
+            return undefined
+        }
+    }
+    
+    size() {
+        return this.list.size
+    }
+
+    isEmpty() {
+        return this.list.size === 0
+    }
+}
+```
+## LinkedList
+<Image src="/img/coding/data-structure/linked-list.png" alt="linked-list" width={500} height={500} style={{ margin: '0 auto'}} />
+<Table.Root variant='surface' mt='20px'>
+  <Table.Header>
+    <Table.Row>
+      <Table.ColumnHeaderCell>Methods</Table.ColumnHeaderCell>
+      <Table.ColumnHeaderCell justify='center'>SinglyLinkedList</Table.ColumnHeaderCell>
+      <Table.ColumnHeaderCell justify='center'>DoublyLinkedList</Table.ColumnHeaderCell>
+    </Table.Row>
+  </Table.Header>
+
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell>unshift</Table.Cell>
+      <Table.Cell justify='center'>$O(1)$</Table.Cell>
+      <Table.Cell justify='center'>$O(1)$</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>push</Table.Cell>
+      <Table.Cell justify='center'>$O(1)$</Table.Cell>
+      <Table.Cell justify='center'>$O(1)$</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>shift</Table.Cell>
+      <Table.Cell justify='center'>$O(1)$</Table.Cell>
+      <Table.Cell justify='center'>$O(1)$</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>pop</Table.Cell>
+      <Table.Cell justify='center'>$O(n)$</Table.Cell>
+      <Table.Cell justify='center'>$O(1)$</Table.Cell>
+    </Table.Row> 
+  </Table.Body>
+</Table.Root>
+### SinglyLinkedList
+```js
+class ListNode {
+    constructor(val, next) {
+        this.val = val
+        this.next = next
+    }
+}
+
+class SinglyLinkedList {
+    constructor() {
+        this.head = null
+        this.tail = null
+        this.size = 0
+    }
+
+    unshift(val) {
+        let node = new ListNode(val, this.head)
+        if (this.size) {
+            this.head = node
+        } else {
+            this.head = node
+            this.tail = node
+        }
+        this.size++
+    }
+
+    push(val) {
+        let node = new ListNode(val, null)
+        if (this.size) {
+            this.tail.next = node
+            this.tail = node
+        } else {
+            this.head = node
+            this.tail = node
+        }
+        this.size++
+    }
+
+    shift() {
+        if (this.size) {
+            this.head = this.head.next
+            this.size--
+        }
+    }
+}
+```
+### DoublyLinkedList
+```js
+class ListNode {
+    constructor(val, prev, next) {
+        this.val = val
+        this.prev = prev
+        this.next = next
+    }
+}
+
+class DoublyLinkedList {
+    constructor() {
+        this.head = null
+        this.tail = null
+        this.size = 0
+    }
+
+    unshift(val) {
+        let node = new ListNode(val, null, this.head)
+        if (this.size) {
+            this.head.prev = node
+            this.head = node
+        } else {
+            this.head = node
+            this.tail = node
+        }
+        this.size++
+    }
+
+    push(val) {
+        let node = new ListNode(val, this.tail, null)
+        if (this.size) {
+            this.tail.next = node
+            this.tail = node
+        } else {
+            this.head = node
+            this.tail = node
+        }
+        this.size++
+    }
+
+    shift() {
+        if (this.size) {
+            this.head = this.head.next
+            this.head.prev = null
+            this.size--
+        }
+    }
+
+    pop() {
+        if (this.size) {
+            this.tail = this.tail.prev
+            this.tail.next = null
+            this.size--
+        }
     }
 }
 ```
