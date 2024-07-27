@@ -212,13 +212,6 @@ export const jsData = [
             ["all", "race"],
         ]
     },
-    {
-        key: "Lodash",
-        values: [
-            ["Throttle", "Debounce", "Memoize", "Curry"],
-            ["Clone-Shallow", "Clone-Deep"],
-        ]
-    },
 ]
 
 export const cssData = [
@@ -232,6 +225,21 @@ export const cssData = [
         key: "Shape",
         values: [
             ["三角形"]
+        ]
+    },
+]
+
+export const lodashData = [
+    {
+        key: "Function",
+        values: [
+            ["Throttle", "Debounce", "Memoize", "Curry"],
+        ]
+    },
+    {
+        key: "Object",
+        values: [
+            ["Clone-Shallow", "Clone-Deep"],
         ]
     },
 ]
@@ -260,7 +268,9 @@ export const dsData = [
 <CreateTable data={jsData} path="coding/js" />
 ## CSS
 <CreateTable data={cssData} path="coding/css" />
+## Lodash
+<CreateTable data={lodashData} path="coding/lodash" singlePage={true} />
 ## 设计模式
-<CreateTable data={dpData} path="coding/dp" />
+<CreateTable data={dpData} path="coding/design-patterns" singlePage={true} />
 ## 数据结构
 <CreateTable data={dsData} path="coding/data-structure" singlePage={true} />
