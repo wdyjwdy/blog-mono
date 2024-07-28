@@ -17,7 +17,7 @@ export default function CreateTable({ data, path, singlePage }) {
                     return (
                       <>
                         <Table.Row>
-                          <Table.RowHeaderCell width="60px">{key}</Table.RowHeaderCell>
+                          <Table.RowHeaderCell width="80px">{key}</Table.RowHeaderCell>
                           <Table.Cell>
                             <Flex gap="1" align="center" wrap="wrap">
                               {

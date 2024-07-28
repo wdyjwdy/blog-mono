@@ -18,7 +18,6 @@ function Editor({ code, lang, setCode }) {
       setTimeout(() => {
         ref.current.setSelectionRange(pos + 4, pos + 4)
       }, 0)
-      
     }
   }
 
