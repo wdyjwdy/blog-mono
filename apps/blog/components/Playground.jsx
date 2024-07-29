@@ -1,4 +1,4 @@
-import { Flex, Text, Strong, Button, Avatar, DropdownMenu, Select, Card } from '@radix-ui/themes';
+import { Text, Strong, Button, Avatar, DropdownMenu, Select, Card } from '@radix-ui/themes';
 import { PlayIcon, EraserIcon } from '@radix-ui/react-icons'
 import { useState, useRef, useEffect } from 'react'
 import { Editor, Preview } from '../components'

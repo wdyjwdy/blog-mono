@@ -1,4 +1,4 @@
-import CreateTable from './CreateTable'
+import { CreateTable, CreateTableFilter } from './CreateTable'
 import Playground from './Playground'
 import Editor from './Editor'
 import Preview from './Preview'
@@ -7,6 +7,7 @@ import Map from './Map'
 
 export {
     CreateTable,
+    CreateTableFilter,
     Playground,
     Editor,
     Preview,
