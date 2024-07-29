@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react'
 import { Editor, Preview } from '../components'
 import Link from 'next/link'
 import katex from 'katex'
+import styles from './Playground.module.css'
 
 let keyIndex = 0
 
@@ -60,47 +61,43 @@ export default function Playground() {
   }
 
   return (
-    <Flex direction="column" p='5' gap="2" align='center'>
-      <Flex gap='5' justify='between' width='90vw'>
-        <Flex gap='4' align='center'>
-          <Link href="/"><Avatar size='2' src='/site/logo.png' fallback="A" /></Link>
-          <Text size='5'><Strong>Playground</Strong></Text>
-          <Select.Root value={lang} onValueChange={handleSelectChange}>
-            <Select.Trigger variant="surface" color='gray' />
-            <Select.Content>
-              <Select.Group>
-                <Select.Item value="javascript">JavaScript</Select.Item>
-                <Select.Item value="latex">LaTex</Select.Item>
-              </Select.Group>
-            </Select.Content>
-          </Select.Root>
-        </Flex>
-        <Flex gap='2' align='center'>
-          <DropdownMenu.Root>
-            <DropdownMenu.Trigger>
-              <Button variant="outline" color='gray'>Snippets<DropdownMenu.TriggerIcon /></Button>
-            </DropdownMenu.Trigger>
-            <DropdownMenu.Content>
-              {getSnippet(lang).map(x => <DropdownMenu.Item key={x} onClick={handleSnippets}>{x}</DropdownMenu.Item>)}
-            </DropdownMenu.Content>
-          </DropdownMenu.Root>
-          <Button color="green" variant="soft" onClick={handleRun}>
-            <PlayIcon /> Run
-          </Button>
-          <Button color="gray" variant="soft" onClick={handleClear}>
-            <EraserIcon /> Clear
-          </Button>
-        </Flex>
-      </Flex>
-      <Flex gap="2">
-        <Card style={{ width: '60vw', height: '84vh' }}>
+    <div className={styles.playground}>
+      <div className={styles.toolbar}>
+        <Link href="/"><Avatar size='2' src='/site/logo.png' fallback="A" /></Link>
+        <Text size='5'><Strong>Playground</Strong></Text>
+        <Select.Root value={lang} onValueChange={handleSelectChange}>
+         <Select.Trigger variant="surface" color='gray' />
+         <Select.Content>
+           <Select.Group>
+             <Select.Item value="javascript">JavaScript</Select.Item>
+             <Select.Item value="latex">LaTex</Select.Item>
+           </Select.Group>
+         </Select.Content>
+        </Select.Root>
+        <DropdownMenu.Root>
+         <DropdownMenu.Trigger>
+           <Button variant="outline" color='gray'>Snippets<DropdownMenu.TriggerIcon /></Button>
+         </DropdownMenu.Trigger>
+         <DropdownMenu.Content>
+           {getSnippet(lang).map(x => <DropdownMenu.Item key={x} onClick={handleSnippets}>{x}</DropdownMenu.Item>)}
+         </DropdownMenu.Content>
+       </DropdownMenu.Root>
+       <Button color="green" variant="soft" onClick={handleRun}>
+         <PlayIcon /> Run
+       </Button>
+       <Button color="gray" variant="soft" onClick={handleClear}>
+         <EraserIcon /> Clear
+       </Button>
+      </div>
+      <div className={styles.board}>
+        <Card>
           <Editor code={code} lang={lang} setCode={setCode} />
         </Card>
-        <Card style={{ width: '30vw', height: '84vh' }}>
+        <Card>
           <Preview lines={view} />
         </Card>
-      </Flex>
-    </Flex>
+      </div>
+    </div>
   )
 }
 

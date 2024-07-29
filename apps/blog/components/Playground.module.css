@@ -1,0 +1,40 @@
+.playground {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.toolbar {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  padding: 10px 10px 0px 10px;
+}
+
+.toolbar > :nth-child(4){
+  margin-left: auto;
+}
+
+.board {
+  flex: 1;
+  display: flex;
+  padding: 10px;
+  gap: 10px;
+}
+
+.board > div:first-child {
+  flex: 2;
+}
+
+.board > div:last-child {
+  flex: 1;
+}
+
+@media (width <= 600px) {
+  .toolbar > :nth-child(4){
+    margin-left: 0px;
+  }
+	.board {
+    flex-direction: column-reverse;
+  }
+}
