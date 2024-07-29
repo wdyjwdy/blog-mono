@@ -1,0 +1,279 @@
+# 数据结构
+## 用栈实现队列
+1. 入队：`stack1` 入栈
+2. 出队：将 `stack1` 放入 `stack2`，`stack2` 出栈
+```js
+class MyQueue {
+    stack1: number[]
+    stack2: number[]
+
+    constructor() {
+        this.stack1 = []
+        this.stack2 = []
+    }
+
+    push(x: number): void {
+        this.stack1.push(x)
+    }
+
+    pop(): number {
+        if (this.stack2.length) {
+            return this.stack2.pop()
+        } else {
+            while (this.stack1.length) {
+                this.stack2.push(this.stack1.pop())
+            }
+            return this.stack2.pop()
+        }
+    }
+
+    peek(): number {
+        if (this.stack2.length) {
+            return this.stack2.at(-1)
+        } else {
+            while (this.stack1.length) {
+                this.stack2.push(this.stack1.pop())
+            }
+            return this.stack2.at(-1)
+        }
+    }
+
+    empty(): boolean {
+        return (this.stack1.length + this.stack2.length) === 0
+    }
+}
+```
+## 用队列实现栈
+1. 入栈：`temp` 入队，将 `queue` 放入 `temp`，然后交换 `queue` 和 `temp`
+2. 出栈：`queue` 出队
+```js
+class MyStack {
+    queue: number[]
+    temp: number[]
+
+    constructor() {
+        this.queue = []
+        this.temp = []
+    }
+
+    push(x: number): void {
+        this.temp.push(x)
+        while (this.queue.length) {
+            this.temp.push(this.queue.shift())
+        }
+        [this.temp, this.queue] = [this.queue, this.temp]
+    }
+
+    pop(): number {
+        return this.queue.shift()
+    }
+
+    top(): number {
+        return this.queue[0]
+    }
+
+    empty(): boolean {
+        return this.queue.length === 0
+    }
+}
+```
+## 设计循环队列
+```js
+class MyCircularQueue {
+    queue: number[]
+    front: number
+    rear: number
+    size:number
+    k: number
+
+    constructor(k: number) {
+        this.queue = Array.from({ length: k })
+        this.front = 0
+        this.rear = 0
+        this.size = 0
+        this.k = k
+    }
+
+    prev(index) {
+        return index === 0 ? this.k - 1 : index - 1
+    }
+
+    next(index) {
+        return index === this.k - 1 ? 0 : index + 1
+    }
+
+    enQueue(value: number): boolean {
+        if (this.isFull()) return false
+        this.queue[this.rear] = value
+        this.rear = this.next(this.rear)
+        this.size++
+        return true
+    }
+
+    deQueue(): boolean {
+        if (this.isEmpty()) return false
+        this.front = this.next(this.front)
+        this.size--
+        return true
+    }
+
+    Front(): number {
+        if (this.isEmpty()) return -1
+        return this.queue[this.front]
+    }
+
+    Rear(): number {
+        if (this.isEmpty()) return -1
+        return this.queue[this.prev(this.rear)]
+    }
+
+    isEmpty(): boolean {
+        return this.size === 0
+    }
+
+    isFull(): boolean {
+        return this.size === this.k
+    }
+}
+```
+## 设计循环双端队列
+```js
+class MyCircularDeque {
+    queue: number[]
+    front: number
+    rear: number
+    size:number
+    k: number
+
+    constructor(k: number) {
+        this.queue = Array.from({ length: k })
+        this.front = 0
+        this.rear = 0
+        this.size = 0
+        this.k = k
+    }
+
+    prev(index) {
+        return index === 0 ? this.k - 1 : index - 1
+    }
+
+    next(index) {
+        return index === this.k - 1 ? 0 : index + 1
+    }
+
+    insertFront(value: number): boolean {
+        if (this.isFull()) return false
+        this.front = this.prev(this.front)
+        this.queue[this.front] = value
+        this.size++
+        return true
+    }
+
+    insertLast(value: number): boolean {
+        if (this.isFull()) return false
+        this.queue[this.rear] = value
+        this.rear = this.next(this.rear)
+        this.size++
+        return true
+    }
+
+    deleteFront(): boolean {
+        if (this.isEmpty()) return false
+        this.front = this.next(this.front)
+        this.size--
+        return true
+    }
+
+    deleteLast(): boolean {
+        if (this.isEmpty()) return false
+        this.rear = this.prev(this.rear)
+        this.size--
+        return true
+    }
+
+    getFront(): number {
+        if (this.isEmpty()) return -1
+        return this.queue[this.front]
+    }
+
+    getRear(): number {
+        if (this.isEmpty()) return -1
+        return this.queue[this.prev(this.rear)]
+    }
+
+    isEmpty(): boolean {
+        return this.size === 0
+    }
+
+    isFull(): boolean {
+        return this.size === this.k
+    }
+}
+```
+## 设计哈希集合
+1. 将 `key` 映射为数组下标 `i`
+2. 在 `set[i]` 查询 `key`
+```js
+class MyHashSet {
+    buckets: number
+    set: number[][]
+
+    constructor() {
+        this.buckets = 1009
+        this.set = Array.from({ length: 1009 }, () => [])
+    }
+
+    add(key: number): void {
+        let i = key % this.buckets
+        if (!this.contains(key)) {
+            this.set[i].push(key)
+        }
+    }
+
+    remove(key: number): void {
+        let i = key % this.buckets
+        if (this.contains(key)) {
+            this.set[i] = this.set[i].filter(x => x !== key)
+        }
+    }
+
+    contains(key: number): boolean {
+        let i = key % this.buckets
+        return this.set[i].includes(key)
+    }
+}
+```
+## 设计哈希映射
+1. 将 `key` 映射为数组下标 `i`
+2. 在 `set[i]` 查询 `key`
+```js
+class MyHashMap {
+    buckets: number
+    map: number[][][]
+
+    constructor() {
+        this.buckets = 1009
+        this.map = Array.from({ length: 1009 }, () => [])
+    }
+
+    put(key: number, value: number): void {
+        let i = key % this.buckets
+        let kv = this.map[i].find(x => x[0] === key)
+        if (kv) {
+            kv[1] = value
+        } else {
+            this.map[i].push([key, value])
+        }
+    }
+
+    get(key: number): number {
+        let i = key % this.buckets
+        return this.map[i].find(x => x[0] === key)?.[1] ?? -1
+    }
+
+    remove(key: number): void {
+        let i = key % this.buckets
+        this.map[i] = this.map[i].filter(x => x[0] !== key)
+    }
+}
+```
