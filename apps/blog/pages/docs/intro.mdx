@@ -3,18 +3,15 @@ import { CreateTable } from '../../components'
 export function DataJS() {
     return [
         {
+            key: "Object",
+            values: [
+                ['Creating an Object', 'Accessing an Object', 'Modifying an Object', 'Checking an Object', 'Enumerating an Object'],
+            ]
+        },
+        {
             key: "Array",
             values: [
-                ["constructor", "of", "from"],
-                ["at"],
-                ["push", "pop", "unshift", "shift", "splice", "copyWithin", "fill"],
-                ["forEach", "map", "filter","reduce", "reduceRight", "flat", "flatMap"],
-                ["find", "findLast", "findIndex", "findLastIndex", "indexOf", "lastIndexOf", "includes", "every", "some"],
-                ["sort", "reverse"],
-                ["keys", "values", "entries"],
-                ["slice", "concat"],
-                ["with", "toSorted", "toReversed", "toSpliced"],
-                ["join", "toString", "isArray"]
+                ["Creating an Array", "Accessing an Array", 'Modifying an Array', 'Iterating an Array', 'Searching an Array', 'Sorting an Array', 'Enumerating an Array', 'Clone an Array', 'Copying Methods', 'Other Methods']
             ]
         },
         {
@@ -35,16 +32,6 @@ export function DataJS() {
                 ["call", "apply", "bind"],
                 ["toString"],
                 ["name", "length"]
-            ]
-        },
-        {
-            key: "Object",
-            values: [
-                ["create", "assign"],
-                ["keys", "values", "entries"],
-                ["fromEntries"],
-                ["getPrototypeOf", "setPrototypeOf"],
-                ["constructor"]
             ]
         },
         {

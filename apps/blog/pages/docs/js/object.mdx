@@ -1,29 +1,87 @@
-import { Callout } from 'nextra/components'
-
 # Object
-## Static Methods
-### create
-- **描述**：创建一个新对象，并指定其原型
+## Creating an Object
+### with literals
+- **描述**：创建一个新对象，其原型为 `Object.prototype`
+- **语法**：`{}{:js}`
+```js
+let empty = {} // 空对象
+let point = { x: 0, y: 0 } // 变量名作为键
+let fruit = { 'name': 'apple', 'price': 10 } // 字符串作为键
+```
+### with new
+- **描述**：创建一个新对象，其原型为 `fn.prototype`
+- **语法**：`new fn(){:js}`
+```js
+let empty = new Object() // 等价于 {}
+let empty = new Array()  // 等价于 []
+```
+### create()
+- **描述**：创建一个新对象，其原型为 `proto`
 - **语法**：`Object.create(proto, props?){:js}`
-- **参数**
-    - `proto{:js}`：指定的原型
-    - `props{:js}`：属性描述符
+```js
+Object.create({ a: 1 }) // 原型为 { a: 1 }
+Object.create(Object.prototype) // 等价于 {}
+Object.create(null) // 无原型对象
+```
+## Accessing an Object
+### with dot
+- **描述**：访问对象属性
+- **语法**：`obj.prop{:js}`
+```js
+point.x
+```
+### with square bracket
+- **描述**：访问对象属性
+- **语法**：`obj.['prop']{:js}`
+```js
+point['x']
+```
+### query prototype chain
+- **描述**：访问对象属性
 ```js
 let obj = Object.create({ a: 1 })
-Object.getPrototypeOf(obj) // { a: 1 }
+obj.a // 1
 ```
-<Callout>
-`{}{:js}` 等价于 `Object.create(Object.prototype){:js}`
-</Callout>
-### assign
-- **描述**：将源对象的[自有可枚举属性]()复制到目标对象，并返回修改后的目标对象
-- **语法**：`Object.assign(target, ...sources){:js}`
-- **参数**
-    - `target{:js}`：目标对象
-    - `source{:js}`：源对象
+## Modifying an Object
+### with dot
+- **描述**：修改对象属性
+- **语法**：`obj.prop{:js}`
 ```js
-Object.assign({ a: 1 }, { b: 2 }) // { a: 1, b: 2 }
+point.x = 1
 ```
+### with square bracket
+- **描述**：修改对象属性
+- **语法**：`obj.['prop']{:js}`
+```js
+point['x'] = 1
+```
+### with delete
+- **描述**：删除对象的[自有属性]()
+- **语法**：`delete obj.x{:js}`
+```js
+let obj = { a: 1 }
+delete obj.a // true
+```
+## Checking an Object
+### hasOwn()
+- **描述**：检查对象的*自有属性*是否存在
+- **语法**：`Object.hasOwn(obj, prop){:js}`
+```js
+let obj = Object.create({ a: 1 })
+obj.b = 2
+Object.hasOwn(obj, 'a') // false, 继承属性
+Object.hasOwn(obj, 'b') // true, 自有属性
+```
+### with in
+- **描述**：检查对象的*自有属性*和*继承属性*是否存在
+- **语法**：`'prop' in obj{:js}`
+```js
+let obj = Object.create({ a: 1 })
+obj.b = 2
+'a' in obj // true, 继承属性
+'b' in obj // true, 自有属性
+```
+## Enumerating an Object
 ### keys
 - **描述**：返回一个数组，包含了对象[自有可枚举属性]()的键
 - **语法**：`Object.keys(obj){:js}`
@@ -44,6 +102,20 @@ Object.values({ a: 1, b: 2 }) // [1, 2]
 ```js
 Object.entries([1, 2, 3])      // [['0', 1], ['1', 2], ['2', 3]]
 Object.entries({ a: 1, b: 2 }) // [['a', 1], ['b', 2]] 
+```
+
+
+
+
+
+### assign
+- **描述**：将源对象的[自有可枚举属性]()复制到目标对象，并返回修改后的目标对象
+- **语法**：`Object.assign(target, ...sources){:js}`
+- **参数**
+    - `target{:js}`：目标对象
+    - `source{:js}`：源对象
+```js
+Object.assign({ a: 1 }, { b: 2 }) // { a: 1, b: 2 }
 ```
 ### fromEntries
 - **描述**：将键值对转化为对象
@@ -66,8 +138,6 @@ let obj = Object.create({ a: 1 })
 Object.setPrototypeOf(obj, { b: 2 })
 Object.getPrototypeOf(obj) // { b: 2 }
 ```
-## Instance Methods
-## Instance Properties
 ### constructor
 - **描述**：指向构造函数
 - **语法**：`obj.constructor{:js}`

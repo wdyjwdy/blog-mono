@@ -26,8 +26,8 @@ function CreateTable({ data, path, singlePage }) {
                                 values.flatMap((value, index) => {
                                   let arr = value.map(x => {
                                     let href = singlePage
-                                      ? `/${path}#${x.toLowerCase()}`
-                                      : `/${path}/${key.toLowerCase()}#${x.toLowerCase()}`
+                                      ? `/${path}#${x.toLowerCase().replaceAll(' ', '-')}`
+                                      : `/${path}/${key.toLowerCase()}#${x.toLowerCase().replaceAll(' ', '-')}`
                                     return (
                                       <Link href={href}>
                                         <Button variant="soft" size="1">
