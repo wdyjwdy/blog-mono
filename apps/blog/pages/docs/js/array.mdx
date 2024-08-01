@@ -1,6 +1,6 @@
 # Array
 ## Creating an Array
-### constructor
+### constructor()
 - **描述**：创建数组
 - **语法**：`Array(length){:js}`, `Array(...elements){:js}`
 ```js
@@ -8,7 +8,7 @@ Array()        // []
 Array(3)       // [ , , , ]
 Array(1, 2, 3) // [1, 2, 3]
 ```
-### of
+### of()
 - **描述**：创建数组
 - **语法**：`Array.of(...elements){:js}`
 ```js
@@ -16,7 +16,7 @@ Array.of()        // []
 Array.of(3)       // [3]
 Array.of(1, 2, 3) // [1, 2, 3]
 ```
-### from
+### from()
 - **描述**：创建数组
 - **语法**：`Array.from(arrayLike, mapFn?, thisArg?){:js}`
 - **参数**
@@ -34,7 +34,7 @@ Array.from({ 0: 'a', 1: 'b', length: 2 }) // ['a', 'b']
 Array.from('123', x => Number(x)) // [1, 2, 3]
 ```
 ## Accessing an Array
-### at
+### at()
 - **描述**：访问索引位置元素
 - **语法**：`at(index){:js}`
 ```js
@@ -45,14 +45,14 @@ Array.from('123', x => Number(x)) // [1, 2, 3]
 [1, 2, 3].at(-1) // 3
 ```
 ## Modifying an Array
-### push
+### push()
 - **描述**：添加元素到数组末尾，并返回新数组长度
 - **语法**：`push(...elements){:js}`
 ```js
 [1, 2].push(3)    // 3, arr: [1, 2, 3]
 [1, 2].push(3, 4) // 4, arr: [1, 2, 3, 4]
 ```
-### pop
+### pop()
 - **描述**：删除数组末尾元素，并返回该元素
 - **语法**：`pop(){:js}`
 ```js
@@ -65,13 +65,13 @@ Array.from('123', x => Number(x)) // [1, 2, 3]
 [1, 2].unshift(0)     // 3, arr: [0, 1, 2]
 [1, 2].unshift(-1, 0) // 4, arr: [-1, 0, 1, 2]
 ```
-### shift
+### shift()
 - **描述**：删除数组开头元素，并返回该元素
 - **语法**：`shift(){:js}`
 ```js
 [1, 2].shift() // 1, arr: [2]
 ```
-### splice
+### splice()
 - **描述**：修改数组，并返回被删除的元素
 - **语法**：`splice(start, deleteCount?, ...elements){:js}`
 - **参数**
@@ -87,14 +87,14 @@ Array.from('123', x => Number(x)) // [1, 2, 3]
 [1, 2, 3].splice(1, 0, 'a', 'b') // [], arr: [1, 'a', 'b', 2, 3]
 [1, 2, 3].splice(1, 2, 'a', 'b') // [2, 3], arr: [1, 'a', 'b']
 ```
-### copyWithin
+### copyWithin()
 - **描述**：复制数组的一部分到另一个位置，并返回原数组
 - **语法**：`splice(target, start?, end?){:js}`
 ```js
 [1, 2, 3].copyWithin(1)       // [1, 1, 2]
 [1, 2, 3].copyWithin(0, 1, 3) // [2, 3, 3]
 ```
-### fill
+### fill()
 - **描述**：填充数组，并返回原数组
 - **语法**：`fill(value, start?, end?){:js}`
 ```js
@@ -106,13 +106,13 @@ Array.from('123', x => Number(x)) // [1, 2, 3]
 [ , , , ].fill(0)       // [0, 0, 0]
 ```
 ## Iterating an Array
-### forEach
+### forEach()
 - **描述**：遍历数组
 - **语法**：`forEach(callbackFn(v, i, a), thisArg?){:js}`
 ```js
 [1, 2, 3].forEach(x => {console.log(x)}) // 1, 2, 3
 ```
-### map
+### map()
 - **描述**：映射数组元素
 - **语法**：`map(callbackFn(v, i, a), thisArg?){:js}`
 ```js
@@ -128,13 +128,13 @@ Array.from('123', x => Number(x)) // [1, 2, 3]
 let arrayLike = { 0: 'a', 1: 'b', length: 2 }
 Array.prototype.map.call(arrayLike, x => x) // ['a', 'b']
 ```
-### filter
+### filter()
 - **描述**：返回一个数组，包含了满足条件的值
 - **语法**：`filter(callbackFn(v, i, a), thisArg?){:js}`
 ```js
 [1, 2, 3].filter(x => x > 0) // [1, 2, 3]
 ```
-### reduce
+### reduce()
 - **描述**：合并数组元素
 - **语法**：`reduce(callbackFn(p, v, i, a), initialValue?){:js}`
 ```js
@@ -145,69 +145,69 @@ Array.prototype.map.call(arrayLike, x => x) // ['a', 'b']
 // 跳过空槽
 [1,  , 3].reduce((a, b) => a + b) // 4
 ```
-### reduceRight
+### reduceRight()
 - **描述**：合并数组元素
 - **语法**：`reduceRight(callbackFn(p, v, i, a), initialValue?){:js}`
 ```js
 [1, 2, 3].reduceRight((a, b) => a + b) // 6
 ```
-### flat
+### flat()
 - **描述**：原地展平数组，并返回新数组
 - **语法**：`flat(depth?){:js}`
 ```js
 [1, [2, [3]]].flat(1) // [1, 2, [3]]
 [1, [2, [3]]].flat(2) // [1, 2, 3]
 ```
-### flatMap
+### flatMap()
 - **描述**：映射数组元素，然后展平一层
 - **语法**：`flatMap(callbackFn(v, i, a), thisArg?){:js}`
 ```js
 [1, 2, 3].flatMap(x => [x, x]) // [1, 1, 2, 2, 3, 3]
 ```
 ## Searching an Array
-### find
+### find()
 - **描述**：返回首个满足条件的元素
 - **语法**：`find(callbackFn(v, i, a), thisArg?){:js}`
 ```js
 [1, 2, 3].find(x => x > 0) // 1
 [1, 2, 3].find(x => x < 0) // undefined
 ```
-### findLast
+### findLast()
 - **描述**：返回最后一个满足条件的元素
 - **语法**：`findLast(callbackFn(v, i, a), thisArg?){:js}`
 ```js
 [1, 2, 3].findLast(x => x > 0) // 3
 [1, 2, 3].findLast(x => x < 0) // undefined
 ```
-### findIndex
+### findIndex()
 - **描述**：返回首个满足条件元素的索引
 - **语法**：`findIndex(callbackFn(v, i, a), thisArg?){:js}`
 ```js
 [1, 2, 3].findIndex(x => x > 0) // 0
 [1, 2, 3].findIndex(x => x < 0) // -1
 ```
-### findLastIndex
+### findLastIndex()
 - **描述**：返回最后一个满足条件元素的索引
 - **语法**：`findLastIndex(callbackFn(v, i, a), thisArg?){:js}`
 ```js
 [1, 2, 3].findLastIndex(x => x > 0) // 2
 [1, 2, 3].findLastIndex(x => x < 0) // -1
 ```
-### indexOf
+### indexOf()
 - **描述**：返回元素首次出现的索引
 - **语法**：`indexOf(value, start?){:js}`
 ```js
 [1, 2, 3].indexOf(1)    // 0
 [1, 2, 3].indexOf(1, 1) // -1
 ```
-### lastIndexOf
+### lastIndexOf()
 - **描述**：返回元素最后一次出现的索引
 - **语法**：`lastIndexOf(value, start?){:js}`
 ```js
 [1, 2, 3].lastIndexOf(3)    // 2
 [1, 2, 3].lastIndexOf(3, 1) // -1
 ```
-### includes
+### includes()
 - **描述**：是否包含某个元素
 - **语法**：`includes(value, position?){:js}`
 - **参数**
@@ -217,20 +217,20 @@ Array.prototype.map.call(arrayLike, x => x) // ['a', 'b']
 [1, 2, 3].includes(1)    // true
 [1, 2, 3].includes(1, 1) // false
 ```
-### every
+### every()
 - **描述**：是否所有元素都满足条件
 - **语法**：`every(callbackFn(v, i, a), thisArg?){:js}`
 ```js
 [1, 2, 3].every(x => x > 0) // true
 ```
-### some
+### some()
 - **描述**：是否存在一个元素满足条件
 - **语法**：`some(callbackFn(v, i, a), thisArg?){:js}`
 ```js
 [1, 2, 3].some(x => x < 0) // false
 ```
 ## Sorting an Array
-### sort
+### sort()
 - **描述**：原地排序数组，并返回该数组
 - **语法**：`sort(compareFn?){:js}`
 - **参数**
@@ -241,33 +241,33 @@ Array.prototype.map.call(arrayLike, x => x) // ['a', 'b']
 [1, 2, 10].sort() // [1, 10, 2]
 [1, 2, 10].sort((a, b) => a - b) // [1, 2, 10]
 ```
-### reverse
+### reverse()
 - **描述**：原地反转数组，并返回该数组
 - **语法**：`reverse(){:js}`
 ```js
 [1, 2, 3].reverse() // [3, 2, 1]
 ```
 ## Enumerating an Array
-### keys
+### keys()
 - **描述**：返回一个迭代器，包含元素的键
 - **语法**：`keys(){:js}`
 ```js
 Array.from(['a', 'b', 'c'].keys()) // [0, 1, 2]
 ```
-### values
+### values()
 - **描述**：返回一个迭代器，包含元素的值
 - **语法**：`values(){:js}`
 ```js
 Array.from(['a', 'b', 'c'].values()) // ['a', 'b', 'c']
 ```
-### entries
+### entries()
 - **描述**：返回一个迭代器，包含元素的键值对
 - **语法**：`entries(){:js}`
 ```js
 Array.from(['a', 'b', 'c'].entries()) // [[0, 'a'], [1, 'b'], [2, 'c']]
 ```
-## Clone an Array
-### slice
+## Copying an Array
+### slice()
 - **描述**：返回拷贝后的数组
 - **语法**：`slice(start?, end?){:js}`
 ```js
@@ -275,7 +275,7 @@ Array.from(['a', 'b', 'c'].entries()) // [[0, 'a'], [1, 'b'], [2, 'c']]
 [1, 2, 3].slice(1)    // [2, 3]
 [1, 2, 3].slice(1, 2) // [2]
 ```
-### concat
+### concat()
 - **描述**：返回拼接后的数组
 - **语法**：`concat(...elements){:js}`
 ```js
@@ -287,7 +287,7 @@ Array.from(['a', 'b', 'c'].entries()) // [[0, 'a'], [1, 'b'], [2, 'c']]
 [1, 2].concat([3], [4]) // [1, 2, 3, 4]
 ```
 ## Copying Methods
-### with
+### with()
 - **描述**：[arr\[i\]]() 的拷贝版本
 - **语法**：`with(index, value){:js}`
 ```js
@@ -297,20 +297,20 @@ Array.from(['a', 'b', 'c'].entries()) // [[0, 'a'], [1, 'b'], [2, 'c']]
 // negative index
 [1, 2, 3].with(-1, 0) // [1, 2, 0]
 ```
-### toSorted
+### toSorted()
 - **描述**：[sort](#sort) 的拷贝版本
 - **语法**：`toSorted(compareFn?){:js}`
 ```js
 [1, 2, 10].toSorted() // [1, 10, 2]
 [1, 2, 10].toSorted((a, b) => a - b) // [1, 2, 10]
 ```
-### toReversed
+### toReversed()
 - **描述**：[reverse](#reverse) 的拷贝版本
 - **语法**：`toReversed(){:js}`
 ```js
 [1, 2, 3].toReversed() // [3, 2, 1]
 ```
-### toSpliced
+### toSpliced()
 - **描述**：[splice](#splice) 的拷贝版本
 - **语法**：`toSpliced(start, deleteCount?, ...elements){:js}`
 ```js
@@ -323,20 +323,20 @@ Array.from(['a', 'b', 'c'].entries()) // [[0, 'a'], [1, 'b'], [2, 'c']]
 [1, 2, 3].toSpliced(1, 2, 'a', 'b') // [1, 'a', 'b']
 ```
 ## Other Methods
-### join
+### join()
 - **描述**：将元素连接为字符串
 - **语法**：`join(separator?){:js}`
 ```js
 [1, 2, 3].join()    // '1,2,3'
 [1, 2, 3].join('-') // '1-2-3'
 ```
-### toString
+### toString()
 - **描述**：返回数组元素字符串
 - **语法**：`toString(){:js}`
 ```js
 [1, 2, 3].toString() // '1,2,3'
 ```
-### isArray
+### isArray()
 - **描述**：判断是否是数组
 - **语法**：`Array.isArray(value){:js}`
 ```js

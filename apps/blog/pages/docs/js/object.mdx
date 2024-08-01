@@ -8,7 +8,7 @@ let empty = {} // 空对象
 let point = { x: 0, y: 0 } // 变量名作为键
 let fruit = { 'name': 'apple', 'price': 10 } // 字符串作为键
 ```
-### with new
+### new operator
 - **描述**：创建一个新对象，其原型为 `fn.prototype`
 - **语法**：`new fn(){:js}`
 ```js
@@ -24,13 +24,13 @@ Object.create(Object.prototype) // 等价于 {}
 Object.create(null) // 无原型对象
 ```
 ## Accessing an Object
-### with dot
+### dot operator
 - **描述**：访问对象属性
 - **语法**：`obj.prop{:js}`
 ```js
 point.x
 ```
-### with square bracket
+### square bracket operator
 - **描述**：访问对象属性
 - **语法**：`obj.['prop']{:js}`
 ```js
@@ -49,13 +49,13 @@ obj.a // 1
 ```js
 point.x = 1
 ```
-### with square bracket
+### square bracket operator
 - **描述**：修改对象属性
 - **语法**：`obj.['prop']{:js}`
 ```js
 point['x'] = 1
 ```
-### with delete
+### delete operator
 - **描述**：删除对象的[自有属性]()
 - **语法**：`delete obj.x{:js}`
 ```js
@@ -72,7 +72,7 @@ obj.b = 2
 Object.hasOwn(obj, 'a') // false, 继承属性
 Object.hasOwn(obj, 'b') // true, 自有属性
 ```
-### with in
+### in operator
 - **描述**：检查对象的*自有属性*和*继承属性*是否存在
 - **语法**：`'prop' in obj{:js}`
 ```js
@@ -82,41 +82,51 @@ obj.b = 2
 'b' in obj // true, 自有属性
 ```
 ## Enumerating an Object
-### keys
-- **描述**：返回一个数组，包含了对象[自有可枚举属性]()的键
+### keys()
+- **描述**：返回一个数组，包含了对象*自有可枚举属性*的键
 - **语法**：`Object.keys(obj){:js}`
 ```js
 Object.keys([1, 2, 3])      // ['0', '1', '2']
 Object.keys({ a: 1, b: 2 }) // ['a', 'b'] 
 ```
-### values
-- **描述**：返回一个数组，包含了对象[自有可枚举属性]()的值
+### values()
+- **描述**：返回一个数组，包含了对象*自有可枚举属性*的值
 - **语法**：`Object.values(obj){:js}`
 ```js
 Object.values([1, 2, 3])      // [1, 2, 3]
 Object.values({ a: 1, b: 2 }) // [1, 2] 
 ```
-### entries
-- **描述**：返回一个数组，包含了对象[自有可枚举属性]()的键值对
+### entries()
+- **描述**：返回一个数组，包含了对象*自有可枚举属性*的键值对
 - **语法**：`Object.entries(obj){:js}`
 ```js
 Object.entries([1, 2, 3])      // [['0', 1], ['1', 2], ['2', 3]]
 Object.entries({ a: 1, b: 2 }) // [['a', 1], ['b', 2]] 
 ```
-
-
-
-
-
-### assign
-- **描述**：将源对象的[自有可枚举属性]()复制到目标对象，并返回修改后的目标对象
+## Copying an Object
+### assign()
+- **描述**：将 `source` 的*自有可枚举属性*复制到 `target`，并返回修改后的 `target`
 - **语法**：`Object.assign(target, ...sources){:js}`
-- **参数**
-    - `target{:js}`：目标对象
-    - `source{:js}`：源对象
 ```js
-Object.assign({ a: 1 }, { b: 2 }) // { a: 1, b: 2 }
+// 拷贝对象
+Object.assign({}, { a: 1 }) // { a: 1 }
+
+// 覆盖属性
+Object.assign({ a: 1 }, { a: 0, b: 0 }) // { a: 0, b: 0 }
 ```
+### spread operator
+- **描述**：将 `source` 的*自有可枚举属性*复制到 `target`，并返回修改后的 `target`
+```js
+// 后面属性覆盖前面属性
+let source = { a: 0, b: 0 }
+let target = { a: 1, ...source } // { a: 0, b: 0 }
+let target = { ...source, a: 1 } // { a: 1, b: 0 }
+```
+
+
+
+
+
 ### fromEntries
 - **描述**：将键值对转化为对象
 - **语法**：`Object.fromEntries(iterable){:js}`
