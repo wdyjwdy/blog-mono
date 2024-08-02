@@ -1,6 +1,8 @@
+import { Picture } from '@/components'
+
 # Lodash
 ## Throttle
-![throttle](public/img/coding/js/lodash/throttle.png)
+<Picture src="/img/coding/lodash/throttle.png" />
 1. 调用函数后，设置冷却时间
 2. 冷却时间内再次调用，什么也不做
 ```js
@@ -15,7 +17,7 @@ function throttle(fn, wait) {
 }
 ```
 ## Debounce
-![debounce](public/img/coding/js/lodash/debounce.png)
+<Picture src="/img/coding/lodash/debounce.png" />
 1. 调用函数后，设置冷却时间
 2. 冷却时间内再次调用，什么也不做，并重置冷却时间
 ```js
@@ -51,7 +53,6 @@ function memoize(fn) {
 }
 ```
 ## Curry
-![curry](public/img/coding/js/lodash/curry.png)
 ```js
 function curry(fn) {
     return function curried(...args) {
@@ -66,10 +67,9 @@ function curry(fn) {
 }
 ```
 ## Clone Shallow
-![Clone Shallow](public/img/coding/js/lodash/clone-shallow.png)
-1. 新建一个空对象，并拷贝 `obj` 中所有成员
-2. 原始类型：拷贝原始值
-3. 引用类型：拷贝内存地址
+<Picture src="/img/coding/lodash/clone-shallow.png" size={350} />
+1. 基础类型：拷贝值
+2. 对象类型：拷贝地址
 ```js {4}
 function cloneShallow(obj) {
     let clone = obj instanceof Array ? [] : {}
@@ -80,10 +80,9 @@ function cloneShallow(obj) {
 }
 ```
 ## Clone Deep
-![Clone Deep](public/img/coding/js/lodash/clone-deep.png)
-1. 新建一个空对象，并拷贝 `obj` 中所有成员
-2. 原始类型：拷贝原始值
-3. 引用类型：拷贝引用对象
+<Picture src="/img/coding/lodash/clone-deep.png" />
+1. 基础类型：拷贝值
+2. 对象类型：拷贝值
 ```js {5,7}
 function cloneDeep(obj) {
     let clone = obj instanceof Array ? [] : {}

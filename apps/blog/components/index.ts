@@ -4,6 +4,7 @@ import Editor from './Editor'
 import Preview from './Preview'
 import Info from './Info'
 import Map from './Map'
+import Picture from './Picture'
 
 export {
     CreateTable,
@@ -12,5 +13,6 @@ export {
     Editor,
     Preview,
     Info,
-    Map
+    Map,
+    Picture,
 }
