@@ -1,5 +1,4 @@
 import { Callout } from 'nextra/components'
-import { Picture } from '@/components'
 
 # String
 ## Instance Methods
@@ -33,7 +32,18 @@ import { Picture } from '@/components'
 'hello'.charAt(10) // ''
 ```
 ### indexOf
-<Picture src="/img/docs/js/string/indexof.png" />
+```mermaid
+block-beta
+  columns 8
+  a["h"] b["i"] c[" "] d["h"] e["i"] f[" "] g["h"] h["i"]
+  space:8
+  A["index"]
+A --> a
+
+class a,b Red
+class c,d,e,f,g,h White
+class A Text
+```
 - **描述**：返回字符串首次出现位置的索引
 - **语法**：`IndexOf(string, position?){:js}`
 - **参数**
@@ -48,7 +58,18 @@ import { Picture } from '@/components'
 'hi hi hi'.indexOf('') // 0
 ```
 ### lastIndexOf
-<Picture src="/img/docs/js/string/lastindexof.png" />
+```mermaid
+block-beta
+  columns 8
+  a["h"] b["i"] c[" "] d["h"] e["i"] f[" "] g["h"] h["i"]
+  space:14
+  A["index"]
+A --> g
+
+class g,h Red
+class a,b,c,d,e,f White
+class A Text
+```
 - **描述**：返回字符串最后一次出现位置的索引
 - **语法**：`lastIndexOf(string, position?){:js}`
 - **参数**
@@ -93,7 +114,19 @@ import { Picture } from '@/components'
 'hello'.includes('h', 1) // false
 ```
 ### slice
-<Picture src="/img/docs/js/string/slice.png" />
+```mermaid
+block-beta
+  columns 8
+  a["e"] b["v"] c["e"] d["r"] e["y"] f["d"] g["a"] h["y"]
+  space:8
+  space A["start"] space space space B["end"]
+A --> b
+B --> f
+
+class b,c,d,e Red
+class a,f,g,h White
+class A,B Text
+```
 - **描述**：提取子字符串
 - **语法**：`slice(start, end?){:js}`
 - **参数**
@@ -118,7 +151,19 @@ import { Picture } from '@/components'
 'code-anchor'.slice(0, -1) // 'code-ancho'
 ```
 ### substring
-<Picture src="/img/docs/js/string/slice.png" />
+```mermaid
+block-beta
+  columns 8
+  a["e"] b["v"] c["e"] d["r"] e["y"] f["d"] g["a"] h["y"]
+  space:8
+  space A["start"] space space space B["end"]
+A --> b
+B --> f
+
+class b,c,d,e Red
+class a,f,g,h White
+class A,B Text
+```
 - **描述**：提取子字符串
 - **语法**：`slice(start, end?){:js}`
 - **参数**

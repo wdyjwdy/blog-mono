@@ -17,6 +17,18 @@ h2 {
   fill:#fff4e6 !important;
   stroke:#ffc600 !important;
 }
+.White > rect {
+  fill:#f1f1f1 !important;
+  stroke:#D5D5D5 !important;
+}
+.Red > rect {
+  fill:#9417513d !important;
+  stroke:#970E53 !important;
+}
+.Text > rect {
+  fill:#0000 !important;
+  stroke:#0000 !important;
+}
 @media (prefers-color-scheme: dark) {
   .Yellow > rect {
     fill:#33302d !important;
