@@ -1,11 +1,25 @@
+import { Callout } from 'nextra/components'
+
 # Array
 ## Creating an Array
+### with literals
+- **描述**：创建数组
+```js
+let arr = []        // []
+let arr = [,,,]     // [empty × 3]
+let arr = [1, 2, 3] // [1, 2, 3]
+```
+### spread operator
+- **描述**：从*可迭代对象*创建数组
+```js
+[...'abc'] // ['a', 'b', 'c']
+```
 ### constructor()
 - **描述**：创建数组
 - **语法**：`Array(length){:js}`, `Array(...elements){:js}`
 ```js
 Array()        // []
-Array(3)       // [ , , , ]
+Array(3)       // [empty × 3]
 Array(1, 2, 3) // [1, 2, 3]
 ```
 ### of()
@@ -16,21 +30,20 @@ Array.of()        // []
 Array.of(3)       // [3]
 Array.of(1, 2, 3) // [1, 2, 3]
 ```
+<Callout type="info" emoji="️🐳">
+解决了 [Array()](#constructor) 不能创建单个元素的数组的问题
+</Callout>
 ### from()
-- **描述**：创建数组
+- **描述**：从*可迭代对象*或*类数组*创建数组
 - **语法**：`Array.from(arrayLike, mapFn?, thisArg?){:js}`
-- **参数**
-    - `arrayLike{:js}`：可迭代对象，类数组
-    - `mapFn(value, index?){:js}`：映射函数
-    - `thisArg{:js}`：mapFn 中 this 的值
 ```js
-// iterable
+// 可迭代对象
 Array.from('hello') // ['h', 'e', 'l', 'l', 'o']
 
-// array-like
+// 类数组
 Array.from({ 0: 'a', 1: 'b', length: 2 }) // ['a', 'b']
 
-// map function
+// 映射函数
 Array.from('123', x => Number(x)) // [1, 2, 3]
 ```
 ## Accessing an Array

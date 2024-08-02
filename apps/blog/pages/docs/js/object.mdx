@@ -2,7 +2,6 @@
 ## Creating an Object
 ### with literals
 - **描述**：创建一个新对象，其原型为 `Object.prototype`
-- **语法**：`{}{:js}`
 ```js
 let empty = {} // 空对象
 let point = { x: 0, y: 0 } // 变量名作为键
@@ -122,17 +121,7 @@ let source = { a: 0, b: 0 }
 let target = { a: 1, ...source } // { a: 0, b: 0 }
 let target = { ...source, a: 1 } // { a: 1, b: 0 }
 ```
-
-
-
-
-
-### fromEntries
-- **描述**：将键值对转化为对象
-- **语法**：`Object.fromEntries(iterable){:js}`
-```js
-Object.fromEntries([['a', 1], ['b', 2]]) // { a: 1, b: 2 }
-```
+## Prototype Methods
 ### getPrototypeOf
 - **描述**：返回对象的原型
 - **语法**：`Object.getPrototypeOf(obj){:js}`
