@@ -1,6 +1,8 @@
+import { Picture } from '@/components'
+
 # 二叉树
 ## 前序遍历
-![preorder](public/img/coding/algo/tree/preorder.png)
+<Picture src="/img/coding/algo/tree/preorder.png" />
 1. 根 *->* 左 *->* 右
 ```js {5-7}
 function preorderTraversal(root: TreeNode | null): number[] {
@@ -18,7 +20,7 @@ function preorderTraversal(root: TreeNode | null): number[] {
 };
 ```
 ## 中序遍历
-![inorder](public/img/coding/algo/tree/inorder.png)
+<Picture src="/img/coding/algo/tree/inorder.png" />
 1. 左 *->* 根 *->* 右
 ```js {5-7}
 function inorderTraversal(root: TreeNode | null): number[] {
@@ -36,7 +38,7 @@ function inorderTraversal(root: TreeNode | null): number[] {
 };
 ```
 ## 后序遍历
-![postorder](public/img/coding/algo/tree/postorder.png)
+<Picture src="/img/coding/algo/tree/postorder.png" />
 1. 左 *->* 右 *->* 根
 ```js {5-7}
 function postorderTraversal(root: TreeNode | null): number[] {
@@ -54,7 +56,7 @@ function postorderTraversal(root: TreeNode | null): number[] {
 };
 ```
 ## 层序遍历
-![levelorder](public/img/coding/algo/tree/levelorder.png)
+<Picture src="/img/coding/algo/tree/levelorder.png" />
 1. 上 *->* 中 *->* 下
 ```js
 function levelOrder(root: TreeNode | null): number[][] {
