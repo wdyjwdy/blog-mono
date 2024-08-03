@@ -59,83 +59,131 @@ Array.from('123', x => Number(x)) // [1, 2, 3]
 ```
 ## Modifying an Array
 ### push()
+```mermaid
+block-beta
+  columns 1
+  block:b1
+    space:4 b("push")
+  end
+  block:b2
+    A("A") B("B") C("C") D("D") E(" ")
+  end
+  b --> E
+class a,b,b1 Text
+class E Dash
+class b2 Line
+```
 - **描述**：添加元素到数组末尾，并返回新数组长度
 - **语法**：`push(...elements){:js}`
+- **时间**：$O(1)$
 ```js
-[1, 2].push(3)    // 3, arr: [1, 2, 3]
-[1, 2].push(3, 4) // 4, arr: [1, 2, 3, 4]
+[1, 2].push(3)    // Return 3, Array is [1, 2, 3]
+[1, 2].push(3, 4) // Return 4, Array is [1, 2, 3, 4]
 ```
 ### pop()
+```mermaid
+block-beta
+  columns 1
+  block:b1
+    space:3 a("pop")
+  end
+  block:b2
+    A("A") B("B") C("C") D("D")
+  end
+  D --> a
+class a,b,b1 Text
+class b2 Line
+```
 - **描述**：删除数组末尾元素，并返回该元素
 - **语法**：`pop(){:js}`
+- **时间**：$O(1)$
 ```js
-[1, 2].pop() // 2, arr: [1]
+[1, 2].pop() // Return 2, Array is [1]
 ```
 ### unshift
+```mermaid
+block-beta
+  columns 1
+  block:b1
+    b("unshift") space:4
+  end
+  block:b2
+     E(" ") A("A") B("B") C("C") D("D")
+  end
+  b --> E
+class a,b,b1 Text
+class E Dash
+class b2 Line
+```
 - **描述**：添加元素到数组开头，并返回新数组长度
 - **语法**：`unshift(...elements){:js}`
+- **时间**：$O(n)$
 ```js
-[1, 2].unshift(0)     // 3, arr: [0, 1, 2]
-[1, 2].unshift(-1, 0) // 4, arr: [-1, 0, 1, 2]
+[2, 3].unshift(1)    // Return 3, Array is [1, 2, 3]
+[2, 3].unshift(0, 1) // Return 4, Array is [0, 1, 2, 3]
 ```
 ### shift()
+```mermaid
+block-beta
+  columns 1
+  block:b1
+    a("shift") space:3
+  end
+  block:b2
+    A("A") B("B") C("C") D("D")
+  end
+  A --> a
+class a,b,b1 Text
+class b2 Line
+```
 - **描述**：删除数组开头元素，并返回该元素
 - **语法**：`shift(){:js}`
+- **时间**：$O(1)$
 ```js
-[1, 2].shift() // 1, arr: [2]
+[1, 2].shift() // Return 1, Array is [2]
 ```
 ### splice()
 - **描述**：修改数组，并返回被删除的元素
 - **语法**：`splice(start, deleteCount?, ...elements){:js}`
-- **参数**
 	- `start{:js}`：操作位置
-    - `deleteCount = Infinity{:js}`：删除元素的个数
-    - `element{:js}`：插入的元素
+  - `deleteCount=Infinity{:js}`：删除元素的个数
+  - `elements{:js}`：插入的元素
+- **时间**：$O(n)$
 ```js
 // remove
-[1, 2, 3].splice(1)    // [2, 3], arr: [1]
-[1, 2, 3].splice(1, 1) // [2], arr: [1, 3]
+[1, 2, 3].splice(1)    // Return [2, 3], Array is [1]
+[1, 2, 3].splice(1, 1) // Return [2], Array is [1, 3]
 
 // insert
-[1, 2, 3].splice(1, 0, 'a', 'b') // [], arr: [1, 'a', 'b', 2, 3]
-[1, 2, 3].splice(1, 2, 'a', 'b') // [2, 3], arr: [1, 'a', 'b']
-```
-### copyWithin()
-- **描述**：复制数组的一部分到另一个位置，并返回原数组
-- **语法**：`splice(target, start?, end?){:js}`
-```js
-[1, 2, 3].copyWithin(1)       // [1, 1, 2]
-[1, 2, 3].copyWithin(0, 1, 3) // [2, 3, 3]
-```
-### fill()
-- **描述**：填充数组，并返回原数组
-- **语法**：`fill(value, start?, end?){:js}`
-```js
-// 基础
-[1, 2, 3].fill(0)       // [0, 0, 0]
-[1, 2, 3].fill(0, 1, 3) // [1, 0, 0]
+[1, 2, 3].splice(1, 0, 'a')      // Return [], Array is [1, 'a', 2, 3]
+[1, 2, 3].splice(1, 0, 'a', 'b') // Return [], Array is [1, 'a', 'b', 2, 3]
 
-// 填充空槽
-[ , , , ].fill(0)       // [0, 0, 0]
+// remove and insert
+[1, 2, 3].splice(1, 2, 'a', 'b') // Return [2, 3], Array is [1, 'a', 'b']
 ```
 ## Iterating an Array
 ### forEach()
 - **描述**：遍历数组
-- **语法**：`forEach(callbackFn(v, i, a), thisArg?){:js}`
+- **语法**：`forEach(fn(v, i, a), thisArg?){:js}`
 ```js
 [1, 2, 3].forEach(x => {console.log(x)}) // 1, 2, 3
 ```
 ### map()
 ```mermaid
 block-beta
-  columns 5
-  a("x") space:3 b("f(x)")
-  c("y") space:3 d("f(y)")
-a --> b
-c --> d
+  columns 3
+  block:b1
+   x("x") y("y") z("z")
+  end
+  space
+  block:b2
+   fx("f(x)") fy("f(y)") fz("f(z)")
+  end
+b1 --> b2
+class b1,b2 Line
 ```
 - **描述**：映射数组元素
-- **语法**：`map(callbackFn(v, i, a), thisArg?){:js}`
+- **语法**：`map(fn(v, i, a), thisArg?){:js}`
 ```js
 // 基本
 [1, 2, 3].map((x) => x * 2)      // [2, 4, 6]
@@ -152,21 +200,37 @@ Array.prototype.map.call(arrayLike, x => x) // ['a', 'b']
 ### filter()
 ```mermaid
 block-beta
-  columns 10
-  a("x"):2 space:6 b("x"):2
-  c("y"):2 space:6 d(" "):2
-a -- "f(x) is true" --> b
-c -- "f(y) is false"--> d
-class d Dash
+  columns 6
+  block:b1:2
+   x("x") y("y") z("z")
+  end
+  space:2
+  block:b2:2
+   fx("x") fy(" ") fz(" ")
+  end
+b1 --> b2
+class b1,b2 Line
+class fy,fz Dash
 ```
 - **描述**：返回一个数组，包含了满足条件的值
-- **语法**：`filter(callbackFn(v, i, a), thisArg?){:js}`
+- **语法**：`filter(fn(v, i, a), thisArg?){:js}`
 ```js
 [1, 2, 3].filter(x => x > 0) // [1, 2, 3]
 ```
 ### reduce()
+```mermaid
+block-beta
+  columns 5
+  block:b1:2
+   x("x") y("y") z("z")
+  end
+  space
+  a("f(f(x, y), z)")
+b1 --> a
+class b1 Line
+```
 - **描述**：合并数组元素
-- **语法**：`reduce(callbackFn(p, v, i, a), initialValue?){:js}`
+- **语法**：`reduce(fn(p, v, i, a), initialValue?){:js}`
 ```js
 // 基础
 [1, 2, 3].reduce((a, b) => a + b)     // 6
@@ -174,12 +238,6 @@ class d Dash
 
 // 跳过空槽
 [1,  , 3].reduce((a, b) => a + b) // 4
-```
-### reduceRight()
-- **描述**：合并数组元素
-- **语法**：`reduceRight(callbackFn(p, v, i, a), initialValue?){:js}`
-```js
-[1, 2, 3].reduceRight((a, b) => a + b) // 6
 ```
 ### flat()
 - **描述**：原地展平数组，并返回新数组
@@ -190,72 +248,70 @@ class d Dash
 ```
 ### flatMap()
 - **描述**：映射数组元素，然后展平一层
-- **语法**：`flatMap(callbackFn(v, i, a), thisArg?){:js}`
+- **语法**：`flatMap(fn(v, i, a), thisArg?){:js}`
 ```js
 [1, 2, 3].flatMap(x => [x, x]) // [1, 1, 2, 2, 3, 3]
 ```
 ## Searching an Array
 ### find()
 - **描述**：返回首个满足条件的元素
-- **语法**：`find(callbackFn(v, i, a), thisArg?){:js}`
+- **语法**：`find(fn(v, i, a), thisArg?){:js}`
 ```js
 [1, 2, 3].find(x => x > 0) // 1
 [1, 2, 3].find(x => x < 0) // undefined
 ```
-### findLast()
-- **描述**：返回最后一个满足条件的元素
-- **语法**：`findLast(callbackFn(v, i, a), thisArg?){:js}`
-```js
-[1, 2, 3].findLast(x => x > 0) // 3
-[1, 2, 3].findLast(x => x < 0) // undefined
-```
 ### findIndex()
 - **描述**：返回首个满足条件元素的索引
-- **语法**：`findIndex(callbackFn(v, i, a), thisArg?){:js}`
+- **语法**：`findIndex(fn(v, i, a), thisArg?){:js}`
 ```js
 [1, 2, 3].findIndex(x => x > 0) // 0
 [1, 2, 3].findIndex(x => x < 0) // -1
-```
-### findLastIndex()
-- **描述**：返回最后一个满足条件元素的索引
-- **语法**：`findLastIndex(callbackFn(v, i, a), thisArg?){:js}`
-```js
-[1, 2, 3].findLastIndex(x => x > 0) // 2
-[1, 2, 3].findLastIndex(x => x < 0) // -1
 ```
 ### indexOf()
 - **描述**：返回元素首次出现的索引
 - **语法**：`indexOf(value, start?){:js}`
 ```js
-[1, 2, 3].indexOf(1)    // 0
-[1, 2, 3].indexOf(1, 1) // -1
-```
-### lastIndexOf()
-- **描述**：返回元素最后一次出现的索引
-- **语法**：`lastIndexOf(value, start?){:js}`
-```js
-[1, 2, 3].lastIndexOf(3)    // 2
-[1, 2, 3].lastIndexOf(3, 1) // -1
+[1, 2, 3].indexOf(1) // 0
+[1, 2, 3].indexOf(0) // -1
 ```
 ### includes()
 - **描述**：是否包含某个元素
-- **语法**：`includes(value, position?){:js}`
-- **参数**
-	- `value{:js}`：查询的值
-    - `position = 0{:js}`：查询的起始位置
+- **语法**：`includes(value, start?){:js}`
 ```js
-[1, 2, 3].includes(1)    // true
-[1, 2, 3].includes(1, 1) // false
+[1, 2, 3].includes(1) // true
+[1, 2, 3].includes(0) // false
 ```
 ### every()
+```mermaid
+block-beta
+  columns 4
+  block:b1
+   x("x") y("y") z("z")
+  end
+  space
+  a("f(x) and f(y) and f(z)")
+b1 --> a
+class b1 Line
+```
 - **描述**：是否所有元素都满足条件
-- **语法**：`every(callbackFn(v, i, a), thisArg?){:js}`
+- **语法**：`every(fn(v, i, a), thisArg?){:js}`
 ```js
 [1, 2, 3].every(x => x > 0) // true
 ```
 ### some()
+```mermaid
+block-beta
+  columns 4
+  block:b1
+   x("x") y("y") z("z")
+  end
+  space
+  a("f(x) or f(y) or f(z)")
+b1 --> a
+class b1 Line
+```
 - **描述**：是否存在一个元素满足条件
-- **语法**：`some(callbackFn(v, i, a), thisArg?){:js}`
+- **语法**：`some(fn(v, i, a), thisArg?){:js}`
 ```js
 [1, 2, 3].some(x => x < 0) // false
 ```
@@ -282,22 +338,36 @@ class d Dash
 - **描述**：返回一个迭代器，包含元素的键
 - **语法**：`keys(){:js}`
 ```js
-Array.from(['a', 'b', 'c'].keys()) // [0, 1, 2]
+[1, 2, 3].keys() // Iterator is [0, 1, 2]
 ```
 ### values()
 - **描述**：返回一个迭代器，包含元素的值
 - **语法**：`values(){:js}`
 ```js
-Array.from(['a', 'b', 'c'].values()) // ['a', 'b', 'c']
+[1, 2, 3].values() // Iterator is [1, 2, 3]
 ```
 ### entries()
 - **描述**：返回一个迭代器，包含元素的键值对
 - **语法**：`entries(){:js}`
 ```js
-Array.from(['a', 'b', 'c'].entries()) // [[0, 'a'], [1, 'b'], [2, 'c']]
+[1, 2, 3].entries() // Iterator is [[0, 1], [1, 2], [2, 3]]
 ```
 ## Copying an Array
 ### slice()
+```mermaid
+block-beta
+  columns 1
+  block:b1
+    space a("start") space:2 b("end")
+  end
+  block:b2
+    A("A") B("B") C("C") D("D") E("E")
+  end
+  a --> B
+  b --> E
+class a,b,b1,b2 Text
+class B,C,D Red
+```
 - **描述**：返回拷贝后的数组
 - **语法**：`slice(start?, end?){:js}`
 ```js
@@ -315,56 +385,6 @@ Array.from(['a', 'b', 'c'].entries()) // [[0, 'a'], [1, 'b'], [2, 'c']]
 
 // 自动展平一层
 [1, 2].concat([3], [4]) // [1, 2, 3, 4]
-```
-## Copying Methods
-### with()
-- **描述**：[arr\[i\]]() 的拷贝版本
-- **语法**：`with(index, value){:js}`
-```js
-// positive index
-[1, 2, 3].with(0, 0)  // [0, 2, 3]
-
-// negative index
-[1, 2, 3].with(-1, 0) // [1, 2, 0]
-```
-### toSorted()
-- **描述**：[sort](#sort) 的拷贝版本
-- **语法**：`toSorted(compareFn?){:js}`
-```js
-[1, 2, 10].toSorted() // [1, 10, 2]
-[1, 2, 10].toSorted((a, b) => a - b) // [1, 2, 10]
-```
-### toReversed()
-- **描述**：[reverse](#reverse) 的拷贝版本
-- **语法**：`toReversed(){:js}`
-```js
-[1, 2, 3].toReversed() // [3, 2, 1]
-```
-### toSpliced()
-- **描述**：[splice](#splice) 的拷贝版本
-- **语法**：`toSpliced(start, deleteCount?, ...elements){:js}`
-```js
-// remove
-[1, 2, 3].toSpliced(1)    // [1]
-[1, 2, 3].toSpliced(1, 1) // [1, 3]
-
-// insert
-[1, 2, 3].toSpliced(1, 0, 'a', 'b') // [1, 'a', 'b', 2, 3]
-[1, 2, 3].toSpliced(1, 2, 'a', 'b') // [1, 'a', 'b']
-```
-## Other Methods
-### join()
-- **描述**：将元素连接为字符串
-- **语法**：`join(separator?){:js}`
-```js
-[1, 2, 3].join()    // '1,2,3'
-[1, 2, 3].join('-') // '1-2-3'
-```
-### toString()
-- **描述**：返回数组元素字符串
-- **语法**：`toString(){:js}`
-```js
-[1, 2, 3].toString() // '1,2,3'
 ```
 ### isArray()
 - **描述**：判断是否是数组
