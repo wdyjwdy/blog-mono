@@ -126,6 +126,14 @@ Array.from('123', x => Number(x)) // [1, 2, 3]
 [1, 2, 3].forEach(x => {console.log(x)}) // 1, 2, 3
 ```
 ### map()
+```mermaid
+block-beta
+  columns 5
+  a("x") space:3 b("f(x)")
+  c("y") space:3 d("f(y)")
+a --> b
+c --> d
+```
 - **描述**：映射数组元素
 - **语法**：`map(callbackFn(v, i, a), thisArg?){:js}`
 ```js
@@ -142,6 +150,15 @@ let arrayLike = { 0: 'a', 1: 'b', length: 2 }
 Array.prototype.map.call(arrayLike, x => x) // ['a', 'b']
 ```
 ### filter()
+```mermaid
+block-beta
+  columns 10
+  a("x"):2 space:6 b("x"):2
+  c("y"):2 space:6 d(" "):2
+a -- "f(x) is true" --> b
+c -- "f(y) is false"--> d
+class d Dash
+```
 - **描述**：返回一个数组，包含了满足条件的值
 - **语法**：`filter(callbackFn(v, i, a), thisArg?){:js}`
 ```js
