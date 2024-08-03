@@ -1,17 +1,16 @@
 import { Callout } from 'nextra/components'
 import { Table } from '@radix-ui/themes';
 
-
 # Array
 ## Creating an Array
-### with literals
+### literals
 - **描述**：创建数组
 ```js
 let arr = []        // []
 let arr = [,,,]     // [empty × 3]
 let arr = [1, 2, 3] // [1, 2, 3]
 ```
-### spread operator
+### spread
 - **描述**：从*可迭代对象*创建数组
 ```js
 [...'abc'] // ['a', 'b', 'c']
@@ -49,7 +48,7 @@ Array.from({ 0: 'a', 1: 'b', length: 2 }) // ['a', 'b']
 Array.from('123', x => Number(x)) // [1, 2, 3]
 ```
 ## Accessing an Array
-### subscript operator
+### subscript
 - **描述**：访问索引位置元素
 ```js
 [1, 2, 3][0] // 1
@@ -103,6 +102,7 @@ block-beta
   D --> a
 class a,b,b1 Text
 class b2 Line
+class D Red
 ```
 - **描述**：删除数组末尾元素，并返回该元素
 - **语法**：`pop(){:js}`
@@ -145,6 +145,7 @@ block-beta
   A --> a
 class a,b,b1 Text
 class b2 Line
+class A Red
 ```
 - **描述**：删除数组开头元素，并返回该元素
 - **语法**：`shift(){:js}`
@@ -175,7 +176,7 @@ class b2 Line
 <Table.Root variant="surface">
   <Table.Header>
     <Table.Row>
-      <Table.ColumnHeaderCell></Table.ColumnHeaderCell>
+      <Table.ColumnHeaderCell><></></Table.ColumnHeaderCell>
       <Table.ColumnHeaderCell align='center'>for loop</Table.ColumnHeaderCell>
       <Table.ColumnHeaderCell align='center'>for of loop</Table.ColumnHeaderCell>
       <Table.ColumnHeaderCell align='center'>forEach</Table.ColumnHeaderCell>
@@ -205,9 +206,9 @@ class b2 Line
     </Table.Row>
 
     <Table.Row>
-      <Table.Cell>await</Table.Cell>
+      <Table.Cell>skip</Table.Cell>
       <Table.Cell align='center'>✅</Table.Cell>
-      <Table.Cell align='center'>✅</Table.Cell>
+      <Table.Cell align='center'>❌</Table.Cell>
       <Table.Cell align='center'>❌</Table.Cell>
     </Table.Row>
 
@@ -231,16 +232,20 @@ for (let i = 0; i < arr.length; i++) {
 - **描述**：遍历数组
 ```js
 let arr = [1, 2, 3]
-for (let v of arr) {
-  console.log(v)
+for (let val of arr) {
+  console.log(val)
 }
 ```
 ### forEach()
 - **描述**：遍历数组
 - **语法**：`forEach(fn(v, i, a), thisArg?){:js}`
 ```js
-[1, 2, 3].forEach(x => {console.log(x)}) // 1, 2, 3
+let arr = [1, 2, 3]
+arr.forEach((x) => {
+  console.log(x)
+})
 ```
+## Transforming an Array
 ### map()
 ```mermaid
 block-beta
@@ -328,6 +333,7 @@ block-beta
   end
 b1 --> b2
 class b1,b2 Line
+class z Red
 ```
 - **描述**：原地展平数组，并返回新数组
 - **语法**：`flat(depth?){:js}`
@@ -336,6 +342,24 @@ class b1,b2 Line
 [1, [2, [3]]].flat(2) // [1, 2, 3]
 ```
 ### flatMap()
+```mermaid
+block-beta
+  columns 6
+  block:b1:1
+   a("1") b("2")
+  end
+  space
+  block:b2:1
+   c("[1, 1]") d("[2, 2]")
+  end
+  space
+  block:b3:2
+   e("1") f("1") g("2") h("2")
+  end
+b1 --> b2
+b2 --> b3
+class b1,b2,b3 Line
+```
 - **描述**：映射数组元素，然后展平一层
 - **语法**：`flatMap(fn(v, i, a), thisArg?){:js}`
 ```js
@@ -481,9 +505,21 @@ class B,C,D Red
 // 自动展平一层
 [1, 2].concat([3], [4]) // [1, 2, 3, 4]
 ```
+## Checking an Array
 ### isArray()
 - **描述**：判断是否是数组
 - **语法**：`Array.isArray(value){:js}`
 ```js
 Array.isArray([]) // true
+```
+### prototype
+- **描述**：判断是否是数组
+```js
+[] instanceof Array // true
+[].constructor === Array // true
+```
+### toString
+- **描述**：判断是否是数组
+```js
+Object.prototype.toString.call([]).slice(8,-1) === 'Array' // true
 ```
