@@ -1,7 +1,6 @@
 # Object
 ## Static Methods
 ### create
-![create](public/img/coding/js/object/create.png)
 1. 创建一个空实例
 2. 空实例原型 *->* `proto`
 ```js
@@ -76,7 +75,6 @@ Object.entries = entries
 ```
 ## Others
 ### instanceof
-![instanceof](public/img/coding/js/object/instanceof.png)
 1. 遍历 `a` 的原型链
 2. 检查 `b` 的原型是否在其中
 ```js {4}
@@ -90,7 +88,6 @@ function Instanceof(a, b) {
 }
 ```
 ### new
-![new](public/img/coding/js/object/new.png)
 1. 创建一个空实例
 2. 调用构造函数（`this` *->* 空实例）
 3. 空实例原型 *->* 构造函数原型
@@ -103,7 +100,6 @@ function New(fn, ...args) {
 }
 ```
 ### extends
-![extends](public/img/coding/js/object/extends.png)
 1. 子类中调用父类（`this` *->* 子类 `this`）
 2. 子类原型 *->* 父类原型
 ```js {11,14}
