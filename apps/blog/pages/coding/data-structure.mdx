@@ -1,9 +1,22 @@
-import { Table } from '@radix-ui/themes';
-import { Picture } from '@/components'
+import { Table } from '@radix-ui/themes'
 
 # Data Structure
 ## Stack
-<Picture src="/img/coding/data-structure/stack.png" size={300} />
+```mermaid
+block-beta
+  columns 1
+  block:b1
+    space:3 a("pop") b("push")
+  end
+  block:b2
+    A("A") B("B") C("C") D("D") E(" ")
+  end
+  D --> a
+  b --> E
+class a,b,b1 Text
+class E Dash
+class b2 Line
+```
 <Table.Root variant='surface' mt='20px'>
   <Table.Header>
     <Table.Row>
@@ -109,7 +122,21 @@ class LinkedStack {
 }
 ```
 ## Queue
-<Picture src="/img/coding/data-structure/queue.png" size={300} />
+```mermaid
+block-beta
+  columns 1
+  block:b1
+    a("dequeue") space:3 b("enqueue")
+  end
+  block:b2
+    A("A") B("B") C("C") D("D") E(" ")
+  end
+  A --> a
+  b --> E
+class a,b,b1 Text
+class E Dash
+class b2 Line
+```
 <Table.Root variant='surface' mt='20px'>
   <Table.Header>
     <Table.Row>
@@ -215,7 +242,23 @@ class LinkedQueue {
 }
 ```
 ## LinkedList
-<Picture src="/img/coding/data-structure/linked-list.png" />
+```mermaid
+block-beta
+  columns 1
+  block:b1
+  a("head") space:5 b("tail") space:2
+  end
+  block:b2
+   A("A") space B("B") space C("C") space D("D") space E("null")
+  end
+A --> B
+B --> C
+C --> D
+D --> E
+a --> A
+b --> D
+class a,b,E,b1,b2 Text
+```
 <Table.Root variant='surface' mt='20px'>
   <Table.Header>
     <Table.Row>

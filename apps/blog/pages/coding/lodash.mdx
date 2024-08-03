@@ -53,6 +53,10 @@ function memoize(fn) {
 }
 ```
 ## Curry
+```mermaid
+flowchart LR
+a("f(x, y)") --> c("\`f(*1*, y)\`")
+```
 ```js
 function curry(fn) {
     return function curried(...args) {
@@ -67,7 +71,24 @@ function curry(fn) {
 }
 ```
 ## Clone Shallow
-<Picture src="/img/coding/lodash/clone-shallow.png" size={350} />
+```mermaid
+block-beta
+  columns 2
+
+  block:group1
+    columns 3
+    a("'hi'") space:2
+    b("obj") space c("{ a: 1 }")
+  end
+  b --> c
+
+  block:group2
+    columns 3
+    d("'hi'") space:2
+    e("obj")
+  end
+  e --> c
+```
 1. 基础类型：拷贝值
 2. 对象类型：拷贝地址
 ```js {4}
@@ -80,7 +101,24 @@ function cloneShallow(obj) {
 }
 ```
 ## Clone Deep
-<Picture src="/img/coding/lodash/clone-deep.png" />
+```mermaid
+block-beta
+  columns 2
+
+  block:group1
+    columns 3
+    a("'hi'") space:2
+    b("obj") space c("{ a: 1 }")
+  end
+  b --> c
+
+  block:group2
+    columns 3
+    d("'hi'") space:2
+    e("obj") space f("{ a: 1 }")
+  end
+  e --> f
+```
 1. 基础类型：拷贝值
 2. 对象类型：拷贝值
 ```js {5,7}

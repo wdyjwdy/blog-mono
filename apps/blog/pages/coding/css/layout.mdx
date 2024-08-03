@@ -3,7 +3,30 @@ import { Picture } from '../../../components'
 
 # Layout
 ## 三列布局
-<Picture src="/img/coding/css/layout/3col.png" size={400} />
+```mermaid
+block-beta
+  columns 4
+  block:b1:1
+   columns 1
+   space
+   left
+   space
+  end
+  block:b2:2
+   columns 1
+   space
+   center
+   space
+  end
+  block:b3:1
+   columns 1
+   space
+   right
+   space
+  end
+class left,center,right Text
+class b1,b3 Red
+```
 <Tabs items={['Flex', 'Grid', 'Float + Calc', 'Position']}>
     <Tab>
     ```sass {6}
@@ -57,7 +80,16 @@ import { Picture } from '../../../components'
     </Tab>
 </Tabs>
 ## 水平垂直居中
-<Picture src="/img/coding/css/layout/center.png" size={400} />
+```mermaid
+block-beta
+  block
+   columns 3
+   space:4
+   A("item")
+   space:4
+  end
+class A Red
+```
 <Tabs items={['Flex', 'Grid', 'Position + Translate']}>
     <Tab>
     ```sass {3-4}
@@ -87,7 +119,15 @@ import { Picture } from '../../../components'
     </Tab>
 </Tabs>
 ## 导航栏
-<Picture src="/img/coding/css/layout/navbar.png" size={400} />
+```mermaid
+block-beta
+  block:b1:3
+   columns 6
+   A("A") B("B") C("C") space D("D") E("E")
+  end
+class b1 Line
+class D,E Red
+```
 <Tabs items={['Flex + Margin', 'Float']}>
     <Tab>
     ```sass
