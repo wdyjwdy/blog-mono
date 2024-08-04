@@ -1,13 +1,12 @@
 # Object
 ## Creating an Object
-### with literals
+### literals
 - **描述**：创建一个新对象，其原型为 `Object.prototype`
 ```js
-let empty = {} // 空对象
-let point = { x: 0, y: 0 } // 变量名作为键
-let fruit = { 'name': 'apple', 'price': 10 } // 字符串作为键
+let empty = {}
+let point = { x: 0, 'y': 0 }
 ```
-### new operator
+### new
 - **描述**：创建一个新对象，其原型为 `fn.prototype`
 - **语法**：`new fn(){:js}`
 ```js
@@ -23,45 +22,28 @@ Object.create(Object.prototype) // 等价于 {}
 Object.create(null) // 无原型对象
 ```
 ## Accessing an Object
-### dot operator
-- **描述**：访问对象属性
-- **语法**：`obj.prop{:js}`
-```js
-point.x
-```
-### square bracket operator
-- **描述**：访问对象属性
-- **语法**：`obj.['prop']{:js}`
-```js
-point['x']
-```
-### query prototype chain
+### subscript
 - **描述**：访问对象属性
 ```js
-let obj = Object.create({ a: 1 })
+let obj = { a: 1 }
 obj.a // 1
+obj['a'] // 1
 ```
 ## Modifying an Object
-### with dot
+### subscript
 - **描述**：修改对象属性
-- **语法**：`obj.prop{:js}`
 ```js
-point.x = 1
+let obj = { a: 1 }
+obj.a = 2
+obj['a'] = 2
 ```
-### square bracket operator
-- **描述**：修改对象属性
-- **语法**：`obj.['prop']{:js}`
-```js
-point['x'] = 1
-```
-### delete operator
+### delete
 - **描述**：删除对象的[自有属性]()
-- **语法**：`delete obj.x{:js}`
 ```js
 let obj = { a: 1 }
 delete obj.a // true
 ```
-## Checking an Object
+## Checking Object Props
 ### hasOwn()
 - **描述**：检查对象的*自有属性*是否存在
 - **语法**：`Object.hasOwn(obj, prop){:js}`
@@ -71,9 +53,8 @@ obj.b = 2
 Object.hasOwn(obj, 'a') // false, 继承属性
 Object.hasOwn(obj, 'b') // true, 自有属性
 ```
-### in operator
+### in
 - **描述**：检查对象的*自有属性*和*继承属性*是否存在
-- **语法**：`'prop' in obj{:js}`
 ```js
 let obj = Object.create({ a: 1 })
 obj.b = 2
@@ -122,14 +103,14 @@ let target = { a: 1, ...source } // { a: 0, b: 0 }
 let target = { ...source, a: 1 } // { a: 1, b: 0 }
 ```
 ## Prototype Methods
-### getPrototypeOf
+### getPrototypeOf()
 - **描述**：返回对象的原型
 - **语法**：`Object.getPrototypeOf(obj){:js}`
 ```js
 let obj = Object.create({ a: 1 })
 Object.getPrototypeOf(obj) // { a: 1 }
 ```
-### setPrototypeOf
+### setPrototypeOf()
 - **描述**：修改对象的原型
 - **语法**：`Object.setPrototypeOf(obj, proto){:js}`
 ```js
