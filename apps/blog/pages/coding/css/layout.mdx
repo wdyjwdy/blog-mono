@@ -82,13 +82,14 @@ class b1,b3 Red
 ## 水平垂直居中
 ```mermaid
 block-beta
-  block
+  block:b1
    columns 3
    space:4
    A("item")
    space:4
   end
 class A Red
+class b1 Line
 ```
 <Tabs items={['Flex', 'Grid', 'Position + Translate']}>
     <Tab>
@@ -129,21 +130,21 @@ class b1 Line
 class D,E Red
 ```
 <Tabs items={['Flex + Margin', 'Float']}>
-    <Tab>
-    ```sass
-    .container
-        display: flex
-    .container > :nth-child(4){
-        margin-left: auto // margin 会填充剩余空间
+  <Tab>
+  ```sass
+  .container
+    display: flex
+  .container > :nth-child(4){
+    margin-left: auto // margin 会填充剩余空间
 }
-    ```
-    </Tab>
-    <Tab>
-    ```sass
-    .A .B .C
-        float: left
-    .D .E
-        float: right
-    ```
-    </Tab>
+  ```
+  </Tab>
+  <Tab>
+  ```sass
+  .A .B .C
+    float: left
+  .D .E
+    float: right
+  ```
+  </Tab>
 </Tabs>

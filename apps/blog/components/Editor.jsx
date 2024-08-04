@@ -29,14 +29,14 @@ function Editor({ code, lang, setCode }) {
   )
 }
 
-function Highlight({ code, lang }) { 
+function Highlight({ code, lang }) {
   const ref = useRef()
 
   useEffect(() => {
     async function setHtml(code) {
       ref.current.innerHTML = await codeToHtml(code, {
         lang: lang,
-        themes: { 
+        themes: {
           light: 'one-light',
           dark: 'github-dark',
         }

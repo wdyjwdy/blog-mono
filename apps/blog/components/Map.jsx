@@ -40,7 +40,7 @@ function ToolTip({ pos, text }) {
    )
 }
 
-function Legend({ items, x=10, y=10 }) {
+function Legend({ items, x = 10, y = 10 }) {
    const height = 40 * items.length
 
    function Item({ text, color, x, y, index }) {

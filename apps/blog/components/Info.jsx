@@ -1,8 +1,8 @@
-import { Table, Text, Button } from '@radix-ui/themes';
+import { Table, Text } from '@radix-ui/themes';
 import Link from 'next/link'
 import { Link2Icon, Pencil2Icon } from '@radix-ui/react-icons'
 import katex from 'katex'
-import { useRef, useEffect } from 'react' 
+import { useRef, useEffect } from 'react'
 
 export default function Info({ time, ecma, v8, test }) {
   return (
@@ -38,10 +38,10 @@ export default function Info({ time, ecma, v8, test }) {
 
 function MathLine({ code }) {
   const ref = useRef();
-  
+
   useEffect(() => {
     try { katex.render(code, ref.current) }
-    catch {}
+    catch { }
   }, []);
 
   return <Text ref={ref} />

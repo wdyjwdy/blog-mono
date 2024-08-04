@@ -20,7 +20,7 @@
 
 .editor textarea:focus {
   outline: none;
-} 
+}
 
 .editor pre {
   width: 100%;
@@ -43,6 +43,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
+
   .editor pre,
   .editor pre code span {
     color: var(--shiki-dark) !important;

@@ -7,12 +7,12 @@ import Map from './Map'
 import Picture from './Picture'
 
 export {
-    CreateTable,
-    CreateTableFilter,
-    Playground,
-    Editor,
-    Preview,
-    Info,
-    Map,
-    Picture,
+  CreateTable,
+  CreateTableFilter,
+  Playground,
+  Editor,
+  Preview,
+  Info,
+  Map,
+  Picture,
 }

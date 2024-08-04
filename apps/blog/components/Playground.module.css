@@ -11,7 +11,7 @@
   padding: 10px 10px 0px 10px;
 }
 
-.toolbar > :nth-child(5){
+.toolbar> :nth-child(5) {
   margin-left: auto;
 }
 
@@ -22,19 +22,20 @@
   gap: 10px;
 }
 
-.board > div:first-child {
+.board>div:first-child {
   flex: 2;
 }
 
-.board > div:last-child {
+.board>div:last-child {
   flex: 1;
 }
 
-@media (width <= 600px) {
-  .toolbar > :nth-child(5){
+@media (width <=600px) {
+  .toolbar> :nth-child(5) {
     margin-left: 0px;
   }
-	.board {
+
+  .board {
     flex-direction: column-reverse;
   }
 }

@@ -1,56 +1,56 @@
-import { Table, Badge, Strong, Flex, Checkbox, Button, Separator, Select } from '@radix-ui/themes';
+import { Table, Badge, Flex, Checkbox, Button, Separator, Select } from '@radix-ui/themes';
 import { Link2Icon } from '@radix-ui/react-icons'
 import Link from 'next/link'
 import { useState } from 'react'
 
 function CreateTable({ data, path, singlePage }) {
-    return (
-        <>
-            <Table.Root variant="surface">
-              <Table.Header>
-                <Table.Row>
-                  <Table.ColumnHeaderCell>Title</Table.ColumnHeaderCell>
-                  <Table.ColumnHeaderCell>Questions</Table.ColumnHeaderCell>
-                </Table.Row>
-              </Table.Header>
+  return (
+    <>
+      <Table.Root variant="surface">
+        <Table.Header>
+          <Table.Row>
+            <Table.ColumnHeaderCell>Title</Table.ColumnHeaderCell>
+            <Table.ColumnHeaderCell>Questions</Table.ColumnHeaderCell>
+          </Table.Row>
+        </Table.Header>
 
-              <Table.Body>
-                {data.map(({ key, values }) => {
-                    return (
-                      <>
-                        <Table.Row>
-                          <Table.RowHeaderCell width="80px">{key}</Table.RowHeaderCell>
-                          <Table.Cell>
-                            <Flex gap="1" align="center" wrap="wrap">
-                              {
-                                values.flatMap((value, index) => {
-                                  let arr = value.map(x => {
-                                    let href = singlePage
-                                      ? `/${path}#${x.toLowerCase().replaceAll(' ', '-')}`
-                                      : `/${path}/${key.toLowerCase()}#${x.toLowerCase().replaceAll(' ', '-')}`
-                                    return (
-                                      <Link href={href}>
-                                        <Button variant="soft" size="1">
-                                          {x}
-                                        </Button>
-                                      </Link>
-                                    )
-                                  })
-                                  arr.push(<Separator orientation="vertical" size="1" style={{ margin: "0 6px" }} />)
-                                  if (index === values.length - 1) arr.pop()
-                                  return arr
-                                })
-                              }
-                            </Flex>
-                          </Table.Cell>
-                        </Table.Row>
-                      </>
-                    )
-                })}
-              </Table.Body>
-            </Table.Root>
-        </>
-    )
+        <Table.Body>
+          {data.map(({ key, values }) => {
+            return (
+              <>
+                <Table.Row>
+                  <Table.RowHeaderCell width="80px">{key}</Table.RowHeaderCell>
+                  <Table.Cell>
+                    <Flex gap="1" align="center" wrap="wrap">
+                      {
+                        values.flatMap((value, index) => {
+                          let arr = value.map(x => {
+                            let href = singlePage
+                              ? `/${path}#${x.toLowerCase().replaceAll(' ', '-')}`
+                              : `/${path}/${key.toLowerCase()}#${x.toLowerCase().replaceAll(' ', '-')}`
+                            return (
+                              <Link href={href}>
+                                <Button variant="soft" size="1">
+                                  {x}
+                                </Button>
+                              </Link>
+                            )
+                          })
+                          arr.push(<Separator orientation="vertical" size="1" style={{ margin: "0 6px" }} />)
+                          if (index === values.length - 1) arr.pop()
+                          return arr
+                        })
+                      }
+                    </Flex>
+                  </Table.Cell>
+                </Table.Row>
+              </>
+            )
+          })}
+        </Table.Body>
+      </Table.Root>
+    </>
+  )
 }
 
 function CreateTableFilter({ data }) {

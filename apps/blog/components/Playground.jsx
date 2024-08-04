@@ -10,8 +10,8 @@ let keyIndex = 0
 
 export default function Playground() {
   const [lang, setLang] = useState('javascript')
-  const [code, setCode ]= useState(getPlaceholder(lang))
-  const [view, setView ]= useState([])
+  const [code, setCode] = useState(getPlaceholder(lang))
+  const [view, setView] = useState([])
 
   useEffect(() => {
     let hash = window.location.hash
@@ -36,7 +36,7 @@ export default function Playground() {
       try {
         let result = eval(code.replaceAll('console.log', 'addTextLine'))
         if (result) addViewLine(<TextLine key={keyIndex++} message={result} />)
-      } catch(e) {
+      } catch (e) {
         addViewLine(<TextLine key={keyIndex++} message={e} type='error' />)
       }
     } else if (lang === 'latex') {
@@ -66,28 +66,28 @@ export default function Playground() {
         <Link href="/"><Avatar size='2' src='/site/logo.png' fallback="A" /></Link>
         <Text size='5'><Strong>Playground</Strong></Text>
         <Select.Root value={lang} onValueChange={handleSelectChange}>
-         <Select.Trigger variant="surface" color='gray' />
-         <Select.Content>
-           <Select.Group>
-             <Select.Item value="javascript">JavaScript</Select.Item>
-             <Select.Item value="latex">LaTex</Select.Item>
-           </Select.Group>
-         </Select.Content>
+          <Select.Trigger variant="surface" color='gray' />
+          <Select.Content>
+            <Select.Group>
+              <Select.Item value="javascript">JavaScript</Select.Item>
+              <Select.Item value="latex">LaTex</Select.Item>
+            </Select.Group>
+          </Select.Content>
         </Select.Root>
         <DropdownMenu.Root>
-         <DropdownMenu.Trigger>
-           <Button variant="outline" color='gray'>Snippets<DropdownMenu.TriggerIcon /></Button>
-         </DropdownMenu.Trigger>
-         <DropdownMenu.Content>
-           {getSnippet(lang).map(x => <DropdownMenu.Item key={x} onClick={handleSnippets}>{x}</DropdownMenu.Item>)}
-         </DropdownMenu.Content>
-       </DropdownMenu.Root>
-       <Button color="green" variant="soft" onClick={handleRun}>
-         <PlayIcon /> Run
-       </Button>
-       <Button color="gray" variant="soft" onClick={handleClear}>
-         <EraserIcon /> Clear
-       </Button>
+          <DropdownMenu.Trigger>
+            <Button variant="outline" color='gray'>Snippets<DropdownMenu.TriggerIcon /></Button>
+          </DropdownMenu.Trigger>
+          <DropdownMenu.Content>
+            {getSnippet(lang).map(x => <DropdownMenu.Item key={x} onClick={handleSnippets}>{x}</DropdownMenu.Item>)}
+          </DropdownMenu.Content>
+        </DropdownMenu.Root>
+        <Button color="green" variant="soft" onClick={handleRun}>
+          <PlayIcon /> Run
+        </Button>
+        <Button color="gray" variant="soft" onClick={handleClear}>
+          <EraserIcon /> Clear
+        </Button>
       </div>
       <div className={styles.board}>
         <Card>
@@ -103,10 +103,10 @@ export default function Playground() {
 
 function MathLine({ code }) {
   const ref = useRef();
-  
+
   useEffect(() => {
     try { katex.render(code, ref.current) }
-    catch(e) { 
+    catch (e) {
       ref.current.innerText = e.message
       ref.current.setAttribute('data-accent-color', 'crimson')
     }
@@ -115,7 +115,7 @@ function MathLine({ code }) {
   return <Text as='p' ref={ref} />
 }
 
-function TextLine({ message, type='info' }) {
+function TextLine({ message, type = 'info' }) {
   const colorMap = {
     'info': 'gray',
     'error': 'crimson',

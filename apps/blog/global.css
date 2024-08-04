@@ -8,36 +8,43 @@ em {
   color: #ad1f48;
   font-style: normal;
 }
+
 h2 {
   border-bottom-width: 0px !important;
 }
 
 /* Mermaid Color */
-.default > rect {
-  fill:#d5d5d543 !important;
-  stroke:#d5d5d59a !important;
+.default>rect {
+  fill: #d5d5d543 !important;
+  stroke: #d5d5d59a !important;
 }
-.Red > rect {
-  fill:#9417513d !important;
-  stroke:#970e52c6 !important;
+
+.Red>rect {
+  fill: #9417513d !important;
+  stroke: #970e52c6 !important;
 }
-.Text > rect {
-  fill:#0000 !important;
-  stroke:#0000 !important;
+
+.Text>rect {
+  fill: #0000 !important;
+  stroke: #0000 !important;
 }
-.Dash > rect {
-  fill:#0000 !important;
+
+.Dash>rect {
+  fill: #0000 !important;
   stroke-dasharray: 5 5;
 }
-.Line > rect {
-  fill:#0000 !important;
+
+.Line>rect {
+  fill: #0000 !important;
 }
-.Yellow > rect {
-  fill:#fff4e6 !important;
-  stroke:#ffc600 !important;
+
+.Yellow>rect {
+  fill: #fff4e6 !important;
+  stroke: #ffc600 !important;
 }
+
 @media (prefers-color-scheme: dark) {
-  .Yellow > rect {
-    fill:#33302d !important;
+  .Yellow>rect {
+    fill: #33302d !important;
   }
 }

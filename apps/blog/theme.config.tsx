@@ -3,13 +3,13 @@ import { DocsThemeConfig } from 'nextra-theme-docs'
 const config: DocsThemeConfig = {
   head: (
     <>
-      <link rel='icon' href='/site/logo.png'/>
+      <link rel='icon' href='/site/logo.png' />
     </>
   ),
   logo: (
     <>
-      <img src='/site/logo.png' width={40} height={40} alt='logo'/>
-      <span style={{ fontFamily: "cursive", fontSize: "26px", fontWeight: "bold", paddingLeft: '10px'}}>wdyjwdy</span>
+      <img src='/site/logo.png' width={40} height={40} alt='logo' />
+      <span style={{ fontFamily: "cursive", fontSize: "26px", fontWeight: "bold", paddingLeft: '10px' }}>wdyjwdy</span>
     </>
   ),
   useNextSeoProps() {
