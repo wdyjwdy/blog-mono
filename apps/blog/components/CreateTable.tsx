@@ -25,13 +25,14 @@ function CreateTable({ data, path, singlePage }) {
                       {
                         values.flatMap((value, index) => {
                           let arr = value.map(x => {
+                            let [alias, name] = Array.isArray(x) ? x : [x, x]
                             let href = singlePage
-                              ? `/${path}#${x.toLowerCase().replaceAll(' ', '-')}`
-                              : `/${path}/${key.toLowerCase()}#${x.toLowerCase().replaceAll(' ', '-')}`
+                              ? `/${path}#${name.toLowerCase().replaceAll(' ', '-')}`
+                              : `/${path}/${key.toLowerCase()}#${name.toLowerCase().replaceAll(' ', '-')}`
                             return (
                               <Link href={href}>
                                 <Button variant="soft" size="1">
-                                  {x}
+                                  {alias}
                                 </Button>
                               </Link>
                             )

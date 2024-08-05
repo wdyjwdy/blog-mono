@@ -2,6 +2,5 @@
   "object": "Object",
   "array": "Array",
   "function": "Function",
-  "string": "String",
-  "proxy-reflect": "Proxy & Reflect"
+  "string": "String"
 }

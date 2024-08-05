@@ -3,52 +3,46 @@ import { CreateTable } from '../../components'
 export function DataJS() {
   return [
     {
-      key: "Object",
+      key: 'Object',
       values: [
-        ['Creating an Object', 'Accessing an Object', 'Modifying an Object', 'Checking Object Props', 'Enumerating an Object', 'Copying an Object', 'Prototype Methods'],
+        [['Creating', 'Creating an Object'], ['Accessing', 'Accessing an Object'], ['Modifying', 'Modifying an Object'], ['Checking', 'Checking Object Props'], ['Enumerating', 'Enumerating an Object'], ['Copying', 'Copying an Object'], 'Prototype Methods'],
       ]
     },
     {
-      key: "Array",
+      key: 'Array',
       values: [
-        ["Creating an Array", "Accessing an Array", 'Modifying an Array', 'Iterating an Array', 'Transforming an Array', 'Searching an Array', 'Sorting an Array', 'Enumerating an Array', 'Copying an Array', 'Checking an Array']
+        [['Creating', 'Creating an Array'], ['Accessing', 'Accessing an Array'], ['Modifying', 'Modifying an Array'], ['Iterating', 'Iterating an Array'], ['Transforming', 'Transforming an Array'], ['Searching', 'Searching an Array'], ['Sorting', 'Sorting an Array'], ['Enumerating', 'Enumerating an Array'], ['Copying', 'Copying an Array'], ['Checking', 'Checking an Array']]
       ]
     },
     {
-      key: "Function",
+      key: 'Function',
       values: [
-        ["call", "apply", "bind"],
+        ['call', 'apply', 'bind'],
       ]
     },
     {
-      key: "String",
+      key: 'String',
       values: [
-        ["at", "charAt", "indexOf", "lastIndexOf"],
-        ["startsWith", "endsWith", "includes"],
-        ["slice", "substring"],
-        ["trim", "trimStart", "trimEnd", "padStart", "padEnd"],
-        ["toUpperCase", "toLowerCase"],
-        ["replace", "replaceAll", "match", "matchAll", "search"],
-        ["split", "repeat", "concat"]
+        ['at', 'charAt', 'indexOf', 'lastIndexOf'],
+        ['startsWith', 'endsWith', 'includes'],
+        ['slice', 'substring'],
+        ['trim', 'trimStart', 'trimEnd', 'padStart', 'padEnd'],
+        ['toUpperCase', 'toLowerCase'],
+        ['replace', 'replaceAll', 'match', 'matchAll', 'search'],
+        ['split', 'repeat', 'concat']
       ]
     },
     {
-      key: "Promise",
+      key: 'Promise',
       values: [
-        ["Promise", "withResolvers"],
-        ["all", "any", "race", "allSettled"],
-        ["resolve", "reject"],
-        ["then", "catch", "finally"]
+        ['Promise', 'withResolvers'],
+        ['all', 'any', 'race', 'allSettled'],
+        ['resolve', 'reject'],
+        ['then', 'catch', 'finally']
       ]
     },
-    {
-      key: "JSON",
-      values: [
-        ["stringify", "parse"],
-      ]
-    }
   ]
 }
 
 ## JS
-<CreateTable data={DataJS()} path="docs/js" />
+<CreateTable data={DataJS()} path='docs/js' />
