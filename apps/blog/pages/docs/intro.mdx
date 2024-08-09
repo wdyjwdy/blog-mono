@@ -44,5 +44,22 @@ export function DataJS() {
   ]
 }
 
+export const dataConfig = [
+  {
+    key: 'JSON',
+    values: [
+      [["Basic Types", "basic-types"], ["Collection Types", "collection-types"]]
+    ],
+  },
+  {
+    key: 'YAML',
+    values: [
+      [["Basic Types", "basic-types"], ["Collection Types", "collection-types"]]
+    ],
+  }
+]
+
 ## JS
 <CreateTable data={DataJS()} path='docs/js' />
+## Config Files
+<CreateTable data={dataConfig} path='docs/config-files' singlePage={true} />

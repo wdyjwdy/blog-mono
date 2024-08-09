@@ -1,0 +1,51 @@
+# Config Files
+## JSON
+### Basic Types
+```json
+{
+  "Numbers": [100, 3.14, 1e-3],
+  "Strings": ["hello", "are you ok"],
+  "Booleans": [true, false],
+  "Nulls": [null]
+}
+```
+### Collection Types
+```json
+{
+  "Array (single-line)": [1, 2, 3],
+  "Array (multi-lines)": [
+    1,
+    2,
+    3
+  ],
+  
+  "Object (single-line)": { "id": 1, "name": "apple" },
+  "Object (multi-lines)": {
+    "id": 1,
+    "name": "apple"
+  }
+}
+```
+## YAML
+[Doc](https://yaml.org/spec/1.2.2/)
+### Basic Types
+```yaml
+Numbers: [100, 3.14, 1e-3]
+Strings: [hello, are you ok]
+Booleans: [true, True, TRUE, false, False, FALSE]
+Nulls: [null, Null, NULL, ~]
+```
+### Collection Types
+```yaml
+Array (single-line): [1, 2, 3]
+Array (multi-lines):
+  - 1
+  - 2
+  - 3
+ 
+Object (single-line): { id: 1, name: apple }
+Object (multi-lines): {
+  id: 1,
+  name: apple,
+}
+```
