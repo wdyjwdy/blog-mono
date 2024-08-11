@@ -202,6 +202,20 @@ export const jsData = [
     },
 ]
 
+export const tsData = [
+    {
+        key: 'Utility-Types',
+        values: [
+            ['Awaited'],
+            ['Partial', 'Required', 'Readonly'],
+            ['Record'],
+            ['Pick', 'Omit'],
+            ['Exclude', 'Extract'],
+            ['Parameters', 'ReturnType']
+        ]
+    }
+]
+
 export const cssData = [
     {
         key: "Layout",
@@ -254,6 +268,8 @@ export const dsData = [
 <CreateTableFilter data={algoData} />
 ## JS
 <CreateTable data={jsData} path="coding/js" />
+## TS
+<CreateTable data={tsData} path="coding/ts" />
 ## CSS
 <CreateTable data={cssData} path="coding/css" />
 ## Lodash

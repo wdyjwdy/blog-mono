@@ -44,6 +44,15 @@ export function DataJS() {
   ]
 }
 
+export const tsData = [
+  {
+    key: 'TS',
+    values: [
+      ['Types', 'Type Inference']
+    ]
+  }
+]
+
 export const dataConfig = [
   {
     key: 'JSON',
@@ -61,5 +70,7 @@ export const dataConfig = [
 
 ## JS
 <CreateTable data={DataJS()} path='docs/js' />
+## TS
+<CreateTable data={tsData} path='docs/ts' singlePage={true} />
 ## Config Files
 <CreateTable data={dataConfig} path='docs/config-files' singlePage={true} />

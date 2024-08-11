@@ -58,7 +58,18 @@ function fn(x: unknown) {
   x.a() // ❌
 }
 ```
-### Union Types
+### Collection Types
+1. Union
+```ts
+type A = 1 | 2 | 3
+type B = number | string
+```
+2. Intersection
+```ts
+type A = number | boolean
+type B = number | string
+type C = A & B // number
+```
 ## Type Inference
 ### Variable Assignment
 ```ts
