@@ -4,6 +4,7 @@
     "type": "separator"
   },
   "js": "JavaScript",
+  "ts": "TypeScript",
   "css": "CSS",
   "algo": "Algorithms"
 }
