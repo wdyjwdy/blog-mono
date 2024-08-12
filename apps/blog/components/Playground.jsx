@@ -15,7 +15,7 @@ export default function Playground() {
 
   useEffect(() => {
     let hash = window.location.hash
-    if (hash) setCode(getCodeFromHash(hash))
+    if (hash) setCode(Buffer.from(hash.slice(1), 'base64').toString("utf8"))
   }, [])
 
   function addViewLine(line) {
@@ -137,7 +137,7 @@ function getSnippet(lang, name) {
     'javascript': {
       "For Loop": "\nfor (let i = 0; i < 3; i++) {\n    console.log(i)\n}",
       "Log": "\nconsole.log(i)\n",
-      "Class": "\nclass name {\n    constructor() {}\n}",
+      "Class": "\nclass name {\n    constructor() {\n        \n    }\n}",
       "Function": "\nfunction name() {\n    \n}"
     },
     'latex': {
@@ -155,12 +155,4 @@ function getPlaceholder(lang) {
     'latex': 'e^{i \\pi} + 1 = 0',
   }
   return placeholders[lang]
-}
-
-function getCodeFromHash(hash) {
-  const codeMap = {
-    'js-flat': 'function flat(depth) {\n    // write your code\n\n}\n\nArray.prototype.flat = flat\n\n//Test\ntest([1,2,[[3]]].flat(1), [1,2,[3]])\ntest([1,,2,[[3]]].flat(Infinity), [1,2,3])\n',
-    'js-map': 'Array.prototype.map = function(fn, thisArg) {\n    // write your code\n\n}\n\n// Test\ntest([1,2,3].map((x,i,v) => x+i+v[0]), [2,4,6])\ntest([1,,3].map(x => x), [1,,3])\n'
-  }
-  return codeMap[hash.slice(1)]
 }

@@ -67,7 +67,7 @@ function CreateTableFilter({ data }) {
           <Table.ColumnHeaderCell justify="center" width="52px">难度</Table.ColumnHeaderCell>
           <Table.ColumnHeaderCell justify="center">
             <Select.Root value={tag} onValueChange={setTag}>
-              <Select.Trigger variant="ghost" style={{ color: 'black', fontWeight: 'bold' }} />
+              <Select.Trigger variant="ghost" color='gray' style={{ fontWeight: 'bold' }} />
               <Select.Content>
                 <Select.Group>
                   {data.map(x => x.key).map(tag => {
