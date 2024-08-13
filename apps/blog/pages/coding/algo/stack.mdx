@@ -63,3 +63,44 @@ function nextGreaterElements(nums: number[]): number[] {
     return res
 };
 ```
+## 基本计算器 II
+```js
+function calculate(s: string): number {
+    let tokens = s
+        .replace(/ /g, '') // 去掉空格
+        .split(/([^\d])/g) // 分离数字
+        .map(x => /\d/.test(x) ? Number(x) : x) // 转为整数
+    let nums = []
+    let op = '+'
+    for (let t of tokens) {
+        if (typeof t === 'number') {
+            if (op === '+') nums.push(t)
+            else if (op === '-') nums.push(-t)
+            else if (op === '*') nums.push(nums.pop() * t)
+            else if (op === '/') nums.push(~~(nums.pop() / t))
+        } else {
+            op = t
+        }
+    }
+    return nums.reduce((a, b) => a + b)
+};
+```
+## 逆波兰表达式求值
+```js
+function evalRPN(tokens: string[]): number {
+    let nums = []
+    for (let t of tokens) {
+        if (/\d/.test(t)) {
+            nums.push(Number(t))
+        } else {
+            let r = nums.pop()
+            let l = nums.pop()
+            if (t === '+') nums.push(l + r)
+            else if (t === '-') nums.push(l - r)
+            else if (t === '*') nums.push(l * r)
+            else if (t === '/') nums.push(~~(l / r))
+        }
+    }
+    return nums[0]
+};
+```
