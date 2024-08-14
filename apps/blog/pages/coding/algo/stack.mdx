@@ -64,28 +64,31 @@ function nextGreaterElements(nums: number[]): number[] {
 };
 ```
 ## 基本计算器 II
+1. 遇到符号，入栈
+2. 遇到数字，
+    - 符号为 `+-`，入栈
+    - 符号为 `*/`，计算后入栈
 ```js
 function calculate(s: string): number {
-    let tokens = s
-        .replace(/ /g, '') // 去掉空格
-        .split(/([^\d])/g) // 分离数字
-        .map(x => /\d/.test(x) ? Number(x) : x) // 转为整数
+    let tokens = s.replace(/ /g, '').split(/(\D)/g)
     let nums = []
     let op = '+'
     for (let t of tokens) {
-        if (typeof t === 'number') {
-            if (op === '+') nums.push(t)
-            else if (op === '-') nums.push(-t)
-            else if (op === '*') nums.push(nums.pop() * t)
-            else if (op === '/') nums.push(~~(nums.pop() / t))
-        } else {
+        if (/\D/.test(t)) {
             op = t
+        } else {
+            if (op === '+') nums.push(Number(t))
+            else if (op === '-') nums.push(-Number(t))
+            else if (op === '*') nums.push(Number(nums.pop()) * Number(t))
+            else if (op === '/') nums.push(~~(Number(nums.pop()) / Number(t)))
         }
     }
     return nums.reduce((a, b) => a + b)
 };
 ```
 ## 逆波兰表达式求值
+1. 遇到数字，入栈
+2. 遇到符号，计算后入栈
 ```js
 function evalRPN(tokens: string[]): number {
     let nums = []
