@@ -1,10 +1,33 @@
 # RegEx
+## Variable Name
+- 只包含字母、数字、下划线
+- 不能以数字开头
+```js
+/[a-zA-Z_][0-9a-zA-Z_]*/
+```
+## Balance
+- `100` 或 `100.22`
+```js
+/([0-9]+)(\.[0-9]{2})?/
+```
 ## URL
 - `shceme://hostname[:port][path][?query][#hash]`
 ```js
-RegExp(
-    '(http|https)' + // scheme
-    ':\/\/' +
-    '([0-9a-zA-Z-]+[\.])*([0-9a-zA-Z-]+)' + // hostname
-)
+/(http|https):\/\// // shceme
+/([0-9a-z-]+)(\.\2)*/ // hostname
+/(:[0-9]+)?/ // port
+/((\/\2)(\.\2)?)?/ // path
+/((\?\2=\2)(&\2=\2)+)?/ // query
+/(#\2)?/ // hash
+```
+## HTML Tag
+## Time
+- 12-hour time (0:00 to 12:59)
+```js
+/(1[0-2]|[0-9]):([0-5][0-9])/
+```
+
+- 24-hour time (0:00 to 23:59)
+```js
+/([0-1]?[0-9]|2[0-3]):([0-5][0-9])/
 ```
