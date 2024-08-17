@@ -53,19 +53,28 @@ export const tsData = [
   }
 ]
 
-export const dataConfig = [
+export const configData = [
   {
     key: 'JSON',
     values: [
-      [["Basic Types", "basic-types"], ["Collection Types", "collection-types"]]
+      ['Basic Types', 'Collection Types']
     ],
   },
   {
     key: 'YAML',
     values: [
-      [["Basic Types", "basic-types-1"], ["Collection Types", "collection-types-1"]]
+      ['Basic Types 1', 'Collection Types 1']
     ],
   }
+]
+
+export const regexData = [
+  {
+    key: 'Metachar',
+    values: [
+      ['字符', '量词', '位置', '子表达式', '选项']
+    ],
+  },
 ]
 
 ## JS
@@ -73,4 +82,6 @@ export const dataConfig = [
 ## TS
 <CreateTable data={tsData} path='docs/ts' singlePage={true} />
 ## Config Files
-<CreateTable data={dataConfig} path='docs/config-files' singlePage={true} />
+<CreateTable data={configData} path='docs/config-files' singlePage={true} />
+## Regex
+<CreateTable data={regexData} path='docs/regex' singlePage={true} />

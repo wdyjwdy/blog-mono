@@ -26,6 +26,9 @@ function CreateTable({ data, path, singlePage }) {
                         values.flatMap((value, index) => {
                           let arr = value.map(x => {
                             let [alias, name] = Array.isArray(x) ? x : [x, x]
+                            if (/ \d/.test(alias.slice(-2))) {
+                              alias = alias.slice(0, -2)
+                            }
                             let href = singlePage
                               ? `/${path}#${name.toLowerCase().replaceAll(' ', '-')}`
                               : `/${path}/${key.toLowerCase()}#${name.toLowerCase().replaceAll(' ', '-')}`
