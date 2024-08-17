@@ -12,11 +12,22 @@ function Editor({ code, lang, setCode }) {
   function handleKeyDown(e) {
     if (e.keyCode === 9) { // tab
       e.preventDefault()
-      let pos = ref.current.selectionStart
-      let newCode = code.slice(0, pos) + '    ' + code.slice(pos)
+      let start = ref.current.selectionStart
+      let end = ref.current.selectionEnd
+      while (start !== 0 && code[start - 1] !== '\n') start--
+      while (end !== code.length && code[end] !== '\n') end++
+      let lineCount = code.slice(start, end).match(/^/gm).length
+      let newCode =
+        code.slice(0, start) +
+        code.slice(start, end).replace(/^/gm, '    ') +
+        code.slice(end)
       setCode(newCode)
       setTimeout(() => {
-        ref.current.setSelectionRange(pos + 4, pos + 4)
+        if (lineCount === 1) {
+          ref.current.setSelectionRange(end + 4, end + 4)
+        } else {
+          ref.current.setSelectionRange(start, end + 4 * lineCount)
+        }
       }, 0)
     }
   }
