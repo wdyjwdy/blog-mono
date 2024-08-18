@@ -12,7 +12,7 @@ function Editor({ code, lang, setCode }) {
   }
 
   function handleKeyDown(e) {
-    if (e.key === 'Tab') { // tab
+    if (e.key === 'Tab') {
       e.preventDefault()
       let start = ref.current.selectionStart
       let end = ref.current.selectionEnd
