@@ -1,34 +1,44 @@
 import styles from './Editor.module.css'
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { codeToHtml } from 'shiki'
 
 function Editor({ code, lang, setCode }) {
   const ref = useRef()
+  const [codeStack, setCodeStack] = useState([code])
 
   function handleCodeChange(e) {
     setCode(e.target.value)
+    setCodeStack(p => [...p, e.target.value])
   }
 
   function handleKeyDown(e) {
-    if (e.keyCode === 9) { // tab
+    if (e.key === 'Tab') { // tab
       e.preventDefault()
       let start = ref.current.selectionStart
       let end = ref.current.selectionEnd
+      let prevEnd = end
       while (start !== 0 && code[start - 1] !== '\n') start--
       while (end !== code.length && code[end] !== '\n') end++
       let lineCount = code.slice(start, end).match(/^/gm).length
+      console.log(lineCount)
       let newCode =
         code.slice(0, start) +
         code.slice(start, end).replace(/^/gm, '    ') +
         code.slice(end)
       setCode(newCode)
+      setCodeStack(p => [...p, newCode])
       setTimeout(() => {
         if (lineCount === 1) {
-          ref.current.setSelectionRange(end + 4, end + 4)
+          ref.current.setSelectionRange(prevEnd + 4, prevEnd + 4)
         } else {
           ref.current.setSelectionRange(start, end + 4 * lineCount)
         }
       }, 0)
+    } else if (e.metaKey && e.key === 'z') {
+      e.preventDefault()
+      if (codeStack.length === 1) return;
+      setCode(codeStack.at(-2))
+      setCodeStack(codeStack.slice(0, -1))
     }
   }
 
