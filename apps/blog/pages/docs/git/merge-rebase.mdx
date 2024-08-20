@@ -1,0 +1,176 @@
+import { Picture } from '@/components'
+import { Callout } from 'nextra/components'
+import { Table } from '@radix-ui/themes';
+
+# Merge & Rebase
+## Merge
+### 合并两个分支
+```mermaid
+%%{init: { 'theme': 'base'}}%%
+gitGraph
+    commit
+    commit id: "A"
+    branch feat
+    checkout main
+    commit
+    commit id: "B"
+    checkout feat
+    commit
+    commit id: "C"
+    checkout main
+    merge feat
+    commit
+```
+1. 在 `main` 分支上执行 `git merge feat{:sh}` 命令，将 `feat` 合入 `main`
+2. Git 会将 `A`, `B`, `C` 做一个[三方合并](#三方合并)，然后提交合并的结果
+<Callout type='error'>
+缺点：提交历史是非线性的，并且会引入一次新的提交。
+</Callout>
+## Rebase
+### 合并多个提交
+1. 使用 `git log --oneline{:sh}` 命令，查看历史提交
+```sh
+78854e7 (HEAD -> main) 甘蔗
+62e3f2e 雪梨
+59dfed7 橙子
+77cc3ec 之前的提交
+```
+2. 然后使用 `git rebase -i HEAD~3{:sh}` 命令，合并最近三个提交，会弹出如下交互界面
+```sh
+pick 59dfed7 橙子 # 最早的 commit
+pick 62e3f2e 雪梨
+pick 78854e7 甘蔗
+
+# p, pick, 保留 commit
+# s, squash, 合并入之前的 commit
+```
+3. 将 `雪梨` 和 `甘蔗` 合并入 `橙子`，即将 `pick` 改为 `s`，保存后填写新的提交信息 `水果`
+```sh
+pick 59dfed7 橙子 # 最早的 commit
+s 62e3f2e 雪梨
+s 78854e7 甘蔗
+```
+4. 合并完成
+```sh
+78854e7 (HEAD -> main) 水果
+77cc3ec 之前的提交
+```
+### 线性三方合并
+```mermaid
+%%{init: { 'theme': 'base'}}%%
+gitGraph
+    commit
+    commit id: "A"
+    branch feat
+    checkout main
+    commit
+    commit id: "B"
+    checkout feat
+    commit
+    commit id: "C"
+```
+1. 首先在 `feat` 分支上执行 `git rebase main{:sh}` 命令，将 `feat` 分支变基到 `main` 分支（从基于 `A` 变成基于 `B`）
+```mermaid
+%%{init: { 'theme': 'base'}}%%
+gitGraph
+    commit
+    commit id: "A"
+    commit
+    commit id: "B"
+    branch feat
+    checkout feat
+    commit
+    commit id: "C'"
+```
+2. 在 `main` 分支上执行 `git merge feat{:sh}` 命令，将 `feat` 合入 `main`（这里是一个[快速合并](#快速合并)，因此记录是线性的）
+<Callout type='error'>
+缺点：因为是基于 `B` 重新提交 `C`，所以需要解决多次冲突。
+</Callout>
+## Appendix
+### 两方合并
+```mermaid
+%%{init: { 'theme': 'base'}}%%
+gitGraph
+    commit
+    commit id: "A"
+    branch feat
+    checkout main
+    commit
+    commit id: "B"
+    checkout feat
+    commit
+    commit id: "C"
+    checkout main
+    merge feat
+    commit
+```
+我们想要将 `feat` 合入 `main`，但是仅仅对比 `B`, `C` ，我们无法知道是谁修改了文件，所以只能手动合并
+### 三方合并
+```mermaid
+%%{init: { 'theme': 'base'}}%%
+gitGraph
+    commit
+    commit id: "A"
+    branch feat
+    checkout main
+    commit
+    commit id: "B"
+    checkout feat
+    commit
+    commit id: "C"
+    checkout main
+    merge feat
+    commit
+```
+三方合并引入了 `B`, `C` 的共同父节点 `A`，对比可以确定是 `B` 修改了文件，因此可以自动合并
+
+<Table.Root variant="surface" style={{ marginTop: "10px" }}>
+  <Table.Header>
+    <Table.Row>
+      <Table.ColumnHeaderCell>Diff</Table.ColumnHeaderCell>
+      <Table.ColumnHeaderCell>Result</Table.ColumnHeaderCell>
+    </Table.Row>
+  </Table.Header>
+
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell>`A` = `B` = `C`</Table.Cell>
+      <Table.Cell>内容无修改，保留 `A` 或 `B` 或 `C`</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`A` = `B` ≠ `C`</Table.Cell>
+      <Table.Cell>`C` 进行了修改，保留 `C`</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`A` = `C` ≠ `B`</Table.Cell>
+      <Table.Cell>`B` 进行了修改，保留 `B`</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`B` = `C` ≠ `A`</Table.Cell>
+      <Table.Cell>`B`, `C` 进行了相同的修改，保留 `B` 或 `C`</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>`A` ≠ `B` ≠ `C`</Table.Cell>
+      <Table.Cell>发生冲突，手动保留</Table.Cell>
+    </Table.Row>
+  </Table.Body>
+</Table.Root>
+### 快速合并
+```mermaid
+%%{init: { 'theme': 'base'}}%%
+%%{init: { 'theme': 'base'}}%%
+gitGraph
+    commit
+    commit
+    commit
+    commit id: "A"
+    branch feature
+    checkout feature
+    commit
+    commit
+    commit id: "C"
+```
+做三方合并时，如果 `main` 上没有新的提交，就不会产生冲突，Git 会直接将 `main` 指针前移到 `C`
+<Callout type='info' emoji='🐳'>
+快速合并不会产生新的提交，并且记录是线性的。
+</Callout>
