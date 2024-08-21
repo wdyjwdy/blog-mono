@@ -1,6 +1,6 @@
 import { Picture } from '@/components'
 import { Callout } from 'nextra/components'
-import { Table } from '@radix-ui/themes';
+import { Table, Flex, Box } from '@radix-ui/themes';
 
 # Merge & Rebase
 ## Merge
@@ -23,38 +23,33 @@ gitGraph
 ```
 1. 在 `main` 分支上执行 `git merge feat{:sh}` 命令，将 `feat` 合入 `main`
 2. Git 会将 `A`, `B`, `C` 做一个[三方合并](#三方合并)，然后提交合并的结果
-<Callout type='error'>
-缺点：提交历史是非线性的，并且会引入一次新的提交。
+<Callout type='info' emoji='🐳'>
+提交历史是非线性的，并且会引入一次新的提交。
 </Callout>
 ## Rebase
 ### 合并多个提交
-1. 使用 `git log --oneline{:sh}` 命令，查看历史提交
-```sh
-78854e7 (HEAD -> main) 甘蔗
-62e3f2e 雪梨
-59dfed7 橙子
-77cc3ec 之前的提交
+```mermaid
+%%{init: { 'theme': 'base'}}%%
+gitGraph
+  commit
+  commit
+  commit
+  commit id: "Apple"
+  commit id: "Banana"
+  commit id: "Cherry"
 ```
-2. 然后使用 `git rebase -i HEAD~3{:sh}` 命令，合并最近三个提交，会弹出如下交互界面
-```sh
-pick 59dfed7 橙子 # 最早的 commit
-pick 62e3f2e 雪梨
-pick 78854e7 甘蔗
-
-# p, pick, 保留 commit
-# s, squash, 合并入之前的 commit
+1. 使用 `git rebase -i HEAD~3{:sh}` 命令，合并最近三个提交
+```mermaid
+%%{init: { 'theme': 'base'}}%%
+gitGraph
+  commit
+  commit
+  commit
+  commit id: "Fruits"
 ```
-3. 将 `雪梨` 和 `甘蔗` 合并入 `橙子`，即将 `pick` 改为 `s`，保存后填写新的提交信息 `水果`
-```sh
-pick 59dfed7 橙子 # 最早的 commit
-s 62e3f2e 雪梨
-s 78854e7 甘蔗
-```
-4. 合并完成
-```sh
-78854e7 (HEAD -> main) 水果
-77cc3ec 之前的提交
-```
+<Callout type='info' emoji='🐳'>
+常用来清理提交历史。
+</Callout>
 ### 线性三方合并
 ```mermaid
 %%{init: { 'theme': 'base'}}%%
@@ -69,7 +64,7 @@ gitGraph
     commit
     commit id: "C"
 ```
-1. 首先在 `feat` 分支上执行 `git rebase main{:sh}` 命令，将 `feat` 分支变基到 `main` 分支（从基于 `A` 变成基于 `B`）
+1. 首先在 `feat` 分支上执行 `git rebase main{:sh}` 命令，将 `feat` 分支变基到 `main` 分支
 ```mermaid
 %%{init: { 'theme': 'base'}}%%
 gitGraph
@@ -82,9 +77,9 @@ gitGraph
     commit
     commit id: "C'"
 ```
-2. 在 `main` 分支上执行 `git merge feat{:sh}` 命令，将 `feat` 合入 `main`（这里是一个[快速合并](#快速合并)，因此记录是线性的）
-<Callout type='error'>
-缺点：因为是基于 `B` 重新提交 `C`，所以需要解决多次冲突。
+2. 然后在 `main` 分支上执行 `git merge feat{:sh}` 命令，Git 会将 `A`, `B`, `C` 做一个[快速合并](#快速合并)
+<Callout type='info' emoji='🐳'>
+提交历史是线性的，但需要解决多次冲突。
 </Callout>
 ## Appendix
 ### 两方合并
@@ -122,7 +117,7 @@ gitGraph
     merge feat
     commit
 ```
-三方合并引入了 `B`, `C` 的共同父节点 `A`，对比可以确定是 `B` 修改了文件，因此可以自动合并
+三方合并引入了 `B`, `C` 的共同父节点 `A`，可以找出修改的文件，因此可以自动合并
 
 <Table.Root variant="surface" style={{ marginTop: "10px" }}>
   <Table.Header>
@@ -135,7 +130,7 @@ gitGraph
   <Table.Body>
     <Table.Row>
       <Table.Cell>`A` = `B` = `C`</Table.Cell>
-      <Table.Cell>内容无修改，保留 `A` 或 `B` 或 `C`</Table.Cell>
+      <Table.Cell>内容无修改</Table.Cell>
     </Table.Row>
     <Table.Row>
       <Table.Cell>`A` = `B` ≠ `C`</Table.Cell>
@@ -157,7 +152,6 @@ gitGraph
 </Table.Root>
 ### 快速合并
 ```mermaid
-%%{init: { 'theme': 'base'}}%%
 %%{init: { 'theme': 'base'}}%%
 gitGraph
     commit
