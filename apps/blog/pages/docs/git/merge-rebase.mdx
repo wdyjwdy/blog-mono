@@ -1,6 +1,6 @@
 import { Picture } from '@/components'
 import { Callout } from 'nextra/components'
-import { Table, Flex, Box } from '@radix-ui/themes';
+import { Table } from '@radix-ui/themes';
 
 # Merge & Rebase
 ## Merge
@@ -8,18 +8,18 @@ import { Table, Flex, Box } from '@radix-ui/themes';
 ```mermaid
 %%{init: { 'theme': 'base'}}%%
 gitGraph
-    commit
-    commit id: "A"
-    branch feat
-    checkout main
-    commit
-    commit id: "B"
-    checkout feat
-    commit
-    commit id: "C"
-    checkout main
-    merge feat
-    commit
+  commit
+  commit id: "A"
+  branch feat
+  checkout main
+  commit
+  commit id: "B"
+  checkout feat
+  commit
+  commit id: "C"
+  checkout main
+  merge feat
+  commit
 ```
 1. 在 `main` 分支上执行 `git merge feat{:sh}` 命令，将 `feat` 合入 `main`
 2. Git 会将 `A`, `B`, `C` 做一个[三方合并](#三方合并)，然后提交合并的结果
@@ -54,28 +54,28 @@ gitGraph
 ```mermaid
 %%{init: { 'theme': 'base'}}%%
 gitGraph
-    commit
-    commit id: "A"
-    branch feat
-    checkout main
-    commit
-    commit id: "B"
-    checkout feat
-    commit
-    commit id: "C"
+  commit
+  commit id: "A"
+  branch feat
+  checkout main
+  commit
+  commit id: "B"
+  checkout feat
+  commit
+  commit id: "C"
 ```
 1. 首先在 `feat` 分支上执行 `git rebase main{:sh}` 命令，将 `feat` 分支变基到 `main` 分支
 ```mermaid
 %%{init: { 'theme': 'base'}}%%
 gitGraph
-    commit
-    commit id: "A"
-    commit
-    commit id: "B"
-    branch feat
-    checkout feat
-    commit
-    commit id: "C'"
+  commit
+  commit id: "A"
+  commit
+  commit id: "B"
+  branch feat
+  checkout feat
+  commit
+  commit id: "C'"
 ```
 2. 然后在 `main` 分支上执行 `git merge feat{:sh}` 命令，Git 会将 `A`, `B`, `C` 做一个[快速合并](#快速合并)
 <Callout type='info' emoji='🐳'>
@@ -86,36 +86,36 @@ gitGraph
 ```mermaid
 %%{init: { 'theme': 'base'}}%%
 gitGraph
-    commit
-    commit id: "A"
-    branch feat
-    checkout main
-    commit
-    commit id: "B"
-    checkout feat
-    commit
-    commit id: "C"
-    checkout main
-    merge feat
-    commit
+  commit
+  commit id: "A"
+  branch feat
+  checkout main
+  commit
+  commit id: "B"
+  checkout feat
+  commit
+  commit id: "C"
+  checkout main
+  merge feat
+  commit
 ```
 我们想要将 `feat` 合入 `main`，但是仅仅对比 `B`, `C` ，我们无法知道是谁修改了文件，所以只能手动合并
 ### 三方合并
 ```mermaid
 %%{init: { 'theme': 'base'}}%%
 gitGraph
-    commit
-    commit id: "A"
-    branch feat
-    checkout main
-    commit
-    commit id: "B"
-    checkout feat
-    commit
-    commit id: "C"
-    checkout main
-    merge feat
-    commit
+  commit
+  commit id: "A"
+  branch feat
+  checkout main
+  commit
+  commit id: "B"
+  checkout feat
+  commit
+  commit id: "C"
+  checkout main
+  merge feat
+  commit
 ```
 三方合并引入了 `B`, `C` 的共同父节点 `A`，可以找出修改的文件，因此可以自动合并
 
@@ -154,15 +154,15 @@ gitGraph
 ```mermaid
 %%{init: { 'theme': 'base'}}%%
 gitGraph
-    commit
-    commit
-    commit
-    commit id: "A"
-    branch feature
-    checkout feature
-    commit
-    commit
-    commit id: "C"
+  commit
+  commit
+  commit
+  commit id: "A"
+  branch feature
+  checkout feature
+  commit
+  commit
+  commit id: "C"
 ```
 做三方合并时，如果 `main` 上没有新的提交，就不会产生冲突，Git 会直接将 `main` 指针前移到 `C`
 <Callout type='info' emoji='🐳'>
