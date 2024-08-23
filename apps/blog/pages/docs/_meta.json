@@ -1,10 +1,5 @@
 {
-  "intro": "Intro",
-  "---": {
-    "type": "separator"
-  },
   "js": "JavaScript",
   "ts": "TypeScript",
-  "config-files": "Config Files",
   "git": "Git"
 }

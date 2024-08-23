@@ -5,24 +5,24 @@ export const quicks = [
   {
     title: '✍🏼 手写题',
     links: [
-      { label: '算法', href: '/coding/intro#算法' },
-      { label: '设计模式', href: '/coding/intro#设计模式' },
-      { label: 'JS', href: '/coding/intro#js' },
-      { label: 'TS', href: '/coding/intro#ts' },
-      { label: 'CSS', href: '/coding/intro#css' },
-      { label: 'Lodash', href: '/coding/intro#lodash' },
-      { label: '数据结构', href: '/coding/intro#数据结构' },
-      { label: '正则', href: '/coding/intro#正则' },
+      { label: 'Algorithms', href: '/coding/algo' },
+      { label: 'JS', href: '/coding/js/array' },
+      { label: 'TS', href: '/coding/ts/utility-types' },
+      { label: 'Design Patterns', href: '/coding/design-patterns' },
+      { label: 'CSS', href: '/coding/css/layout' },
+      { label: 'Lodash', href: '/coding/lodash' },
+      { label: 'Data Structure', href: '/coding/data-structure' },
+      { label: 'Regex', href: '/coding/regex' },
     ]
   },
   {
     title: '📜 文档',
     links: [
-      { label: 'JS', href: '/docs/intro#js' },
-      { label: 'TS', href: '/docs/intro#ts' },
-      { label: '配置文件', href: '/docs/intro#config-files' },
-      { label: '正则', href: '/docs/intro#regex' },
-      { label: 'Git', href: '/docs/intro/git/merge-rebase' },
+      { label: 'JS', href: '/docs/js' },
+      { label: 'TS', href: '/docs/ts' },
+      { label: 'Git', href: '/docs/git/merge-rebase' },
+      { label: 'Config Files', href: '/docs/config-files' },
+      { label: 'Regex', href: '/docs/regex' },
     ]
   },
   {
@@ -63,7 +63,7 @@ export function Verse({ data }) {
   let { img, word } = data
   return (
     <Card>
-      <Flex gap="2" direction="column" width="160px">
+      <Flex gap="2" direction="column" width="200px">
         <Inset clip="padding-box" side="top" pb="current">
           <AspectRatio ratio={5 / 3}>
             <img src={img} alt="Verse" style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
@@ -79,7 +79,7 @@ export function Quick({ data }) {
   let { title, links } = data
   return (
     <Card>
-      <Flex gap="2" direction="column" width="160px">
+      <Flex gap="2" direction="column" width="200px">
         <Text size="4" weight="bold">{title}</Text>
         <Flex gap="1" wrap="wrap">
           {links.map(({ label, href }) => <Link key={label} href={href}><Button variant="soft">{label}</Button></Link>)}

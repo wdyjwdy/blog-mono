@@ -1,4 +1,4 @@
-import { CreateTable } from '../../components'
+import { CreateTable } from '@/components'
 
 export function DataJS() {
   return [
@@ -44,44 +44,5 @@ export function DataJS() {
   ]
 }
 
-export const tsData = [
-  {
-    key: 'TS',
-    values: [
-      ['Types', 'Type Inference']
-    ]
-  }
-]
-
-export const configData = [
-  {
-    key: 'JSON',
-    values: [
-      ['Basic Types', 'Collection Types']
-    ],
-  },
-  {
-    key: 'YAML',
-    values: [
-      ['Basic Types 1', 'Collection Types 1']
-    ],
-  }
-]
-
-export const regexData = [
-  {
-    key: 'Metachar',
-    values: [
-      ['字符', '量词', '位置', '子表达式', '选项']
-    ],
-  },
-]
-
-## JS
+# JavaScript
 <CreateTable data={DataJS()} path='docs/js' />
-## TS
-<CreateTable data={tsData} path='docs/ts' singlePage={true} />
-## Config Files
-<CreateTable data={configData} path='docs/config-files' singlePage={true} />
-## Regex
-<CreateTable data={regexData} path='docs/regex' singlePage={true} />
