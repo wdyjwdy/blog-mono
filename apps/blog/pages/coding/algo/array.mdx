@@ -1,3 +1,5 @@
+import { Card } from '@radix-ui/themes';
+
 ## 数组
 ### 加一
 ```js
@@ -43,6 +45,26 @@ function merge(intervals: number[][]): number[][] {
 ```
 ## 矩阵
 ### 矩阵置零
+<Card mt='5' style={{ padding: 0 }} variant="ghost">
+```mermaid
+block-beta
+  columns 5
+  block:b1:2
+    columns 3
+    space:4 a("0") space:4
+  end
+  space
+  block:b2:2
+    columns 3
+    space b("0") space
+    c("0") d("0") e("0")
+    space f("0") space
+  end
+b1 --> b2
+class b1,b2 Line
+class b,c,e,f Dash
+```
+</Card>
 ```js
 function setZeroes(matrix: number[][]): void {
     let [row, col] = [matrix.length, matrix[0].length]
@@ -71,6 +93,7 @@ function setZeroes(matrix: number[][]): void {
 ```
 ### 旋转图像
 > 相似题目：[转置矩阵](https://leetcode.cn/problems/transpose-matrix/description/)
+<Card mt='5' style={{ padding: 0 }} variant="ghost">
 ```mermaid
 block-beta
   columns 5
@@ -88,6 +111,7 @@ block-beta
 b1 --> b2
 class b1,b2 Line
 ```
+</Card>
 ```ts
 function rotate(matrix: number[][]): void {
     let [row, col] = [matrix.length, matrix[0].length]
@@ -115,7 +139,7 @@ function spiralOrder(matrix: number[][]): number[] {
     let [l, t, r, b] = [0, 0, col - 1, row - 1]
     let res = []
 
-    while (res.length !== row * col) {
+    while (true) {
         // 从左到右
         for (let i = l; i <= r; i++) res.push(matrix[t][i])
         t++

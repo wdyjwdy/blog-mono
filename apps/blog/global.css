@@ -13,6 +13,11 @@ h2 {
   border-bottom-width: 0px !important;
 }
 
+/* Mermaid Svg */
+svg {
+  margin: 0px auto !important;
+}
+
 /* Mermaid Color */
 .default>rect {
   fill: #d5d5d543 !important;
