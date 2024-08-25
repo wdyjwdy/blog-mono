@@ -25,18 +25,26 @@ function lengthOfLongestSubstring(s: string): number {
 2. 字符计数相同，则是一个排列
 ```js
 function checkInclusion(s1: string, s2: string): boolean {
-    function check(t1) {
-        let map = new Map() // 计数
-        for (let i = 0; i < t1.length; i++) {
-            map.set(t1[i], (map.get(t1[i]) ?? 0) + 1)
-            map.set(s1[i], (map.get(s1[i]) ?? 0) - 1)
-        }
-        return [...map.values()].every(x => x === 0)
+    let [m, n] = [s1.length, s2.length]
+    if (m > n) return false
+
+    // 计数
+    let s1Count = Array(26).fill(0)
+    let s2Count = Array(26).fill(0)
+    for (let i = 0; i < m; i++) {
+        s1Count[s1[i].charCodeAt(0) - 97]++
+        s2Count[s2[i].charCodeAt(0) - 97]++
     }
 
-    let [m, n] = [s1.length, s2.length]
-    for (let i = 0; i <= n - m; i++) {
-        if (check(s2.slice(i, i + m))) return true // 取长度相同的字符串
+    function check() {
+        return s1Count.every((v, i) => v === s2Count[i])
+    }
+
+    if (check()) return true
+    for (let i = 0; i < n - m; i++) {
+        s2Count[s2[i].charCodeAt(0) - 97]--
+        s2Count[s2[i + m].charCodeAt(0) - 97]++
+        if (check()) return true
     }
     return false
 };
