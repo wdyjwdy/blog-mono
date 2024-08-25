@@ -1,26 +1,6 @@
 # 滑动窗口
-## 无重复字符的最长子串
-1. 左指针，顺序递增
-2. 右指针，字符不重复时递增
-```js
-function lengthOfLongestSubstring(s: string): number {
-    let [a, b] = [0, 0]
-    let maxlen = 0
-    let set = new Set()
-
-    while (a < s.length) {
-        while (b < s.length && !set.has(s[b])) {
-            set.add(s[b])
-            b++
-        }
-        maxlen = Math.max(maxlen, set.size)
-        set.delete(s[a])
-        a++
-    }
-    return maxlen
-};
-```
-## 字符串的排列
+## 定长窗口
+### 字符串的排列
 1. 长度相同，才可能是排列
 2. 字符计数相同，则是一个排列
 ```js
@@ -47,5 +27,27 @@ function checkInclusion(s1: string, s2: string): boolean {
         if (check()) return true
     }
     return false
+};
+```
+## 动态窗口
+### 无重复字符的最长子串
+1. 左指针，顺序递增
+2. 右指针，字符不重复时递增
+```js
+function lengthOfLongestSubstring(s: string): number {
+    let [a, b] = [0, 0]
+    let maxlen = 0
+    let set = new Set()
+
+    while (a < s.length) {
+        while (b < s.length && !set.has(s[b])) {
+            set.add(s[b])
+            b++
+        }
+        maxlen = Math.max(maxlen, set.size)
+        set.delete(s[a])
+        a++
+    }
+    return maxlen
 };
 ```
