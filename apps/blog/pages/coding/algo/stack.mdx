@@ -1,14 +1,14 @@
 # 栈
 ## 有效括号
-```js
+```ts
 function isValid(s: string): boolean {
-    let set = new Set(["()", "[]", "{}"])
+    let set = new Set(['()', '[]', '{}'])
     let stack = []
-    for (let c of s) {
-        if (set.has(stack.at(-1) + c)) {
+    for (let v of s) {
+        if (set.has(stack.at(-1) + v)) {
             stack.pop()
         } else {
-            stack.push(c)
+            stack.push(v)
         }
     }
     return stack.length === 0
@@ -17,15 +17,14 @@ function isValid(s: string): boolean {
 ## 每日温度
 ```js
 function dailyTemperatures(temperatures: number[]): number[] {
-    let len = temperatures.length
-    let res = Array(len).fill(0)
+    let res = Array(temperatures.length).fill(0)
     let stack = []
-    for (let i = 0; i < len; i++) {
-        while (stack.length > 0 && temperatures[stack.at(-1)] < temperatures[i]) {
-            let index = stack.pop()
-            res[index] = i - index
+    for (let [k, v] of temperatures.entries()) {
+        while (stack.length > 0 && v > temperatures[stack.at(-1)]) {
+            let i = stack.pop()
+            res[i] = k - i
         }
-        stack.push(i)
+        stack.push(k)
     }
     return res
 };
@@ -80,7 +79,7 @@ function calculate(s: string): number {
             if (op === '+') nums.push(Number(t))
             else if (op === '-') nums.push(-Number(t))
             else if (op === '*') nums.push(Number(nums.pop()) * Number(t))
-            else if (op === '/') nums.push(~~(Number(nums.pop()) / Number(t)))
+            else if (op === '/') nums.push(parseInt(String(Number(nums.pop()) / Number(t))))
         }
     }
     return nums.reduce((a, b) => a + b)
@@ -91,19 +90,19 @@ function calculate(s: string): number {
 2. 遇到符号，计算后入栈
 ```js
 function evalRPN(tokens: string[]): number {
-    let nums = []
+    let stack = []
     for (let t of tokens) {
         if (/\d/.test(t)) {
-            nums.push(Number(t))
+            stack.push(Number(t))
         } else {
-            let r = nums.pop()
-            let l = nums.pop()
-            if (t === '+') nums.push(l + r)
-            else if (t === '-') nums.push(l - r)
-            else if (t === '*') nums.push(l * r)
-            else if (t === '/') nums.push(~~(l / r))
+            console.log(stack)
+            let [l, r] = stack.splice(-2)
+            if (t === '+') stack.push(l + r)
+            else if (t === '-') stack.push(l - r)
+            else if (t === '*') stack.push(l * r)
+            else if (t === '/') stack.push(parseInt(String(l / r)))
         }
     }
-    return nums[0]
+    return stack[0]
 };
 ```
