@@ -1,4 +1,12 @@
 # RegEx
+## 数字加逗号
+> 例一：`1000000` *->* `1,000,000`
+1. 可以匹配，数字之后，三个数字之前
+```ts
+function addCommas(num: string): string {
+  return num.replace(/(?<=\d)(?=(?:\d{3})+$)/g, ',')
+}
+```
 ## Variable Name
 - 只包含字母、数字、下划线
 - 不能以数字开头
