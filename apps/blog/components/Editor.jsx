@@ -7,8 +7,19 @@ function Editor({ code, lang, setCode }) {
   const [codeStack, setCodeStack] = useState([code])
 
   function handleCodeChange(e) {
-    setCode(e.target.value)
-    setCodeStack(p => [...p, e.target.value])
+    let newCode = e.target.value
+    let start = ref.current.selectionStart
+    let charInput = newCode.slice(start - 1, start)
+    if (newCode.length > code.length && '{[('.includes(charInput)) {
+      let map = new Map([['(', ')'], ['[', ']'], ['{', '}']])
+      let charAppend = map.get(charInput)
+      newCode = newCode.slice(0, start) + charAppend + newCode.slice(start)
+      setTimeout(() => {
+        ref.current.setSelectionRange(start, start)
+      }, 0)
+    }
+    setCode(newCode)
+    setCodeStack(p => [...p, newCode])
   }
 
   function handleKeyDown(e) {
