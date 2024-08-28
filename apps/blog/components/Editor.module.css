@@ -9,7 +9,7 @@
   height: 100%;
   resize: none;
   padding: 0px;
-  font-family: monospace;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 14px;
   line-height: 20px;
   position: absolute;
