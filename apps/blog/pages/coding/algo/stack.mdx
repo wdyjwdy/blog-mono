@@ -106,3 +106,40 @@ function evalRPN(tokens: string[]): number {
     return stack[0]
 };
 ```
+## 字符串解码
+1. 遇到 `]`，计算后入栈
+2. 遇到其他，入栈
+```ts
+function decodeString(s: string): string {
+    let tokens = s.split(/(\d+|\W)/).filter(x => x !== '')
+    let stack = []
+    for (let t of tokens) {
+        if (t !== ']') {
+            stack.push(t)
+        } else {
+            let i = stack.lastIndexOf('[')
+            let str = stack.splice(i + 1).join('')
+            stack.pop()
+            let num = Number(stack.pop())
+            stack.push(str.repeat(num))
+        }
+    }
+    return stack.join('')
+};
+```
+## 验证栈序列
+1. 模拟入栈出栈
+```ts
+function validateStackSequences(pushed: number[], popped: number[]): boolean {
+    let index = 0
+    let stack = []
+    for (let v of pushed) {
+        stack.push(v)
+        while (stack.length && stack.at(-1) === popped[index]) {
+            stack.pop()
+            index++
+        }
+    }
+    return index === popped.length
+};
+```

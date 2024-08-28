@@ -10,8 +10,8 @@ function Editor({ code, lang, setCode }) {
     let newCode = e.target.value
     let start = ref.current.selectionStart
     let charInput = newCode.slice(start - 1, start)
-    if (newCode.length > code.length && '{[('.includes(charInput)) {
-      let map = new Map([['(', ')'], ['[', ']'], ['{', '}']])
+    if (newCode.length > code.length && '{[("\''.includes(charInput)) {
+      let map = new Map([['(', ')'], ['[', ']'], ['{', '}'], ['\'', '\''], ['"', '"']])
       let charAppend = map.get(charInput)
       newCode = newCode.slice(0, start) + charAppend + newCode.slice(start)
       setTimeout(() => {
