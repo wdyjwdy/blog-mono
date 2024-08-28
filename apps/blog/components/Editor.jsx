@@ -2,24 +2,30 @@ import styles from './Editor.module.css'
 import { useRef, useEffect, useState } from 'react'
 import { codeToHtml } from 'shiki'
 
-function Editor({ code, lang, setCode }) {
+export default function Editor({ code, lang, setCode }) {
   const ref = useRef()
   const [codeStack, setCodeStack] = useState([code])
 
   function handleCodeChange(e) {
     let newCode = e.target.value
+    let completedCode = handleCodeComplete(newCode)
+    setCode(completedCode)
+    setCodeStack(p => [...p, completedCode])
+  }
+
+  function handleCodeComplete(newCode) {
     let start = ref.current.selectionStart
     let charInput = newCode.slice(start - 1, start)
-    if (newCode.length > code.length && '{[("\''.includes(charInput)) {
-      let map = new Map([['(', ')'], ['[', ']'], ['{', '}'], ['\'', '\''], ['"', '"']])
+    let completedCode = newCode
+    let map = new Map([['(', ')'], ['[', ']'], ['{', '}'], ["'", "'"], ['"', '"']])
+    if (newCode.length > code.length && map.has(charInput)) {
       let charAppend = map.get(charInput)
-      newCode = newCode.slice(0, start) + charAppend + newCode.slice(start)
+      completedCode = newCode.slice(0, start) + charAppend + newCode.slice(start)
       setTimeout(() => {
         ref.current.setSelectionRange(start, start)
       }, 0)
     }
-    setCode(newCode)
-    setCodeStack(p => [...p, newCode])
+    return completedCode
   }
 
   function handleKeyDown(e) {
@@ -80,5 +86,3 @@ function Highlight({ code, lang }) {
 
   return <div ref={ref} />
 }
-
-export default Editor
