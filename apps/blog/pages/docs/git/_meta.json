@@ -1,3 +1,4 @@
 {
-  "merge-rebase": "Merge & Rebase"
+  "merge-rebase": "Merge & Rebase",
+  "checkout-reset": "Checkout & Reset"
 }
