@@ -16,16 +16,18 @@ export default function Editor({ code, lang, setCode }) {
   function handleCodeComplete(newCode) {
     let start = ref.current.selectionStart
     let charInput = newCode.slice(start - 1, start)
-    let completedCode = newCode
     let map = new Map([['(', ')'], ['[', ']'], ['{', '}'], ["'", "'"], ['"', '"']])
     if (newCode.length > code.length && map.has(charInput)) {
-      let charAppend = map.get(charInput)
-      completedCode = newCode.slice(0, start) + charAppend + newCode.slice(start)
-      setTimeout(() => {
-        ref.current.setSelectionRange(start, start)
-      }, 0)
+      newCode = newCode.slice(0, start) + map.get(charInput) + newCode.slice(start)
+      setSelectionRange(start)
     }
-    return completedCode
+    return newCode
+  }
+
+  function setSelectionRange(start, end = start) {
+    setTimeout(() => {
+      ref.current.setSelectionRange(start, end)
+    }, 0)
   }
 
   function handleKeyDown(e) {
@@ -37,7 +39,6 @@ export default function Editor({ code, lang, setCode }) {
       while (start !== 0 && code[start - 1] !== '\n') start--
       while (end !== code.length && code[end] !== '\n') end++
       let lineCount = code.slice(start, end).match(/^/gm).length
-      console.log(lineCount)
       let newCode =
         code.slice(0, start) +
         code.slice(start, end).replace(/^/gm, '    ') +
@@ -46,9 +47,9 @@ export default function Editor({ code, lang, setCode }) {
       setCodeStack(p => [...p, newCode])
       setTimeout(() => {
         if (lineCount === 1) {
-          ref.current.setSelectionRange(prevEnd + 4, prevEnd + 4)
+          setSelectionRange(prevEnd + 4)
         } else {
-          ref.current.setSelectionRange(start, end + 4 * lineCount)
+          setSelectionRange(start, end + 4 * lineCount)
         }
       }, 0)
     } else if (e.metaKey && e.key === 'z') {
