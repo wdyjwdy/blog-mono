@@ -9,6 +9,12 @@ em {
   font-style: normal;
 }
 
+em strong {
+  color: #709a0c;
+  font-style: normal;
+  font-weight: unset;
+}
+
 h2 {
   border-bottom-width: 0px !important;
 }
@@ -46,6 +52,11 @@ svg {
 .Yellow>rect {
   fill: #fff4e6 !important;
   stroke: #ffc600 !important;
+}
+
+.Green>rect {
+  fill: #22863a1c !important;
+  stroke: #2d861f !important;
 }
 
 @media (prefers-color-scheme: dark) {

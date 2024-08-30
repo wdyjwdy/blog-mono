@@ -1,0 +1,31 @@
+# Baisc
+## 文件状态
+```mermaid
+flowchart LR
+  A("Untracked")
+  B("Unmodified")
+  C("Modified")
+  D("Staged")
+  A -- add--> B -- edit --> C -- add --> D
+  D -- reset --> C -- checkout --> B -- remove--> A
+class C Yellow
+class D Green
+```
+### Add
+1. 执行 `git add README{:sh}` 命令，跟踪 `README` 文件，并暂存
+```mermaid
+flowchart LR
+  A("\`*??* README\`")
+  B("\`***A***_ REAMDE\`")
+  A -- add --> B
+class B Green
+```
+2. 执行 `git add README{:sh}` 命令，暂存 `README` 文件
+```mermaid
+flowchart LR
+  A("\`_*M* README\`")
+  B("\`***A***_ REAMDE\`")
+  A -- add --> B
+class A Yellow
+class B Green
+```
