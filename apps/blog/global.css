@@ -40,6 +40,10 @@ svg {
   stroke: #0000 !important;
 }
 
+.Blank p {
+  color: transparent !important;
+}
+
 .Dash>rect {
   fill: #0000 !important;
   stroke-dasharray: 5 5;

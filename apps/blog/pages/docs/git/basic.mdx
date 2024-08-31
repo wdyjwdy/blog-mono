@@ -7,9 +7,10 @@ flowchart LR
   C("Modified")
   D("Staged")
   A -- add--> B -- edit --> C -- add --> D
-  D -- reset --> C -- checkout --> B -- remove--> A
+  D -- restore --> C -- restore --> B -- rm --> A
 class C Yellow
 class D Green
+class A Dash
 ```
 ### Add
 1. 执行 `git add README{:sh}` 命令，跟踪 `README` 文件，并暂存
@@ -18,6 +19,7 @@ flowchart LR
   A("\`*??* README\`")
   B("\`***A***_ REAMDE\`")
   A -- add --> B
+class A Dash
 class B Green
 ```
 2. 执行 `git add README{:sh}` 命令，暂存 `README` 文件
@@ -27,5 +29,69 @@ flowchart LR
   B("\`***A***_ REAMDE\`")
   A -- add --> B
 class A Yellow
+class B Green
+```
+### Restore
+1. 执行 `git restore --staged README{:sh}` 命令，撤销 `README` 文件的暂存
+```mermaid
+flowchart LR
+  A("\`_*M* README\`")
+  B("\`***A***_ REAMDE\`")
+  B -- restore --> A
+class A Yellow
+class B Green
+```
+2. 执行 `git restore README{:sh}` 命令，撤销 `README` 文件的修改
+```mermaid
+flowchart LR
+  A("\`_*M* README\`")
+  B("\`__ REAMDE\`")
+  A -- restore --> B
+class A Yellow
+```
+### Rm
+1. 执行 `git rm README{:sh}` 命令，删除 `README` 文件，并取消跟踪
+```mermaid
+flowchart LR
+  A("\`__ README\`")
+  B("\`__ REAMDE\`")
+  A -- rm --> B
+class B Dash
+class B Blank
+```
+2. 执行 `git rm --cached README{:sh}` 命令，保留 `README` 文件，并取消跟踪
+```mermaid
+flowchart LR
+  A("\`__ README\`")
+  B("\`*??* REAMDE\`")
+  A -- rm --> B
+class B Dash
+```
+## 文件位置
+```mermaid
+flowchart LR
+  A("Working Tree")
+  B("Index")
+  C("Repository")
+  A -- add--> B -- commit --> C
+  C -- amend --> B -- resotre --> A
+class B Yellow
+class C Green
+```
+### Commit
+1. 执行 `git commit{:sh}` 命令，提交暂存区中的文件
+```mermaid
+flowchart LR
+  A("\`__ REAMDE\`")
+  B("\`***A***_ REAMDE\`")
+  B -- commit --> A
+class B Green
+```
+1. 执行 `git commit --amend{:sh}` 命令，撤回上次提交，重新提交暂存区中的文件
+```mermaid
+flowchart LR
+  A("\`__ REAMDE\`")
+  B("\`***A***_ REAMDE\`")
+  B -- commit --> A
 class B Green
 ```
