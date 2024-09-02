@@ -99,24 +99,38 @@ class B Green
 ### 创建分支
 1. 执行 `git branch feat{:sh}` 命令，基于当前提交 `HEAD`，创建一个新分支 `feat`
 ```mermaid
-%%{init: { 'theme': 'base'}}%%
+%%{init: {'theme': 'base', 'gitGraph': {'showBranches': false}}}%%
 gitGraph
   commit
   commit
   commit
-  commit tag: "HEAD"
-  branch feat
+  commit tag: "main(HEAD), feat"
 ```
 ### 切换分支
 1. 执行 `git switch feat{:sh}` 命令，将 `HEAD` 移动到 `feat` 分支，进行分支切换
+```mermaid
+%%{init: {'theme': 'base', 'gitGraph': {'showBranches': false}}}%%
+gitGraph
+  commit
+  commit
+  commit
+  commit tag: "main, feat(HEAD)"
+```
+### 合并分支
+1. 在 `main` 分支上，执行 `git merge feat{:sh}` 命令，将 `feat` 分支合并到 `main` 分支
 ```mermaid
 %%{init: { 'theme': 'base'}}%%
 gitGraph
   commit
   commit
-  commit
-  commit tag: "HEAD"
   branch feat
+  checkout main
+  commit
+  commit tag: "main(HEAD)"
   checkout feat
-  commit tag: "HEAD"
+  commit
+  commit tag: "feat"
+  checkout main
+  merge feat
+  commit
 ```
