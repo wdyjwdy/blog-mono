@@ -29,6 +29,11 @@ class b1,b2 Line
 使用 `git stash -m 'hello'{:sh}` 命令，指定**栈**元素的标题
 </Callout>
 2. 使用 `git stash list'{:sh}` 命令，查看**栈**元素
+```sh
+git stash list
+> @stash{0} abcdef
+> @stash{1} abcdef
+```
 ### 恢复工作内容
 1. 使用 `git stash pop{:sh}` 命令，将**栈顶**元素*弹出*到**工作区**
 ```mermaid
