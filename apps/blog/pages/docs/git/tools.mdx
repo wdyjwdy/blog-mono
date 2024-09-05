@@ -1,0 +1,82 @@
+import { Callout } from 'nextra/components'
+
+# Tools
+## Stash
+### 保存工作内容
+1. 使用 `git stash{:sh}` 命令， 移动当前**工作区**和**暂存区**的内容到**栈**
+```mermaid
+block-beta
+  columns 5
+  block:b1:2
+    columns 1
+    a1["File"]
+    a2["工作区"]
+    a3["暂存区"]
+  end
+  space
+  block:b2:2
+    columns 1
+    c1["Stack"]
+    c2["@stash{0}"]
+    space
+  end
+a2 --> c2
+a3 --> c2
+class a1,c1 Text
+class b1,b2 Line
+```
+<Callout type='info' emoji='🐳'>
+使用 `git stash -m 'hello'{:sh}` 命令，指定**栈**元素的标题
+</Callout>
+2. 使用 `git stash list'{:sh}` 命令，查看**栈**元素
+### 恢复工作内容
+1. 使用 `git stash pop{:sh}` 命令，将**栈顶**元素*弹出*到**工作区**
+```mermaid
+block-beta
+  columns 5
+  block:b1:2
+    columns 1
+    a1["Stack"]
+    a2["@stash{0}"]
+    space
+  end
+  space
+  block:b2:2
+    columns 1
+    c1["File"]
+    c2["工作区"]
+    c3["暂存区"]
+  end
+a2 --> c2
+class a1,c1 Text
+class a2 Dash
+class a2 Red
+class b1,b2 Line
+```
+<Callout type='info' emoji='🐳'>
+使用 `git stash pop 1{:sh}` 命令，指定弹出指定位置元素
+</Callout>
+2. 使用 `git stash apply{:sh}` 命令，将**栈顶**元素*复制*到**工作区**
+```mermaid
+block-beta
+  columns 5
+  block:b1:2
+    columns 1
+    a1["Stack"]
+    a2["@stash{0}"]
+    space
+  end
+  space
+  block:b2:2
+    columns 1
+    c1["File"]
+    c2["工作区"]
+    c3["暂存区"]
+  end
+a2 --> c2
+class a1,c1 Text
+class b1,b2 Line
+```
+<Callout type='info' emoji='🐳'>
+使用 `git stash apply 1{:sh}` 命令，指定复制指定位置元素
+</Callout>
